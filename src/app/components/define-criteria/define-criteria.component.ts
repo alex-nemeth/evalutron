@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 
 interface ICriteria {
-  title: any;
-  minmax: any;
+  title: string;
+  minmax: string;
 }
 
 @Component({
@@ -20,17 +20,23 @@ interface ICriteria {
   styleUrl: './define-criteria.component.css',
 })
 export class DefineCriteriaComponent {
-  criteriaArray: any[] = [];
+  criteriaArray: ICriteria[] = [
+    {
+      title: 'Test',
+      minmax: 'MAX',
+    },
+  ];
 
   formGroup = new FormGroup({
-    title: new FormControl('', [Validators.minLength(3)]),
+    title: new FormControl('', [Validators.required]),
     minmax: new FormControl('MIN', [Validators.required]),
   });
 
   addCriteria() {
     if (this.formGroup.valid) {
-      this.criteriaArray.push(this.formGroup.value);
+      this.criteriaArray.push(this.formGroup.value as ICriteria);
       this.formGroup.reset();
+      this.formGroup.controls.minmax.setValue('MIN');
     }
   }
 }
