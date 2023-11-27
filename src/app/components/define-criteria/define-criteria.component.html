@@ -3,7 +3,7 @@
     <p>Title</p>
     <p>Min/Max</p>
 </div>
-<div class="grid grid-cols-2 text-center" *ngFor="let criteria of criteriaArray">
+<div class="grid grid-cols-2 text-center" *ngFor="let criteria of criteria$ | async">
     <p> {{ criteria.title }} </p>
     <p> {{ criteria.minmax }} </p>
 </div>
@@ -47,4 +47,5 @@
 
 <div class="flex flex-row-reverse m-4">
 <button
+    [routerLink]="['/weights-estimation']" 
     class="border-black bg-white text-black w-12 font-medium">Next</button></div>
