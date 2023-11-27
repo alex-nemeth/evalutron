@@ -1,22 +1,21 @@
-<div class="flex justify-center m-10 text-3xl">
-    <header>Define Criteria</header>
+    <header class="m-10 text-3xl text-center">Define Criteria</header>
+<div class="grid grid-cols-2 text-center mb-4">
+    <p>Title</p>
+    <p>Min/Max</p>
 </div>
-
-<div class="flex justify-evenly gap-5">
-    <p class="text-center">Title</p>
-    <p class="text-center">Min/Max</p>
-</div>
-
-<div class="flex justify-evenly gap-5" *ngFor="let criteria of criteriaArray">
+<div class="grid grid-cols-2 text-center" *ngFor="let criteria of criteriaArray">
     <p> {{ criteria.title }} </p>
     <p> {{ criteria.minmax }} </p>
 </div>
+
+
 <form
     class="flex justify-evenly items-center gap-5"
     [formGroup]="formGroup"
     (ngSubmit)="addCriteria()">
     <input
         formControlName="title"
+        placeholder="Criteria title"
         type="text"
         class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
     <div class="flex flex-row items-center justify-center ps-3">
@@ -26,7 +25,7 @@
             type="radio"
             value="MIN"
             name="minmax"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+            class="w-4 h-4">
         <label class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             MIN
         </label>
@@ -38,7 +37,7 @@
             type="radio"
             value="MAX"
             name="minmax"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+            class="w-4 h-4">
         <label for="horizontal-list-radio-id" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             MAX
         </label>
