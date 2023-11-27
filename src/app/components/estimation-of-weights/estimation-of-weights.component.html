@@ -1,1 +1,10 @@
-<p>estimation-of-weights works!</p>
+<div class="flex flex-row justify-evenly ms-10">
+    <p *ngFor="let criterion of criteria$ | async">{{ criterion.title }}</p>
+</div>
+<div  *ngFor="let criterion of criteria$ | async" class="flex flex-col justify-start gap-5">
+    <div class="flex flex-row">
+        <p>{{ criterion.title}}</p>
+        <input class="bg-white border-black border-solid border-2 text-black" *ngFor="let criterion of criteria$ | async" type="text">
+    </div>
+    
+</div>
