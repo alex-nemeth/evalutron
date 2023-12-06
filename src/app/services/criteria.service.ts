@@ -19,8 +19,7 @@ export class CriteriaService {
 
   initializeWeights(): void {
     this.criteria.forEach((criterion, id) => {
-      criterion.weights = [{ id: 'c1', weight: 5 }];
-      // criterion.weights = Array(criteria.length).fill(0);
+      criterion.weights = [];
     });
   }
 
