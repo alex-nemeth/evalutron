@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-welcome',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrl: './welcome.component.css',
+  imports: [CommonModule, RouterModule],
 })
 export class WelcomeComponent {}

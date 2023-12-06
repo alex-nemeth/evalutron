@@ -12,11 +12,10 @@ import { CriteriaService } from '../../services/criteria.service';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-define-criteria',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  selector: 'app-define-criteria',
   templateUrl: './define-criteria.component.html',
-  styleUrl: './define-criteria.component.css',
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
 })
 export class DefineCriteriaComponent {
   criteria$ = of(this.criteriaService.criteria);

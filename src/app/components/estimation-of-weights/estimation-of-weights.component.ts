@@ -6,11 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { ICriteria } from '../../models/criteria.model';
 
 @Component({
-  selector: 'app-estimation-of-weights',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  selector: 'app-estimation-of-weights',
   templateUrl: './estimation-of-weights.component.html',
-  styleUrl: './estimation-of-weights.component.css',
+  imports: [CommonModule, FormsModule],
 })
 export class EstimationOfWeightsComponent {
   criteria$: Observable<ICriteria[]> = of(this.criteriaService.criteria);
