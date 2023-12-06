@@ -14,17 +14,18 @@ export class CriteriaService {
   ];
 
   ngOnInit(): void {
-    this.initializeWeights(this.criteria);
+    this.initializeWeights();
   }
 
-  initializeWeights(criteria: ICriteria[]): void {
-    criteria.forEach((criterion, id) => {
-      criterion.weights = Array(criteria.length).fill(0);
-      criterion.id = 'c' + id;
+  initializeWeights(): void {
+    this.criteria.forEach((criterion, id) => {
+      criterion.weights = [{ id: 'c1', weight: 5 }];
+      // criterion.weights = Array(criteria.length).fill(0);
     });
   }
 
   addCriteria(criteria: ICriteria) {
+    criteria.id = 'c' + (this.criteria.length + 1);
     this.criteria.push(criteria);
   }
 

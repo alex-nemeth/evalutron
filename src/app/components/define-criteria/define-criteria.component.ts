@@ -21,6 +21,7 @@ export class DefineCriteriaComponent {
   criteria$ = of(this.criteriaService.criteria);
 
   formGroup = new FormGroup({
+    id: new FormControl(''),
     title: new FormControl('', [Validators.required]),
     minmax: new FormControl('MIN', [Validators.required]),
   });

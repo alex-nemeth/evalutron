@@ -1,19 +1,34 @@
-<div class="flex flex-row justify-evenly ms-10">
-    <table>
+<div class="flex flex-row justify-evenly">
+    <table class="w-20">
         <thead>
+            <!-- ROWS-->
             <tr>
+                <!-- Ghost Cell for Spacing -->
                 <th></th>
-                <th *ngFor="let criterion of criteria$ | async"
+                <th *ngFor="let criterion of criteria"
                 >{{ criterion.title}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let criterion of criteria$ | async">
-                <td>{{ criterion.title }}</td>
-                <td><input class="bg-mcea-4 text-black" type="text" placeholder="test"/></td>
-                <td><input class="bg-mcea-4 text-black" type="text" placeholder="test"/></td>
-                <td><input class="bg-mcea-4 text-black" type="text" placeholder="test"/></td>
+            <tr id="{{ criterion.id }}"
+                *ngFor="let criterion of criteria">
+                <td class="font-bold">
+                    {{ criterion.title }}
+                </td>
+                <td *ngFor="let criterionCompared of criteria">
+                    <input id="{{ criterion.id }}-{{ criterionCompared.id }}"
+                           class="bg-mcea-4 text-black"
+                           type="number"
+                           min="1"
+                           max="5"
+                           placeholder="1-5"
+                           (change)="manageWeights($event)"
+                           [disabled]="comparingSameCriteria(criterion.id, criterionCompared.id)"
+
+                    />
+                </td>
           </tr>
         </tbody>
     </table>
+    <button class="bg-white text-black" (click)="logCriteria()">LOG</button>
 </div>
