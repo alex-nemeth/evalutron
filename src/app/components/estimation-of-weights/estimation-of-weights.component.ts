@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { ICriteria } from '../../models/criteria.model';
 import { WeightService } from '../../services/weight.service';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ import { WeightService } from '../../services/weight.service';
     input:disabled {
       opacity: .50;
     }`,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent],
 })
 export class EstimationOfWeightsComponent {
   criteria!: ICriteria[];
@@ -40,6 +41,7 @@ export class EstimationOfWeightsComponent {
         formControls[`${criteria.id}-${criteria2.id}`] = new FormControl({
           value: '1',
           disabled: this.isFieldDisabled(criteria.id, criteria2.id),
+          // TODO: Validation - Validators.pattern();
         });
       });
     });

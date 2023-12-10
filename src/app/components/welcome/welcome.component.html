@@ -1,5 +1,8 @@
 <div class="flex flex-col gap-4 justify-center items-center h-full">
 <h1 class="text-xl text-center my-4">Welcome!</h1>
     <p class="text-center">Click the button to start the process.</p>
-    <button class="bg-mcea-2 border-mcea-4 border-2 w-12 h-8 rounded-md" [routerLink]="['/criteria']"> Start</button>
+    <app-button
+        route="/criteria"
+        text="Start"
+    />
 </div>

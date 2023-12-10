@@ -10,12 +10,13 @@ import { RouterModule } from '@angular/router';
 import { ICriteria } from '../../models/criteria.model';
 import { CriteriaService } from '../../services/criteria.service';
 import { of } from 'rxjs';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   standalone: true,
   selector: 'app-define-criteria',
   templateUrl: './define-criteria.component.html',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
 })
 export class DefineCriteriaComponent {
   criteria$ = of(this.criteriaService.criteria);
