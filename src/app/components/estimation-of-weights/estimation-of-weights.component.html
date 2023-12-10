@@ -9,7 +9,7 @@
                 >{{ criterion.title}}</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody [formGroup]="formGroup">
             <tr id="{{ criterion.id }}"
                 *ngFor="let criterion of criteria">
                 <td class="font-bold">
@@ -17,18 +17,19 @@
                 </td>
                 <td *ngFor="let criterionCompared of criteria">
                     <input id="{{ criterion.id }}-{{ criterionCompared.id }}"
+                           [formControlName]="getFormControlName(criterion.id, criterionCompared.id)"
                            class="bg-mcea-4 text-black"
-                           type="number"
-                           min="1"
-                           max="5"
-                           placeholder="1-5"
+                           type="text"
+                           min="0.11111111"
+                           max="9"
+                           placeholder="1-9"
                            (change)="manageWeights($event)"
-                           [disabled]="comparingSameCriteria(criterion.id, criterionCompared.id)"
+                           [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
 
                     />
                 </td>
           </tr>
         </tbody>
     </table>
-    <button class="bg-white text-black" (click)="logCriteria()">LOG</button>
+    <button type="submit" (click)="setWeights()">SET WIEGHTS</button>
 </div>

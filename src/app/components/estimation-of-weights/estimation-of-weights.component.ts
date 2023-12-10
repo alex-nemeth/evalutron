@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CriteriaService } from '../../services/criteria.service';
-import { FormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ICriteria } from '../../models/criteria.model';
+import { WeightService } from '../../services/weight.service';
 
 @Component({
   standalone: true,
@@ -10,62 +17,52 @@ import { ICriteria } from '../../models/criteria.model';
   templateUrl: './estimation-of-weights.component.html',
   styles: `
     input:disabled {
-      opacity: 0;
+      opacity: .50;
     }`,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class EstimationOfWeightsComponent {
   criteria!: ICriteria[];
 
-  constructor(private criteriaService: CriteriaService) {}
+  formGroup = new FormGroup({});
+
+  constructor(
+    private criteriaService: CriteriaService,
+    private weightService: WeightService
+  ) {}
 
   ngOnInit() {
     this.criteriaService.initializeWeights();
     this.criteria = this.criteriaService.criteria;
+    const formControls: any = {};
+    this.criteria.forEach((criteria) => {
+      this.criteria.forEach((criteria2) => {
+        formControls[`${criteria.id}-${criteria2.id}`] = new FormControl({
+          value: '1',
+          disabled: this.isFieldDisabled(criteria.id, criteria2.id),
+        });
+      });
+    });
+    this.formGroup = new FormGroup(formControls);
   }
 
-  logCriteria() {
-    console.log(this.criteria);
+  isFieldDisabled(id1: string, id2: string) {
+    return id1 === id2 ? true : id1 > id2 ? true : false;
   }
 
-  comparingSameCriteria(id1: string, id2: string) {
-    return id1 === id2;
+  manageWeights(e: any) {
+    const weight = e.target.value;
+    const id = e.target.id.split('-').reverse().join('-');
+    const control = this.formGroup.get(id) as AbstractControl;
+    control.setValue(`1/${weight}`);
   }
 
-  manageWeights(event: any) {
-    const weight = Number(event.target.value);
-    const id1: string = event.target.id.split('-')[0];
-    const id2: string = event.target.id.split('-')[1];
+  getFormControlName(id1: string, id2: string): string {
+    return `${id1}-${id2}`;
+  }
 
-    if (weight < 1 || weight > 9) {
-      alert('Invalid weight value. Please enter a value between 1 and 9.');
-      return;
-    }
-    const criterionToUpdate = this.criteria.find(
-      (criteria) => criteria.id === id1
-    );
-    const existingWeight = criterionToUpdate!.weights!.find(
-      (weight) => weight.id === id2
-    );
-    existingWeight
-      ? (existingWeight.weight = weight)
-      : criterionToUpdate!.weights!.push({ id: id2, weight: weight });
-
-    // Add reciprocal weight to criteria2 for criteria1
-    const criterion2ToUpdate = this.criteria.find(
-      (criteria) => criteria.id === id2
-    );
-    const reciprocalWeight = 1 / weight;
-    const existingReciprocalWeight = criterion2ToUpdate!.weights!.find(
-      (w) => w.id === id1
-    );
-    if (existingReciprocalWeight) {
-      existingReciprocalWeight.weight = reciprocalWeight;
-    } else {
-      criterion2ToUpdate!.weights!.push({ id: id1, weight: reciprocalWeight });
-    }
-    const fieldToAdjust = document.getElementById(`${id2}-${id1}`);
-    fieldToAdjust!;
-    console.log(fieldToAdjust);
+  setWeights() {
+    this.weightService.saveWeights(this.formGroup.getRawValue());
+    console.log(this.weightService.weights);
   }
 }
