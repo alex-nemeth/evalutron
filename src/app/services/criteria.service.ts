@@ -13,15 +13,15 @@ export class CriteriaService {
     { id: 'c3', title: '# of Rooms', minmax: 'MAX' },
   ];
 
-  ngOnInit(): void {
-    this.initializeWeights();
-  }
+  // ngOnInit(): void {
+  //   this.initializeWeights();
+  // }
 
-  initializeWeights(): void {
-    this.criteria.forEach((criterion, id) => {
-      criterion.weights = [];
-    });
-  }
+  // initializeWeights(): void {
+  //   this.criteria.forEach((criterion, id) => {
+  //     criterion.weights = [];
+  //   });
+  // }
 
   addCriteria(criteria: ICriteria) {
     criteria.id = 'c' + (this.criteria.length + 1);

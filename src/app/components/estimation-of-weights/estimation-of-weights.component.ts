@@ -33,7 +33,7 @@ export class EstimationOfWeightsComponent {
   ) {}
 
   ngOnInit() {
-    this.criteriaService.initializeWeights();
+    // this.criteriaService.initializeWeights();
     this.criteria = this.criteriaService.criteria;
     const formControls: any = {};
     this.criteria.forEach((criteria) => {
@@ -65,6 +65,26 @@ export class EstimationOfWeightsComponent {
 
   setWeights() {
     this.weightService.saveWeights(this.formGroup.getRawValue());
-    console.log(this.weightService.weights);
+    const weights = Object.values(this.formGroup.getRawValue());
+    let sortedWeights = [];
+    for (let i = 0; i < this.criteria.length; i++) {
+      let arr = [];
+      for (let j = 0; j < this.criteria.length; j++) {
+        arr.push(weights[i * this.criteria.length + j]);
+      }
+      sortedWeights.push(arr);
+    }
+
+    const newWeights = Object.values(this.formGroup.getRawValue());
+    let sortedWeights2 = Object.keys(newWeights).reduce(
+      (acc: any, curr: any) => {
+        const key = Math.floor(curr / this.criteria.length);
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(newWeights[curr]);
+        return acc;
+      },
+      []
+    );
+    console.log(sortedWeights2);
   }
 }
