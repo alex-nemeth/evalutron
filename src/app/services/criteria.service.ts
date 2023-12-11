@@ -8,9 +8,9 @@ export class CriteriaService {
   // Currently has 3 placeholder criteria
   // to speed up testing during development.
   public criteria: ICriteria[] = [
-    { id: 'c1', title: 'Price', minmax: 'MIN' },
-    { id: 'c2', title: 'Distance', minmax: 'MIN' },
-    { id: 'c3', title: '# of Rooms', minmax: 'MAX' },
+    { id: 'c1', title: 'Price', minmax: 'MIN', weight: 0 },
+    { id: 'c2', title: 'Distance', minmax: 'MIN', weight: 0 },
+    { id: 'c3', title: '# of Rooms', minmax: 'MAX', weight: 0 },
   ];
 
   // ngOnInit(): void {

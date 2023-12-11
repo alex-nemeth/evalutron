@@ -5,29 +5,31 @@
             <tr>
                 <!-- Ghost Cell for Spacing -->
                 <th></th>
-                <th *ngFor="let criterion of criteria"
+                <th class="w-10" *ngFor="let criterion of criteria"
                 >{{ criterion.title}}</th>
+                <th>GEOMEAN</th>
             </tr>
         </thead>
         <tbody [formGroup]="formGroup">
             <tr id="{{ criterion.id }}"
                 *ngFor="let criterion of criteria">
-                <td class="font-bold">
+                <td class="w-40 font-bold">
                     {{ criterion.title }}
                 </td>
                 <td *ngFor="let criterionCompared of criteria">
                     <input id="{{ criterion.id }}-{{ criterionCompared.id }}"
                            [formControlName]="getFormControlName(criterion.id, criterionCompared.id)"
-                           class="bg-mcea-4 text-black"
+                           class="bg-mcea-4 text-black w-20"
                            type="text"
                            min="0.11111111"
                            max="9"
                            placeholder="1-9"
                            (change)="manageWeights($event)"
                            [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
-
+                    
                     />
                 </td>
+                <td><p>{{criterion.weight}}</p></td>
           </tr>
         </tbody>
     </table>

@@ -24,6 +24,7 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class EstimationOfWeightsComponent {
   criteria!: ICriteria[];
+  weights: any[] = [];
 
   formGroup = new FormGroup({});
 
@@ -33,8 +34,9 @@ export class EstimationOfWeightsComponent {
   ) {}
 
   ngOnInit() {
-    // this.criteriaService.initializeWeights();
     this.criteria = this.criteriaService.criteria;
+    this.criteria.forEach((criteria) => this.weights.push([]));
+    this.weights = this.weightService.weights;
     const formControls: any = {};
     this.criteria.forEach((criteria) => {
       this.criteria.forEach((criteria2) => {
@@ -49,7 +51,8 @@ export class EstimationOfWeightsComponent {
   }
 
   isFieldDisabled(id1: string, id2: string) {
-    return id1 === id2 ? true : id1 > id2 ? true : false;
+    return id1 === id2;
+    //  ? true : id1 > id2 ? true : false
   }
 
   manageWeights(e: any) {
@@ -57,6 +60,7 @@ export class EstimationOfWeightsComponent {
     const id = e.target.id.split('-').reverse().join('-');
     const control = this.formGroup.get(id) as AbstractControl;
     control.setValue(`1/${weight}`);
+    this.setWeights();
   }
 
   getFormControlName(id1: string, id2: string): string {
@@ -64,27 +68,20 @@ export class EstimationOfWeightsComponent {
   }
 
   setWeights() {
-    this.weightService.saveWeights(this.formGroup.getRawValue());
     const weights = Object.values(this.formGroup.getRawValue());
-    let sortedWeights = [];
+    let sortedWeights: any[] = [];
     for (let i = 0; i < this.criteria.length; i++) {
       let arr = [];
       for (let j = 0; j < this.criteria.length; j++) {
         arr.push(weights[i * this.criteria.length + j]);
       }
+      const weight: any = arr.reduce(
+        (a: any, b: any) => Number(a) + Number(b),
+        0
+      );
       sortedWeights.push(arr);
+      this.criteria[i].weight = this.weightService.sum(arr);
     }
-
-    const newWeights = Object.values(this.formGroup.getRawValue());
-    let sortedWeights2 = Object.keys(newWeights).reduce(
-      (acc: any, curr: any) => {
-        const key = Math.floor(curr / this.criteria.length);
-        if (!acc[key]) acc[key] = [];
-        acc[key].push(newWeights[curr]);
-        return acc;
-      },
-      []
-    );
-    console.log(sortedWeights2);
+    this.weightService.saveWeights(sortedWeights);
   }
 }
