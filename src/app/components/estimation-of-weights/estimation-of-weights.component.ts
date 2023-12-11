@@ -52,6 +52,7 @@ export class EstimationOfWeightsComponent {
 
   isFieldDisabled(id1: string, id2: string) {
     return id1 === id2;
+    // TODO: Highlighting green filled cells
     //  ? true : id1 > id2 ? true : false
   }
 
@@ -59,7 +60,7 @@ export class EstimationOfWeightsComponent {
     const weight = e.target.value;
     const id = e.target.id.split('-').reverse().join('-');
     const control = this.formGroup.get(id) as AbstractControl;
-    control.setValue(`1/${weight}`);
+    control.setValue(`${this.weightService.mirrorWeight(weight)}`);
     this.setWeights();
   }
 
@@ -75,12 +76,8 @@ export class EstimationOfWeightsComponent {
       for (let j = 0; j < this.criteria.length; j++) {
         arr.push(weights[i * this.criteria.length + j]);
       }
-      const weight: any = arr.reduce(
-        (a: any, b: any) => Number(a) + Number(b),
-        0
-      );
       sortedWeights.push(arr);
-      this.criteria[i].weight = this.weightService.sum(arr);
+      this.criteria[i].weight = this.weightService.geomean(arr);
     }
     this.weightService.saveWeights(sortedWeights);
   }

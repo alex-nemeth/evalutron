@@ -12,16 +12,22 @@ export class WeightService {
     this.weights = weights;
   }
 
-  sum(weights: any[]): number {
-    // const numericWeights = weights.map((weight) => {
-    //   if (isNaN(weight)) {
-    //     return weight.split
-    //   }
-    // })
-    return weights
+  mirrorWeight(weight: string) {
+    return isNaN(Number(weight)) ? weight.split('/')[1] : `1/${weight}`;
+  }
+
+  // TODO: Typing
+  geomean(weights: any[]): number {
+    let multipliedWeights = 1;
+    weights
       .map((weight) =>
         isNaN(weight) ? weight.split('/')[0] / weight.split('/')[1] : weight
       )
-      .reduce((a: string, b: string) => Number(a) + Number(b));
+      .forEach((weight) => {
+        multipliedWeights = multipliedWeights * weight;
+      });
+    return parseFloat(
+      Math.pow(multipliedWeights, 1 / weights.length).toFixed(3)
+    );
   }
 }
