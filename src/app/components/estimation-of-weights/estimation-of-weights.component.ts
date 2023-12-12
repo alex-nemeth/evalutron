@@ -47,19 +47,27 @@ export class EstimationOfWeightsComponent {
   }
 
   manageWeights(e: any) {
-    console.log(e.target);
+    console.log(e.target.id);
     const weight = e.target.value;
     const mirrorID = e.target.id.split('-').reverse().join('-');
-    const control = this.formGroup.get(mirrorID) as AbstractControl;
-    control.setValue(`${this.weightService.mirrorWeight(weight)}`);
-    this.setWeights();
+    const mirrorControl = this.formGroup.get(mirrorID) as AbstractControl;
+    mirrorControl.setValue(`${this.weightService.mirrorWeight(weight)}`);
+    const weightCell: HTMLElement | null = document.querySelector(
+      `#${e.target.id}`
+    );
+    const mirrorWeightCell: HTMLElement | null = document.querySelector(
+      `#${mirrorID}`
+    );
+    weightCell!.style.backgroundColor = '#34d399';
+    mirrorWeightCell!.style.backgroundColor = '#34d399';
+    this.updateWeights();
   }
 
   getFormControlName(id1: string, id2: string): string {
     return `${id1}-${id2}`;
   }
 
-  setWeights() {
+  updateWeights() {
     const weights: string[] = Object.values(this.formGroup.getRawValue());
     let sortedWeights: string[][] = [];
     for (let i = 0; i < this.criteria.length; i++) {
