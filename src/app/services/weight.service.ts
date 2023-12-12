@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class WeightService {
-  weights!: any[];
+  weights!: string[][];
 
   constructor() {}
 
-  saveWeights(weights: string[]) {
+  saveWeights(weights: string[][]) {
     this.weights = weights;
   }
 
@@ -16,12 +16,13 @@ export class WeightService {
     return isNaN(Number(weight)) ? weight.split('/')[1] : `1/${weight}`;
   }
 
-  // TODO: Typing
-  geomean(weights: any[]): number {
+  geomean(weights: string[]): number {
     let multipliedWeights = 1;
     weights
       .map((weight) =>
-        isNaN(weight) ? weight.split('/')[0] / weight.split('/')[1] : weight
+        isNaN(Number(weight))
+          ? parseInt(weight.split('/')[0]) / parseInt(weight.split('/')[1])
+          : parseInt(weight)
       )
       .forEach((weight) => {
         multipliedWeights = multipliedWeights * weight;
