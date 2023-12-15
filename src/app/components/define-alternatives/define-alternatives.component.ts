@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  FormControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -15,7 +14,9 @@ import { AlternativeService } from '../../services/alternative.service';
 import { ICriteria } from '../../models/criteria.model';
 
 interface IAlternative {
-  [key: string]: string; // Assuming all values are strings, you can adjust this based on your actual data types
+  // change to [key: string] : number
+  // in case that we end up sending numbers directly from the form
+  [key: string]: string;
 }
 
 @Component({

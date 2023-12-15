@@ -1,31 +1,51 @@
    
-<header class="m-10 text-3xl text-center">Define Alternatives</header>
+<header class="m-10 text-3xl text-center">
+    Define Alternatives
+</header>
 
-<div class="grid text-center mb-4" [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
-    <p>Title</p>
-    <p *ngFor="let criterion of criteria">{{criterion.title + ' (' + criterion.minmax + ')' }}</p>
+<div
+    class="grid text-center mb-4"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+    <p> Title </p>
+    <p
+        *ngFor="let criterion of criteria">
+        {{criterion.title + ' (' + criterion.minmax + ')' }}
+    </p>
 </div>
-<div *ngFor="let alternative of alternatives" class="grid text-center mb-4" [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+
+<div
+    *ngFor="let alternative of alternatives"
+    class="grid text-center mb-4"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
     <ng-container *ngFor="let key of getObjectKeys(alternative)">
-        <p *ngIf="key !== 'id'">{{ alternative[key] }}</p>
-      </ng-container>
+        <p *ngIf="key !== 'id'">
+            {{ alternative[key] }}
+        </p>
+    </ng-container>
 </div>
-<form class="grid text-center mb-4 gap-4" [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
-[formGroup]="formGroup" (ngSubmit)="addAlternative()">
+
+<form
+    class="grid text-center mb-4 gap-4"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
+    [formGroup]="formGroup"
+    (ngSubmit)="addAlternative()">
     <input
-    formControlName="Title"
-    placeholder="Alternative title"
-    type="text"
-    class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
-    <input *ngFor="let criterion of criteria"
-    formControlName={{criterion.title}}
-    placeholder={{criterion.title}}    
-    type="text"
-    class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+        formControlName="Title"
+        placeholder="Alternative title"
+        type="text"
+        class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+    <input
+        *ngFor="let criterion of criteria"
+        formControlName={{criterion.title}}
+        placeholder={{criterion.title}}    
+        type="text"
+        class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
 </form>
+
 <div class="flex flex-row-reverse m-4">
-    <app-button text="Add" (click)="addAlternative()" />
+    <app-button text="Add" (click)="addAlternative()"/>
 </div>
+
 <div class="flex flex-row-reverse m-4">
     <app-button route="/tbd" />
 </div>

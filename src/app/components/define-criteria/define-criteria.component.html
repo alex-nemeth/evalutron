@@ -1,13 +1,16 @@
-    <header class="m-10 text-3xl text-center">Define Criteria</header>
+<header class="m-10 text-3xl text-center">Define Criteria</header>
+
 <div class="grid grid-cols-2 text-center mb-4">
     <p>Title</p>
     <p>Min/Max</p>
 </div>
-<div class="grid grid-cols-2 text-center" *ngFor="let criteria of criteria$ | async">
+
+<div
+    class="grid grid-cols-2 text-center"
+    *ngFor="let criteria of criteria$ | async">
     <p> {{ criteria.title }} </p>
     <p> {{ criteria.minmax }} </p>
 </div>
-
 
 <form
     class="flex justify-evenly items-center gap-5"
@@ -18,6 +21,7 @@
         placeholder="Criteria title"
         type="text"
         class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+
     <div class="flex flex-row items-center justify-center ps-3">
         <input
             formControlName="minmax"
@@ -30,6 +34,7 @@
             MIN
         </label>
     </div>
+
     <div class="flex items-center ps-3">
         <input
             formControlName="minmax"
@@ -38,10 +43,13 @@
             value="MAX"
             name="minmax"
             class="w-4 h-4">
-        <label for="horizontal-list-radio-id" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+        <label
+            for="horizontal-list-radio-id"
+            class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             MAX
         </label>
     </div>
+    
     <button type="submit">Submit</button>
 </form>
 

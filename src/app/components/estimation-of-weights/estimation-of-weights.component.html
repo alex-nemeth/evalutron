@@ -10,23 +10,26 @@
                 <th>GEOMEAN</th>
             </tr>
         </thead>
-        <tbody [formGroup]="formGroup">
-            <tr id="{{ criterion.id }}"
-                *ngFor="let criterion of criteria">
+        <tbody
+            [formGroup]="formGroup">
+            <tr
+                id="{{ criterion.id }}"
+                *ngFor="let criterion of criteria"
+            >
                 <td class="w-40 font-bold">
                     {{ criterion.title }}
                 </td>
                 <td *ngFor="let criterionCompared of criteria">
-                    <input id="{{ criterion.id }}-{{ criterionCompared.id }}"
-                           [formControlName]="getFormControlName(criterion.id, criterionCompared.id)"
-                           class="bg-mcea-4 text-black w-20"
-                           type="text"
-                           min="0.11111111"
-                           max="9"
-                           placeholder="1-9"
-                           (change)="manageWeights($event)"
-                           [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
-                    
+                    <input
+                        id="{{ criterion.id }}-{{ criterionCompared.id }}"
+                        [formControlName]="getFormControlName(criterion.id, criterionCompared.id)"
+                        class="bg-mcea-4 text-black w-20"
+                        type="text"
+                        min="0.11111111"
+                        max="9"
+                        placeholder="1-9"
+                        (change)="manageWeights($event)"
+                        [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
                     />
                 </td>
                 <td><p>{{criterion.weight}}</p></td>
