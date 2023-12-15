@@ -2,15 +2,21 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormControl,
+  FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ICriteria } from '../../models/criteria.model';
 import { CriteriaService } from '../../services/criteria.service';
-import { of } from 'rxjs';
 import { ButtonComponent } from '../button/button.component';
+import { AlternativeService } from '../../services/alternative.service';
+import { ICriteria } from '../../models/criteria.model';
+
+interface IAlternative {
+  [key: string]: string; // Assuming all values are strings, you can adjust this based on your actual data types
+}
 
 @Component({
   standalone: true,
@@ -19,21 +25,45 @@ import { ButtonComponent } from '../button/button.component';
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
 })
 export class DefineAlternativesComponent {
-  criteria = this.criteriaService.criteria;
+  criteria!: ICriteria[];
+  alternatives!: IAlternative[];
 
-  formGroup = new FormGroup({
-    id: new FormControl(''),
-    title: new FormControl('', [Validators.required]),
-    minmax: new FormControl('MIN', [Validators.required]),
-  });
+  formGroup = new FormGroup({});
 
-  constructor(private criteriaService: CriteriaService) {}
+  constructor(
+    private criteriaService: CriteriaService,
+    private alternativeService: AlternativeService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  addCriteria() {
-    if (this.formGroup.valid) {
-      this.criteriaService.addCriteria(this.formGroup.value as ICriteria);
-      this.formGroup.reset();
-      this.formGroup.controls.minmax.setValue('MIN');
-    }
+  ngOnInit() {
+    this.alternativeService.initAlternatives();
+    this.alternatives = this.alternativeService.alternatives;
+    this.criteria = this.criteriaService.criteria;
+    this.initForm();
+  }
+
+  initForm() {
+    const formControls: { [key: string]: AbstractControl } = {};
+    formControls['Title'] = this.formBuilder.control('', Validators.required);
+    this.criteria.forEach((criterion: ICriteria) => {
+      formControls[criterion.title] = this.formBuilder.control(
+        '',
+        Validators.required
+      );
+    });
+    this.formGroup = this.formBuilder.group(formControls);
+  }
+
+  addAlternative() {
+    console.log(this.formGroup.value);
+    this.alternatives.push({
+      id: `a${this.alternatives.length + 1}`,
+      ...this.formGroup.value,
+    });
+  }
+
+  getObjectKeys(obj: IAlternative) {
+    return Object.keys(obj);
   }
 }
