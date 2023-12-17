@@ -28,6 +28,9 @@ interface IAlternative {
 export class DefineAlternativesComponent {
   criteria!: ICriteria[];
   alternatives!: IAlternative[];
+  normalizedAlternatives!: IAlternative[];
+
+  normalizedValues: boolean = false;
 
   formGroup = new FormGroup({});
 
@@ -40,6 +43,8 @@ export class DefineAlternativesComponent {
   ngOnInit() {
     this.alternativeService.initAlternatives();
     this.alternatives = this.alternativeService.alternatives;
+    this.normalizedAlternatives =
+      this.alternativeService.normalizedAlternatives;
     this.criteria = this.criteriaService.criteria;
     this.initForm();
   }
@@ -57,7 +62,6 @@ export class DefineAlternativesComponent {
   }
 
   addAlternative() {
-    console.log(this.formGroup.value);
     this.alternatives.push({
       id: `a${this.alternatives.length + 1}`,
       ...this.formGroup.value,
@@ -66,5 +70,14 @@ export class DefineAlternativesComponent {
 
   getObjectKeys(obj: IAlternative) {
     return Object.keys(obj);
+  }
+
+  toggleNormalization() {
+    if (!this.normalizedValues) {
+      this.alternativeService.normalizeAlternatives();
+      this.normalizedAlternatives =
+        this.alternativeService.normalizedAlternatives;
+    }
+    this.normalizedValues = !this.normalizedValues;
   }
 }

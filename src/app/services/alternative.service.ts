@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CriteriaService } from './criteria.service';
+import { ICriteria } from '../models/criteria.model';
 
 @Injectable({
   providedIn: 'root',
@@ -77,6 +78,8 @@ export class AlternativeService {
       '# of Rooms': '12',
     },
   ];
+  public normalizedAlternatives: {}[] = [];
+  maxValues: { [key: string]: number } = {};
 
   constructor(private criteriaService: CriteriaService) {}
 
@@ -84,5 +87,38 @@ export class AlternativeService {
     if (!this.alternatives) {
       this.alternatives = [];
     }
+  }
+
+  findMaxValues() {
+    const maxValues: { [key: string]: number } = {};
+    this.alternatives.forEach((obj: Record<string, number>) => {
+      Object.keys(obj).forEach((key) => {
+        if (key === 'id' || key === 'Title') return;
+        if (!(key in maxValues) || Number(obj[key]) > maxValues[key])
+          maxValues[key] = Number(obj[key]);
+      });
+    });
+    this.maxValues = maxValues;
+  }
+
+  normalizeAlternatives() {
+    this.findMaxValues();
+    const normalizedAlternatives: { [key: string]: number }[] = [];
+
+    this.alternatives.forEach((obj: Record<string, number>) => {
+      const normalizedAlternative: Record<string, number> = {};
+
+      Object.keys(obj).forEach((key: string) => {
+        if (key === 'id' || key === 'Title') {
+          normalizedAlternative[key] = obj[key];
+        } else {
+          normalizedAlternative[key] = Number(obj[key]) / this.maxValues[key];
+        }
+      });
+
+      normalizedAlternatives.push(normalizedAlternative);
+    });
+
+    this.normalizedAlternatives = normalizedAlternatives;
   }
 }

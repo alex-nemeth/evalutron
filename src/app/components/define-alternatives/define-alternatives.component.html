@@ -13,8 +13,39 @@
     </p>
 </div>
 
-<div
-    *ngFor="let alternative of alternatives"
+<div *ngIf="!normalizedValues">
+    <div
+        *ngFor="let alternative of alternatives"
+        class="grid text-center mb-4"
+        [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+        <ng-container *ngFor="let key of getObjectKeys(alternative)">
+            <p *ngIf="key !== 'id'">
+                {{ alternative[key] }}
+            </p>
+        </ng-container>
+    </div>
+    <form
+        class="grid text-center mb-4 gap-4"
+        [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
+        [formGroup]="formGroup"
+        (ngSubmit)="addAlternative()">
+        <input
+            formControlName="Title"
+            placeholder="Alternative title"
+            type="text"
+            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+        <input
+            *ngFor="let criterion of criteria"
+            formControlName={{criterion.title}}
+            placeholder={{criterion.title}}    
+            type="text"
+            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+    </form>
+</div>
+
+<div *ngIf="normalizedValues">
+    <div
+    *ngFor="let alternative of normalizedAlternatives"
     class="grid text-center mb-4"
     [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
     <ng-container *ngFor="let key of getObjectKeys(alternative)">
@@ -24,28 +55,14 @@
     </ng-container>
 </div>
 
-<form
-    class="grid text-center mb-4 gap-4"
-    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
-    [formGroup]="formGroup"
-    (ngSubmit)="addAlternative()">
-    <input
-        formControlName="Title"
-        placeholder="Alternative title"
-        type="text"
-        class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
-    <input
-        *ngFor="let criterion of criteria"
-        formControlName={{criterion.title}}
-        placeholder={{criterion.title}}    
-        type="text"
-        class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
-</form>
+</div>
+
+
 
 <div class="flex flex-row-reverse m-4">
     <app-button text="Add" (click)="addAlternative()"/>
 </div>
 
 <div class="flex flex-row-reverse m-4">
-    <app-button route="/tbd" />
+    <app-button (click)="toggleNormalization()" text="Normalize" />
 </div>
