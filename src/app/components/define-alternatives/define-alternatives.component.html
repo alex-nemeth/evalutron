@@ -7,9 +7,8 @@
     class="grid text-center mb-4"
     [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
     <p> Title </p>
-    <p
-        *ngFor="let criterion of criteria">
-        {{criterion.title + ' (' + criterion.minmax + ')' }}
+    <p *ngFor="let criterion of criteria">
+        {{criterion.title }}
     </p>
 </div>
 

@@ -135,8 +135,14 @@ export class AlternativeService {
                         : this.criteriaService.criteria.find(
                               (c: ICriteria) => c.title === key
                           )?.minmax === "MIN"
-                        ? this.minValues[key] / Number(obj[key])
-                        : Number(obj[key]) / this.maxValues[key];
+                        ? Number(
+                              (
+                                  this.minValues[key] / Number(obj[key])
+                              ).toPrecision(4)
+                          )
+                        : Number(
+                              (obj[key] / this.maxValues[key]).toPrecision(4)
+                          );
             });
 
             normalizedAlternatives.push(normalizedAlternative);
