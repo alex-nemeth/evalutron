@@ -1,6 +1,6 @@
 export interface ICriteria {
-  id: string;
-  title: string;
-  minmax: string;
-  weight?: number;
+    id: string;
+    title: string;
+    minmax: string;
+    weight?: number;
 }
