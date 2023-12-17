@@ -62,7 +62,6 @@ export class DefineAlternativesComponent {
   }
 
   addAlternative() {
-    console.log(this.formGroup.value);
     this.alternatives.push({
       id: `a${this.alternatives.length + 1}`,
       ...this.formGroup.value,
@@ -74,10 +73,11 @@ export class DefineAlternativesComponent {
   }
 
   toggleNormalization() {
-    console.log(this.alternatives);
-    if (!this.normalizedValues) this.alternativeService.normalizeAlternatives();
-    this.normalizedAlternatives =
-      this.alternativeService.normalizedAlternatives;
+    if (!this.normalizedValues) {
+      this.alternativeService.normalizeAlternatives();
+      this.normalizedAlternatives =
+        this.alternativeService.normalizedAlternatives;
+    }
     this.normalizedValues = !this.normalizedValues;
   }
 }

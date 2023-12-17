@@ -91,7 +91,6 @@ export class AlternativeService {
 
   findMaxValues() {
     const maxValues: { [key: string]: number } = {};
-    // Iterate through each object in the array
     this.alternatives.forEach((obj: Record<string, number>) => {
       Object.keys(obj).forEach((key) => {
         if (key === 'id' || key === 'Title') return;
@@ -100,24 +99,26 @@ export class AlternativeService {
       });
     });
     this.maxValues = maxValues;
-    console.log(maxValues);
   }
 
   normalizeAlternatives() {
     this.findMaxValues();
     const normalizedAlternatives: { [key: string]: number }[] = [];
+
     this.alternatives.forEach((obj: Record<string, number>) => {
-      const normalizedAlternative = obj;
+      const normalizedAlternative: Record<string, number> = {};
+
       Object.keys(obj).forEach((key: string) => {
         if (key === 'id' || key === 'Title') {
           normalizedAlternative[key] = obj[key];
-          return;
         } else {
           normalizedAlternative[key] = Number(obj[key]) / this.maxValues[key];
         }
       });
+
       normalizedAlternatives.push(normalizedAlternative);
     });
+
     this.normalizedAlternatives = normalizedAlternatives;
   }
 }
