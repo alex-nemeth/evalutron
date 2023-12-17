@@ -13,22 +13,8 @@ export class CriteriaService {
     { id: 'c3', title: '# of Rooms', minmax: 'MAX', weight: 0 },
   ];
 
-  // ngOnInit(): void {
-  //   this.initializeWeights();
-  // }
-
-  // initializeWeights(): void {
-  //   this.criteria.forEach((criterion, id) => {
-  //     criterion.weights = [];
-  //   });
-  // }
-
   addCriteria(criteria: ICriteria) {
     criteria.id = 'c' + (this.criteria.length + 1);
     this.criteria.push(criteria);
   }
-
-  // setWeight(criteria1: ICriteria, criteria2: ICriteria, weight: number): void {
-  //   criteria1.weights?[criteria2.id] = weight;
-  // }
 }

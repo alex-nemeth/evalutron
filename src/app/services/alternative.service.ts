@@ -79,7 +79,8 @@ export class AlternativeService {
     },
   ];
   public normalizedAlternatives: {}[] = [];
-  maxValues: { [key: string]: number } = {};
+  public maxValues: { [key: string]: number } = {};
+  public minValues: { [key: string]: number } = {};
 
   constructor(private criteriaService: CriteriaService) {}
 
@@ -101,19 +102,38 @@ export class AlternativeService {
     this.maxValues = maxValues;
   }
 
+  findMinValues() {
+    const minValues: { [key: string]: number } = {};
+    this.alternatives.forEach((obj: Record<string, number>) => {
+      Object.keys(obj).forEach((key) => {
+        if (key !== 'id' && key !== 'Title')
+          if (!(key in minValues) || Number(obj[key]) < minValues[key]) {
+            minValues[key] = Number(obj[key]);
+          }
+      });
+    });
+
+    this.minValues = minValues;
+  }
+
   normalizeAlternatives() {
+    this.findMinValues();
     this.findMaxValues();
+
     const normalizedAlternatives: { [key: string]: number }[] = [];
 
     this.alternatives.forEach((obj: Record<string, number>) => {
       const normalizedAlternative: Record<string, number> = {};
 
       Object.keys(obj).forEach((key: string) => {
-        if (key === 'id' || key === 'Title') {
-          normalizedAlternative[key] = obj[key];
-        } else {
-          normalizedAlternative[key] = Number(obj[key]) / this.maxValues[key];
-        }
+        normalizedAlternative[key] =
+          key === 'id' || key === 'Title'
+            ? obj[key]
+            : this.criteriaService.criteria.find(
+                (c: ICriteria) => c.title === key
+              )?.minmax === 'MIN'
+            ? this.minValues[key] / Number(obj[key])
+            : Number(obj[key]) / this.maxValues[key];
       });
 
       normalizedAlternatives.push(normalizedAlternative);
