@@ -119,6 +119,10 @@ export class AlternativeService {
         this.minValues = minValues;
     }
 
+    formatValue(value: number): number {
+        return Number(value.toPrecision(4));
+    }
+
     normalizeAlternatives() {
         this.findMinValues();
         this.findMaxValues();
@@ -135,14 +139,8 @@ export class AlternativeService {
                         : this.criteriaService.criteria.find(
                               (c: ICriteria) => c.title === key
                           )?.minmax === "MIN"
-                        ? Number(
-                              (
-                                  this.minValues[key] / Number(obj[key])
-                              ).toPrecision(4)
-                          )
-                        : Number(
-                              (obj[key] / this.maxValues[key]).toPrecision(4)
-                          );
+                        ? this.formatValue(this.minValues[key] / obj[key])
+                        : this.formatValue(obj[key] / this.maxValues[key]);
             });
 
             normalizedAlternatives.push(normalizedAlternative);
