@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CriteriaService } from "./criteria.service";
 import { ICriteria } from "../models/criteria.model";
+import { IAlternative } from "../models/alternative.model";
 
 @Injectable({
     providedIn: "root",
@@ -150,6 +151,68 @@ export class AlternativeService {
           "# of Rooms": 1
         }
       ];
+    public normalizedAlternatives: {} = {
+        "House 1": {
+          "Price": 0.2079002079002079,
+          "Distance": 0.24752475247524752,
+          "# of Rooms": 0.04,
+          "Sum": 2.25
+        },
+        "House 2": {
+          "Price": 0.15592515592515593,
+          "Distance": 0.1650990099009901,
+          "# of Rooms": 0.05328,
+          "Sum": 1.75
+        },
+        "House 3": {
+          "Price": 0.12474012474012475,
+          "Distance": 0.12376237623762376,
+          "# of Rooms": 0.06672,
+          "Sum": 1.5170000000000001
+        },
+        "House 4": {
+          "Price": 0.10395010395010396,
+          "Distance": 0.09900990099009901,
+          "# of Rooms": 0.08,
+          "Sum": 1.4
+        },
+        "House 5": {
+          "Price": 0.0891891891891892,
+          "Distance": 0.08242574257425743,
+          "# of Rooms": 0.09327999999999999,
+          "Sum": 1.345
+        },
+        "House 6": {
+          "Price": 0.07796257796257797,
+          "Distance": 0.07079207920792079,
+          "# of Rooms": 0.10672000000000001,
+          "Sum": 1.328
+        },
+        "House 7": {
+          "Price": 0.06923076923076923,
+          "Distance": 0.06188118811881188,
+          "# of Rooms": 0.12,
+          "Sum": 1.333
+        },
+        "House 8": {
+          "Price": 0.062370062370062374,
+          "Distance": 0.05495049504950495,
+          "# of Rooms": 0.13327999999999998,
+          "Sum": 1.355
+        },
+        "House 9": {
+          "Price": 0.05675675675675677,
+          "Distance": 0.04950495049504951,
+          "# of Rooms": 0.14672000000000002,
+          "Sum": 1.3900000000000001
+        },
+        "House 10": {
+          "Price": 0.05197505197505198,
+          "Distance": 0.04504950495049505,
+          "# of Rooms": 0.16,
+          "Sum": 1.432
+        }
+      };
     public sumsOfValues: { [key: string]: number } = {
         "Price": 4.81,
         "Distance": 4.04,
@@ -238,4 +301,29 @@ export class AlternativeService {
         })
         this.sumsOfValues = sumsOfValues
     }
+
+    calculateNormalizedAlternatives(): any {
+        const normalizedValues: any = {};
+      
+        this.calculatedAlternatives.forEach((alternative: IAlternative) => {
+          const alternativeName = alternative['Title'];
+          normalizedValues[alternativeName] = {};
+          
+          let alternativeSum = 0; // Initialize the sum for the alternative
+      
+          Object.keys(alternative).forEach((key) => {
+            if (key !== 'id' && key !== 'Title') {
+              const normalizedValue =
+                alternative[key] / this.sumsOfValues[key];
+              normalizedValues[alternativeName][key] = normalizedValue;
+      
+              alternativeSum += alternative[key]; // Accumulate the sum
+            }
+          });
+      
+          normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
+        });
+      
+        this.normalizedAlternatives = normalizedValues;
+      }
 }
