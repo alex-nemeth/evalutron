@@ -16,5 +16,5 @@ import { DefineCriteriaComponent } from "./components/define-criteria/define-cri
     templateUrl: "./app.component.html",
 })
 export class AppComponent {
-    title = "mcea";
+    title = "MCEA";
 }

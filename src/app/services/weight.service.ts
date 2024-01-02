@@ -5,11 +5,17 @@ import { Injectable } from "@angular/core";
 })
 export class WeightService {
     weights!: string[][];
+    sumOfWeights!: number;
 
     constructor() {}
 
     saveWeights(weights: string[][]) {
         this.weights = weights;
+        let sumOfWeights = 0;
+        this.weights.forEach((weight) => {
+            sumOfWeights += this.geomean(weight);
+        })
+        this.sumOfWeights = sumOfWeights;
     }
 
     mirrorWeight(weight: string) {

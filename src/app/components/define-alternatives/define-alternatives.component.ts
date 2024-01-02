@@ -30,7 +30,7 @@ export class DefineAlternativesComponent {
     alternatives!: IAlternative[];
     normalizedAlternatives!: IAlternative[];
 
-    normalizedValues: boolean = false;
+    showNormalizedValues: boolean = false;
 
     formGroup = new FormGroup({});
 
@@ -76,11 +76,12 @@ export class DefineAlternativesComponent {
     }
 
     toggleNormalization() {
-        if (!this.normalizedValues) {
+        if (!this.showNormalizedValues) {
             this.alternativeService.normalizeAlternatives();
             this.normalizedAlternatives =
                 this.alternativeService.normalizedAlternatives;
         }
-        this.normalizedValues = !this.normalizedValues;
+        this.showNormalizedValues = !this.showNormalizedValues;
+        console.log(this.normalizedAlternatives);
     }
 }

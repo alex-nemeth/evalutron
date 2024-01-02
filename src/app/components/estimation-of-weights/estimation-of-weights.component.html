@@ -32,7 +32,13 @@
                         [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
                     />
                 </td>
-                <td><p>{{criterion.weight}}</p></td>
+                <td><p>{{criterion.weight ? criterion.weight : 1}}</p></td>
+          </tr>
+          <!-- Row for Sum of Weights -->
+          <tr>
+            <td><p>SUM</p></td>
+            <td *ngFor="let criterion of criteria">
+            <td><p>{{sumOfWeights ? sumOfWeights : this.criteria.length}}</p></td>
           </tr>
         </tbody>
     </table>

@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<div *ngIf="!normalizedValues">
+<div *ngIf="!showNormalizedValues">
     <div
         *ngFor="let alternative of alternatives"
         class="grid text-center mb-4"
@@ -42,7 +42,7 @@
     </form>
 </div>
 
-<div *ngIf="normalizedValues">
+<div *ngIf="showNormalizedValues">
     <div
     *ngFor="let alternative of normalizedAlternatives"
     class="grid text-center mb-4"
@@ -63,5 +63,5 @@
 </div>
 
 <div class="flex flex-row-reverse m-4">
-    <app-button (click)="toggleNormalization()" text="{{normalizedValues ? 'View real values' : 'View normalized values'}}" />
+    <app-button (click)="toggleNormalization()" text="{{showNormalizedValues ? 'View real values' : 'View normalized values'}}" />
 </div>
