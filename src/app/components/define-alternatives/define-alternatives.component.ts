@@ -27,8 +27,10 @@ interface IAlternative {
 })
 export class DefineAlternativesComponent {
     criteria!: ICriteria[];
+    criteriaTitles!: string[];
     alternatives!: IAlternative[];
     normalizedAlternatives!: IAlternative[];
+    sumsOfValues!: {[key: string]: number};
 
     showNormalizedValues: boolean = false;
 
@@ -46,6 +48,7 @@ export class DefineAlternativesComponent {
         this.normalizedAlternatives =
             this.alternativeService.normalizedAlternatives;
         this.criteria = this.criteriaService.criteria;
+        this.criteriaTitles = this.criteriaService.getCriteriaTitles();
         this.initForm();
     }
 
@@ -80,8 +83,8 @@ export class DefineAlternativesComponent {
             this.alternativeService.normalizeAlternatives();
             this.normalizedAlternatives =
                 this.alternativeService.normalizedAlternatives;
+            this.sumsOfValues = this.alternativeService.sumsOfValues;
         }
         this.showNormalizedValues = !this.showNormalizedValues;
-        console.log(this.normalizedAlternatives);
     }
 }

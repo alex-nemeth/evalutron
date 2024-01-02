@@ -4,7 +4,7 @@
 </header>
 
 <div
-    class="grid text-center mb-4"
+    class="grid text-center mb-4 font-bold"
     [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
     <p> Title </p>
     <p *ngFor="let criterion of criteria">
@@ -47,13 +47,22 @@
     *ngFor="let alternative of normalizedAlternatives"
     class="grid text-center mb-4"
     [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
-    <ng-container *ngFor="let key of getObjectKeys(alternative)">
-        <p *ngIf="key !== 'id'">
-            {{ alternative[key] }}
+        <ng-container *ngFor="let key of getObjectKeys(alternative)">
+            <p *ngIf="key !== 'id'">
+                {{ alternative[key] }}
+            </p>
+        </ng-container>
+    </div>
+    <p class="border-t mb-2"></p>
+    <div
+        class="grid text-center mb-4 font-bold"
+        [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+        <p>SUM</p>
+        <p
+        *ngFor="let title of criteriaTitles">
+            {{sumsOfValues[title]}}
         </p>
-    </ng-container>
-</div>
-
+    </div>
 </div>
 
 

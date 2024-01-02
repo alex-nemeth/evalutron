@@ -79,6 +79,7 @@ export class AlternativeService {
         },
     ];
     public normalizedAlternatives: {}[] = [];
+    public sumsOfValues: { [key: string]: number } = {};
     public maxValues: { [key: string]: number } = {};
     public minValues: { [key: string]: number } = {};
 
@@ -120,7 +121,7 @@ export class AlternativeService {
     }
 
     formatValue(value: number): number {
-        return Number(value.toPrecision(4));
+        return Number(value.toPrecision(3));
     }
 
     normalizeAlternatives() {
@@ -147,5 +148,18 @@ export class AlternativeService {
         });
 
         this.normalizedAlternatives = normalizedAlternatives;
+        this.getSumsOfValues();
+    }
+
+    getSumsOfValues() {
+        let sumsOfValues = {};
+        this.criteriaService.criteria.forEach((c: ICriteria) => {
+            let sum = 0;
+            this.normalizedAlternatives.forEach((a: any) => {
+                sum += a[c.title];
+            })
+            sumsOfValues = {...sumsOfValues, [c.title]: sum};
+        })
+        this.sumsOfValues = sumsOfValues
     }
 }

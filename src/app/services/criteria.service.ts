@@ -17,4 +17,8 @@ export class CriteriaService {
         criteria.id = "c" + (this.criteria.length + 1);
         this.criteria.push(criteria);
     }
+
+    getCriteriaTitles(): string[] {
+        return this.criteria.map((criterion) => criterion.title);
+    }
 }

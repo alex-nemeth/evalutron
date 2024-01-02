@@ -8,6 +8,7 @@
                 <th class="w-10" *ngFor="let criterion of criteria"
                 >{{ criterion.title}}</th>
                 <th>GEOMEAN</th>
+                <th>Weight %</th>
             </tr>
         </thead>
         <tbody
@@ -33,12 +34,15 @@
                     />
                 </td>
                 <td><p>{{criterion.weight ? criterion.weight : 1}}</p></td>
+                <td><p>{{criterion.weight ? (criterion.weight / sumOfWeights * 100).toFixed(3) : '33.333%'}}</p></td>
+
           </tr>
-          <!-- Row for Sum of Weights -->
+          <!-- Row for Sum of Weights -->s
           <tr>
             <td><p>SUM</p></td>
             <td *ngFor="let criterion of criteria">
-            <td><p>{{sumOfWeights ? sumOfWeights : this.criteria.length}}</p></td>
+                <td><p>{{sumOfWeights ? sumOfWeights : this.criteria.length}}</p></td>
+                <td><p>100%</p></td>
           </tr>
         </tbody>
     </table>
