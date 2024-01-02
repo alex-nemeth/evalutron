@@ -3,6 +3,7 @@ import { DefineCriteriaComponent } from "./components/define-criteria/define-cri
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { EstimationOfWeightsComponent } from "./components/estimation-of-weights/estimation-of-weights.component";
 import { DefineAlternativesComponent } from "./components/define-alternatives/define-alternatives.component";
+import { ValueNormalizationComponent } from "./components/value-normalization/value-normalization.component";
 
 export const routes: Routes = [
     {
@@ -24,5 +25,10 @@ export const routes: Routes = [
         path: "alternatives",
         title: "Define Alternatives",
         component: DefineAlternativesComponent,
+    },
+    {
+        path: "normalization",
+        title: "Normalization of Values",
+        component: ValueNormalizationComponent,
     },
 ];

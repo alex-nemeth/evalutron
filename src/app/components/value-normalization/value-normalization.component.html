@@ -1,0 +1,35 @@
+<header class="m-10 text-3xl text-center">
+    Normalized Table
+</header>
+
+<div
+    class="grid text-center mb-4 font-bold"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+    <p> Title </p>
+    <p *ngFor="let criterion of criteria">
+        {{criterion.title }}
+    </p>
+</div>
+<div
+*ngFor="let alternative of normalizedAlternatives"
+class="grid text-center mb-4"
+[style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+    <ng-container *ngFor="let key of getObjectKeys(alternative)">
+        <p *ngIf="key !== 'id'">
+            {{ isNumeric(alternative[key])
+                ? (alternative[key] / sumsOfValues[key]).toFixed(3)
+                : alternative[key]
+            }}
+        </p>
+    </ng-container>
+</div>
+<p class="border-t mb-2"></p>
+<div
+    class="grid text-center mb-4 font-bold"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+    <p>SUM</p>
+    <p
+    *ngFor="let title of criteriaTitles">
+        1
+    </p>
+</div>

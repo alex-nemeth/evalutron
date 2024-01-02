@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<div *ngIf="!showNormalizedValues">
+<div *ngIf="!showCalculatedValues">
     <div
         *ngFor="let alternative of alternatives"
         class="grid text-center mb-4"
@@ -42,9 +42,9 @@
     </form>
 </div>
 
-<div *ngIf="showNormalizedValues">
+<div *ngIf="showCalculatedValues">
     <div
-    *ngFor="let alternative of normalizedAlternatives"
+    *ngFor="let alternative of calculatedAlternatives"
     class="grid text-center mb-4"
     [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
         <ng-container *ngFor="let key of getObjectKeys(alternative)">
@@ -72,5 +72,9 @@
 </div>
 
 <div class="flex flex-row-reverse m-4">
-    <app-button (click)="toggleNormalization()" text="{{showNormalizedValues ? 'View real values' : 'View normalized values'}}" />
+    <app-button (click)="toggleNormalization()" text="{{showCalculatedValues ? 'View real values' : 'View calculated values'}}" />
+</div>
+
+<div class="flex flex-row-reverse m-4">
+    <app-button route="/normalization" text="Normalize" />
 </div>

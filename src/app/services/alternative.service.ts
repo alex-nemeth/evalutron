@@ -78,8 +78,83 @@ export class AlternativeService {
             "# of Rooms": "12",
         },
     ];
-    public normalizedAlternatives: {}[] = [];
-    public sumsOfValues: { [key: string]: number } = {};
+    public calculatedAlternatives: {}[] = [
+        {
+          "id": "a1",
+          "Title": "House 1",
+          "Price": 1,
+          "Distance": 1,
+          "# of Rooms": 0.25
+        },
+        {
+          "id": "a2",
+          "Title": "House 2",
+          "Price": 0.75,
+          "Distance": 0.667,
+          "# of Rooms": 0.333
+        },
+        {
+          "id": "a3",
+          "Title": "House 3",
+          "Price": 0.6,
+          "Distance": 0.5,
+          "# of Rooms": 0.417
+        },
+        {
+          "id": "a4",
+          "Title": "House 4",
+          "Price": 0.5,
+          "Distance": 0.4,
+          "# of Rooms": 0.5
+        },
+        {
+          "id": "a5",
+          "Title": "House 5",
+          "Price": 0.429,
+          "Distance": 0.333,
+          "# of Rooms": 0.583
+        },
+        {
+          "id": "a6",
+          "Title": "House 6",
+          "Price": 0.375,
+          "Distance": 0.286,
+          "# of Rooms": 0.667
+        },
+        {
+          "id": "a7",
+          "Title": "House 7",
+          "Price": 0.333,
+          "Distance": 0.25,
+          "# of Rooms": 0.75
+        },
+        {
+          "id": "a8",
+          "Title": "House 8",
+          "Price": 0.3,
+          "Distance": 0.222,
+          "# of Rooms": 0.833
+        },
+        {
+          "id": "a9",
+          "Title": "House 9",
+          "Price": 0.273,
+          "Distance": 0.2,
+          "# of Rooms": 0.917
+        },
+        {
+          "id": "a10",
+          "Title": "House 10",
+          "Price": 0.25,
+          "Distance": 0.182,
+          "# of Rooms": 1
+        }
+      ];
+    public sumsOfValues: { [key: string]: number } = {
+        "Price": 4.81,
+        "Distance": 4.04,
+        "# of Rooms": 6.25
+      };
     public maxValues: { [key: string]: number } = {};
     public minValues: { [key: string]: number } = {};
 
@@ -124,7 +199,7 @@ export class AlternativeService {
         return Number(value.toPrecision(3));
     }
 
-    normalizeAlternatives() {
+    calculateAlternativesValues() {
         this.findMinValues();
         this.findMaxValues();
 
@@ -147,15 +222,16 @@ export class AlternativeService {
             normalizedAlternatives.push(normalizedAlternative);
         });
 
-        this.normalizedAlternatives = normalizedAlternatives;
+        this.calculatedAlternatives = normalizedAlternatives;
         this.getSumsOfValues();
+        console.log(this.calculatedAlternatives);
     }
 
     getSumsOfValues() {
         let sumsOfValues = {};
         this.criteriaService.criteria.forEach((c: ICriteria) => {
             let sum = 0;
-            this.normalizedAlternatives.forEach((a: any) => {
+            this.calculatedAlternatives.forEach((a: any) => {
                 sum += a[c.title];
             })
             sumsOfValues = {...sumsOfValues, [c.title]: sum};

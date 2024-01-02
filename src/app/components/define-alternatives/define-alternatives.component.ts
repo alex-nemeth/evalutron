@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormBuilder,
@@ -25,14 +25,14 @@ interface IAlternative {
     templateUrl: "./define-alternatives.component.html",
     imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
 })
-export class DefineAlternativesComponent {
+export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
     criteriaTitles!: string[];
     alternatives!: IAlternative[];
-    normalizedAlternatives!: IAlternative[];
+    calculatedAlternatives!: IAlternative[];
     sumsOfValues!: {[key: string]: number};
 
-    showNormalizedValues: boolean = false;
+    showCalculatedValues: boolean = false;
 
     formGroup = new FormGroup({});
 
@@ -45,8 +45,8 @@ export class DefineAlternativesComponent {
     ngOnInit() {
         this.alternativeService.initAlternatives();
         this.alternatives = this.alternativeService.alternatives;
-        this.normalizedAlternatives =
-            this.alternativeService.normalizedAlternatives;
+        this.calculatedAlternatives =
+            this.alternativeService.calculatedAlternatives;
         this.criteria = this.criteriaService.criteria;
         this.criteriaTitles = this.criteriaService.getCriteriaTitles();
         this.initForm();
@@ -79,12 +79,16 @@ export class DefineAlternativesComponent {
     }
 
     toggleNormalization() {
-        if (!this.showNormalizedValues) {
-            this.alternativeService.normalizeAlternatives();
-            this.normalizedAlternatives =
-                this.alternativeService.normalizedAlternatives;
+        if (!this.showCalculatedValues) {
+            this.alternativeService.calculateAlternativesValues();
+            this.calculatedAlternatives =
+                this.alternativeService.calculatedAlternatives;
             this.sumsOfValues = this.alternativeService.sumsOfValues;
         }
-        this.showNormalizedValues = !this.showNormalizedValues;
+        this.showCalculatedValues = !this.showCalculatedValues;
+    }
+
+    ngOnDestroy() {
+        this.alternativeService.calculateAlternativesValues();
     }
 }
