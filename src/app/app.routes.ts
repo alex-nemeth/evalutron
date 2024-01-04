@@ -4,6 +4,7 @@ import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { EstimationOfWeightsComponent } from "./components/estimation-of-weights/estimation-of-weights.component";
 import { DefineAlternativesComponent } from "./components/define-alternatives/define-alternatives.component";
 import { ValueNormalizationComponent } from "./components/value-normalization/value-normalization.component";
+import { SummaryComponent } from "./components/summary/summary.component";
 
 export const routes: Routes = [
     {
@@ -31,4 +32,9 @@ export const routes: Routes = [
         title: "Normalization of Values",
         component: ValueNormalizationComponent,
     },
+    {
+        path: "summary",
+        title: "Summary",
+        component: SummaryComponent
+    }
 ];
