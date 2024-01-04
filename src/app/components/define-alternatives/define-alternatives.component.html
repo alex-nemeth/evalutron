@@ -75,6 +75,7 @@
     <app-button (click)="toggleNormalization()" text="{{showCalculatedValues ? 'View real values' : 'View calculated values'}}" />
 </div>
 
-<div class="flex flex-row-reverse m-4">
-    <app-button route="/normalization" text="Normalize" />
+<div class="flex flex-row justify-between m-4">
+    <app-button route="/weights-estimation" text="Back" />
+    <app-button route="/normalization" text="Next" />
 </div>
