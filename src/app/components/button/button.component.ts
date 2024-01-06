@@ -8,7 +8,7 @@ import { RouterModule } from "@angular/router";
     imports: [CommonModule, RouterModule],
     template: `
         <button
-            class="bg-mcea-2 border-mcea-4 border-2 w-auto px-2 h-8 rounded-md"
+            class="bg-mcea-2 px-2 h-8 rounded-md font-bold hover:bg-opacity-80 hover:scale-105 transition-all active:bg-opacity-50"
             [routerLink]="route"
         >
             {{ text ? text : "Next" }}
