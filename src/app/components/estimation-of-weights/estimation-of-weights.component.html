@@ -1,16 +1,16 @@
 <header class="m-10 text-3xl text-center">Estimation of Weights</header>
 
-<div class="flex flex-col justify-evenly">
-    <table class="w-20">
+<div class="flex flex-col justify-evenly items-center mx-8">
+    <table class="w-full">
         <thead>
             <!-- ROWS-->
             <tr>
                 <!-- Ghost Cell for Spacing -->
                 <th></th>
-                <th class="w-10" *ngFor="let criterion of criteria"
+                <th class="w-8" *ngFor="let criterion of criteria"
                 >{{ criterion.title}}</th>
-                <th>GEOMEAN</th>
-                <th>Weight %</th>
+                <th class="w-8">GEOMEAN</th>
+                <th class="w-12">Weight %</th>
             </tr>
         </thead>
         <tbody
@@ -19,7 +19,7 @@
                 id="{{ criterion.id }}"
                 *ngFor="let criterion of criteria"
             >
-                <td class="w-40 font-bold">
+                <td class="font-bold">
                     {{ criterion.title }}
                 </td>
                 <td *ngFor="let criterionCompared of criteria">
@@ -39,16 +39,16 @@
                 <td><p>{{criterion.weight ? (criterion.weight / sumOfWeights * 100).toFixed(3) : '33.333%'}}</p></td>
 
           </tr>
-          <!-- Row for Sum of Weights -->s
+          <!-- Row for Sum of Weights -->
           <tr>
-            <td><p>SUM</p></td>
+            <td><p class="font-bold">SUM</p></td>
             <td *ngFor="let criterion of criteria">
                 <td><p>{{sumOfWeights ? sumOfWeights : this.criteria.length}}</p></td>
                 <td><p>100%</p></td>
           </tr>
         </tbody>
     </table>
-    <div class="flex flex-row justify-between m-4">
+    <div class="flex flex-row justify-between w-full mt-4">
         <app-button route="/criteria" text="Back"></app-button>
         <app-button route="/alternatives" text="Next"></app-button>
     </div>
