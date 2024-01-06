@@ -151,7 +151,7 @@ export class AlternativeService {
           "# of Rooms": 1
         }
       ];
-    public normalizedAlternatives: {} = {
+    public normalizedAlternatives: any = {
         "House 1": {
           "Price": 0.2079002079002079,
           "Distance": 0.24752475247524752,
@@ -326,4 +326,22 @@ export class AlternativeService {
       
         this.normalizedAlternatives = normalizedValues;
       }
+
+      calculateWeightedSums() {
+      for (const key in this.normalizedAlternatives) {
+        if (this.normalizedAlternatives.hasOwnProperty(key)) {
+          const alternative = this.normalizedAlternatives[key];
+      
+          let weightedSum = 0;
+      
+          this.criteriaService.criteria.forEach((criterion) => {
+            const criterionValue = alternative[criterion.title];
+            const weightedValue = criterionValue * criterion.weightPercentage!;
+            weightedSum += weightedValue;
+          });
+      
+          alternative['WeightedSum'] = weightedSum;
+        }
+      }
+    }
 }

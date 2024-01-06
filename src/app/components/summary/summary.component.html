@@ -2,4 +2,25 @@
     Summary
 </header>
 
+<header class="m-10 text-xl text-center">
+    Weighted Sum Method
+</header>
+
+<div class="flex flex-col justify-evenly mx-4">
+    <table>
+      <thead>
+        <tr>
+          <th>Alternative</th>
+          <th>Weighted Sum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alternative of normalizedAlternatives | keyvalue">
+          <td>{{ alternative.key }}</td>
+          <td>{{ alternative.value['WeightedSum'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 <app-button text="Back" route="/normalization" />

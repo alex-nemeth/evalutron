@@ -76,6 +76,7 @@ export class EstimationOfWeightsComponent {
             }
             sortedWeights.push(arr);
             this.criteria[i].weight = this.weightService.geomean(arr);
+            this.criteria[i].weightPercentage = (this.weightService.geomean(arr) / this.weightService.sumOfWeights) * 100;
         }
         this.weightService.saveWeights(sortedWeights);
         this.sumOfWeights = Number(this.weightService.sumOfWeights.toFixed(3));

@@ -3,4 +3,5 @@ export interface ICriteria {
     title: string;
     minmax: string;
     weight?: number;
+    weightPercentage?: number;
 }
