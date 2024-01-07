@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
+import { ButtonComponent } from '../common/button/button.component';
 import { AlternativeService } from '../../services/alternative.service';
 import { WeightService } from '../../services/weight.service';
 import { CriteriaService } from '../../services/criteria.service';

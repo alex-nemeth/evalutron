@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CriteriaService } from "../../services/criteria.service";
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from "../common/button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { ICriteria } from "../../models/criteria.model";
 

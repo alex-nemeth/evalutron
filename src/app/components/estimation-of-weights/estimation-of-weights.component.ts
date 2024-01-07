@@ -10,7 +10,7 @@ import {
 } from "@angular/forms";
 import { ICriteria } from "../../models/criteria.model";
 import { WeightService } from "../../services/weight.service";
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from "../common/button/button.component";
 
 @Component({
     standalone: true,

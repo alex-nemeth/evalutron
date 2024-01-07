@@ -10,7 +10,7 @@ import { RouterModule } from "@angular/router";
 import { ICriteria } from "../../models/criteria.model";
 import { CriteriaService } from "../../services/criteria.service";
 import { of } from "rxjs";
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from "../common/button/button.component";
 
 @Component({
     standalone: true,

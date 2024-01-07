@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from "../common/button/button.component";
 
 @Component({
     standalone: true,
