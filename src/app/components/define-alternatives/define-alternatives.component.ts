@@ -63,10 +63,9 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     }
 
     addAlternative() {
-        this.alternatives.push({
-            id: `a${this.alternatives.length + 1}`,
-            ...this.formGroup.value,
-        });
+        this.alternativeService.addAlternative(
+            this.formGroup.value as IAlternative
+        );
         this.formGroup.reset();
     }
 

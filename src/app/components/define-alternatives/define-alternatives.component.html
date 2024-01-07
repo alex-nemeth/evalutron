@@ -17,21 +17,26 @@
         [gridMode]="AlternativesGridMode.Normal"
     />
     <form
-        class="grid text-center mb-4 gap-4"
-        [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
+        class="flex flex-col gap-2"
         [formGroup]="formGroup"
         (ngSubmit)="addAlternative()">
         <input
             formControlName="Title"
             placeholder="Alternative title"
             type="text"
-            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
-        <input
-            *ngFor="let criterion of criteria"
-            formControlName={{criterion.title}}
-            placeholder={{criterion.title}}    
-            type="text"
-            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2">
+            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2"
+        >
+        <div class="grid gap-2"
+            [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'">
+            <input
+                *ngFor="let criterion of criteria"
+                formControlName={{criterion.title}}
+                placeholder={{criterion.title}}    
+                type="text"
+                class="bg-white rounded-sm border-blue-600 h-6 text-black px-2 w-full"
+            >
+        </div>
+        <mcea-submit-button class="mb-4" text="Add Alternative" (click)="addAlternative()"/>
     </form>
 </div>
 
@@ -40,13 +45,9 @@
     [gridMode]="AlternativesGridMode.Calculated"
 />
 
-<mcea-submit-button text="Add Alternative" (click)="addAlternative()"/>
+<mcea-submit-button (click)="toggleNormalization()" text="{{showCalculatedValues ? 'View real values' : 'View calculated values'}}" />
 
-<div class="flex flex-row-reverse m-4">
-    <mcea-nav-button (click)="toggleNormalization()" text="{{showCalculatedValues ? 'View real values' : 'View calculated values'}}" />
-</div>
-
-<div class="flex flex-row justify-between m-4">
+<div class="flex flex-row justify-between mt-4">
     <mcea-nav-button route="/weights-estimation" text="Back" />
     <mcea-nav-button route="/normalization" text="Next" />
 </div>

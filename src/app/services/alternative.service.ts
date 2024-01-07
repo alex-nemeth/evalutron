@@ -229,6 +229,13 @@ export class AlternativeService {
         }
     }
 
+    addAlternative(alternative: IAlternative) {
+      this.alternatives.push({
+        id: `a${this.alternatives.length + 1}`,
+        ...alternative,
+    });
+    }
+
     findMaxValues() {
         const maxValues: { [key: string]: number } = {};
         this.alternatives.forEach((obj: Record<string, number>) => {

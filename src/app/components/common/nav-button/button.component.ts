@@ -16,7 +16,7 @@ import { RouterModule } from "@angular/router";
         >
             {{ text ? text : "Next" }}
         </button>
-    `,
+    `
 })
 export class NavButtonComponent {
     @Input() route!: string;
