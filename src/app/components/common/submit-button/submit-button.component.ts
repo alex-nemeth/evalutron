@@ -10,7 +10,10 @@ import { CommonModule } from '@angular/common';
               class="bg-mcea-2 w-full h-8 rounded-md
                     hover:bg-opacity-80 hover:scale-105
                     active:bg-opacity-50
-                    transition-all"
+                    transition-all
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                    disabled:hover:scale-100 disabled:hover:bg-opacity-100"
+              [disabled]="disabled"
               >
                 {{text}}
             </button>`,
@@ -23,4 +26,5 @@ import { CommonModule } from '@angular/common';
 })
 export class SubmitButtonComponent {
   @Input() text!: string;
+  @Input() disabled?: boolean = false;
 }

@@ -27,9 +27,9 @@
                 <button
                     class="bg-mcea-2 w-16 h-full rounded-l-lg font-bold
                             hover:bg-opacity-80 hover:scale-x-110
-                            active:bg-opacity-50
+                            active:bg-opacity-40
                             transition-all"
-                    [ngClass]="{'bg-mcea-3 text-opacity-75 font-normal': formGroup.controls.minmax.value === 'MAX'}"
+                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-mcea-2 hover:bg-opacity-60': formGroup.controls.minmax.value === 'MAX'}"
                     (click)="formGroup.controls.minmax.setValue('MIN')">
                     MIN
                 </button>
@@ -37,15 +37,15 @@
                 <button
                     class="bg-mcea-2 w-16 h-full rounded-r-lg font-bold
                             hover:bg-opacity-80 hover:scale-x-110
-                            active:bg-opacity-50
+                            active:bg-opacity-40
                             transition-all"
-                    [ngClass]="{'bg-mcea-3 text-opacity-75 font-normal': formGroup.controls.minmax.value === 'MIN'}"
+                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-mcea-2 hover:bg-opacity-60': formGroup.controls.minmax.value === 'MIN'}"
                     (click)="formGroup.controls.minmax.setValue('MAX')">
                     MAX
                 </button>
             </div>
         </div>
-        <mcea-submit-button text="Add Criterion"/>
+        <mcea-submit-button text="Add Criterion" [disabled]="!formGroup.valid"/>
     </form>
 
     <div class="flex flex-row justify-between my-4">
