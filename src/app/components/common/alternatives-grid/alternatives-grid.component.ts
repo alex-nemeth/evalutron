@@ -14,15 +14,20 @@ import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum
 export class AlternativesGridComponent {
 
   @Input() gridMode!: AlternativesGridMode;
+    AlternativesGridMode = AlternativesGridMode;
 
   columns!: number;
   alternatives!: IAlternative[];
+  sumsOfValues!: { [key: string]: number };
+  criteriaTitles!: string[];
 
   constructor(private criteriaService: CriteriaService, private alternativeService: AlternativeService) {}
 
   ngOnInit(): void {
     this.columns = this.criteriaService.criteria.length + 1;
     this.getAlternatives();
+    this.sumsOfValues = this.alternativeService.sumsOfValues;
+    this.criteriaTitles = this.criteriaService.getCriteriaTitles();
   }
 
   getAlternatives(): void {

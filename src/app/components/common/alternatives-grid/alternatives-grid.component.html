@@ -8,3 +8,15 @@ class="grid text-center mb-4"
         </p>
     </ng-container>
 </div>
+<ng-container *ngIf="gridMode === AlternativesGridMode.Calculated">
+<p class="border-t mb-2"></p>
+<div
+    class="grid text-center mb-4 font-bold"
+    [style.gridTemplateColumns]="'repeat(' + columns + ', 1fr)'">
+    <p>SUM</p>
+    <p
+    *ngFor="let title of criteriaTitles">
+        {{sumsOfValues[title]}}
+    </p>
+</div>
+</ng-container>

@@ -13,7 +13,9 @@
 </div>
 
 <div *ngIf="!showCalculatedValues">
-    <mcea-alternatives-grid [gridMode]="AlternativesGridMode.Normal"/>
+    <mcea-alternatives-grid
+        [gridMode]="AlternativesGridMode.Normal"
+    />
     <form
         class="grid text-center mb-4 gap-4"
         [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'"
@@ -33,19 +35,10 @@
     </form>
 </div>
 
-<div *ngIf="showCalculatedValues">
-    <mcea-alternatives-grid [gridMode]="AlternativesGridMode.Calculated" />
-    <p class="border-t mb-2"></p>
-    <div
-        class="grid text-center mb-4 font-bold"
-        [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
-        <p>SUM</p>
-        <p
-        *ngFor="let title of criteriaTitles">
-            {{sumsOfValues[title]}}
-        </p>
-    </div>
-</div>
+<mcea-alternatives-grid
+    *ngIf="showCalculatedValues"
+    [gridMode]="AlternativesGridMode.Calculated"
+/>
 
 <mcea-submit-button text="Add Alternative" (click)="addAlternative()"/>
 

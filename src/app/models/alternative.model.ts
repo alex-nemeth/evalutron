@@ -1,3 +1,3 @@
 export interface IAlternative {
-    [key: string]: number;
+    [key: string]: any;
 }

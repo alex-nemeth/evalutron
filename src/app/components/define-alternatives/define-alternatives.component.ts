@@ -15,12 +15,7 @@ import { ICriteria } from "../../models/criteria.model";
 import { AlternativesGridComponent } from "../common/alternatives-grid/alternatives-grid.component";
 import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 import { SubmitButtonComponent } from "../common/submit-button/submit-button.component";
-
-interface IAlternative {
-    // change to [key: string] : number
-    // in case that we end up sending numbers directly from the form
-    [key: string]: string;
-}
+import { IAlternative } from "../../models/alternative.model";
 
 @Component({
     standalone: true,
@@ -30,7 +25,6 @@ interface IAlternative {
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
-    criteriaTitles!: string[];
     alternatives!: IAlternative[];
     calculatedAlternatives!: IAlternative[];
     sumsOfValues!: {[key: string]: number};
@@ -49,11 +43,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.alternativeService.initAlternatives();
-        this.alternatives = this.alternativeService.alternatives;
-        this.calculatedAlternatives =
-            this.alternativeService.calculatedAlternatives;
         this.criteria = this.criteriaService.criteria;
-        this.criteriaTitles = this.criteriaService.getCriteriaTitles();
         this.initForm();
     }
 
@@ -83,8 +73,6 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     toggleNormalization() {
         if (!this.showCalculatedValues) {
             this.alternativeService.calculateAlternativesValues();
-            this.calculatedAlternatives =
-                this.alternativeService.calculatedAlternatives;
             this.sumsOfValues = this.alternativeService.sumsOfValues;
         }
         this.showCalculatedValues = !this.showCalculatedValues;
