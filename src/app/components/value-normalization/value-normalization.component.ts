@@ -4,12 +4,12 @@ import { AlternativeService } from '../../services/alternative.service';
 import { ICriteria } from '../../models/criteria.model';
 import { CriteriaService } from '../../services/criteria.service';
 import { IAlternative } from '../../models/alternative.model';
-import { ButtonComponent } from '../common/button/button.component';
+import { NavButtonComponent } from '../common/nav-button/button.component';
 
 @Component({
   selector: 'app-value-normalization',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, NavButtonComponent],
   templateUrl: './value-normalization.component.html',
 })
 export class ValueNormalizationComponent {

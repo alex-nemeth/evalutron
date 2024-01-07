@@ -10,7 +10,7 @@ import {
 } from "@angular/forms";
 import { ICriteria } from "../../models/criteria.model";
 import { WeightService } from "../../services/weight.service";
-import { ButtonComponent } from "../common/button/button.component";
+import { NavButtonComponent } from "../common/nav-button/button.component";
 
 @Component({
     standalone: true,
@@ -20,7 +20,7 @@ import { ButtonComponent } from "../common/button/button.component";
     input:disabled {
       opacity: .50;
     }`,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, NavButtonComponent],
 })
 export class EstimationOfWeightsComponent {
     criteria!: ICriteria[];

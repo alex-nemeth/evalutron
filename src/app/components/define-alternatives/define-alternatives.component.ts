@@ -9,11 +9,12 @@ import {
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CriteriaService } from "../../services/criteria.service";
-import { ButtonComponent } from "../common/button/button.component";
+import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { ICriteria } from "../../models/criteria.model";
 import { AlternativesGridComponent } from "../common/alternatives-grid/alternatives-grid.component";
 import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
+import { SubmitButtonComponent } from "../common/submit-button/submit-button.component";
 
 interface IAlternative {
     // change to [key: string] : number
@@ -25,7 +26,7 @@ interface IAlternative {
     standalone: true,
     selector: "app-define-alternatives",
     templateUrl: "./define-alternatives.component.html",
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent, AlternativesGridComponent],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, NavButtonComponent, AlternativesGridComponent, SubmitButtonComponent],
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
@@ -76,6 +77,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
             id: `a${this.alternatives.length + 1}`,
             ...this.formGroup.value,
         });
+        this.formGroup.reset();
     }
 
     toggleNormalization() {

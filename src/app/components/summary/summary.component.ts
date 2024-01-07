@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../common/button/button.component';
+import { NavButtonComponent } from '../common/nav-button/button.component';
 import { AlternativeService } from '../../services/alternative.service';
 import { WeightService } from '../../services/weight.service';
 import { CriteriaService } from '../../services/criteria.service';
@@ -9,7 +9,7 @@ import { IAlternative } from '../../models/alternative.model';
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, NavButtonComponent],
   templateUrl: './summary.component.html'
 })
 export class SummaryComponent {

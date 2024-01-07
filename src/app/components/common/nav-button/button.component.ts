@@ -18,7 +18,7 @@ import { RouterModule } from "@angular/router";
         </button>
     `,
 })
-export class ButtonComponent {
+export class NavButtonComponent {
     @Input() route!: string;
     @Input() text!: string;
 }
