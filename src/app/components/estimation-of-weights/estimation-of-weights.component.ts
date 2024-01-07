@@ -46,7 +46,6 @@ export class EstimationOfWeightsComponent {
     }
 
     manageWeights(e: any) {
-        console.log(e.target.id);
         const weight = e.target.value;
         const mirrorID = e.target.id.split("-").reverse().join("-");
         const mirrorControl = this.formGroup.get(mirrorID) as AbstractControl;
