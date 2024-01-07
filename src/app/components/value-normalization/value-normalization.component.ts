@@ -25,9 +25,7 @@ export class ValueNormalizationComponent {
     this.normalizedAlternatives = this.alternativeService.calculatedAlternatives;
     this.criteria = this.criteriaService.criteria;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-    console.log(this.sumsOfValues);
     this.alternativeService.calculateNormalizedAlternatives();
-    console.log(this.alternativeService.normalizedAlternatives);
   }
 
   getObjectKeys(obj: IAlternative) {

@@ -32,7 +32,6 @@ export class SummaryComponent {
     ngOnInit() {
       this.normalizedAlternatives = this.alternativeService.normalizedAlternatives;
       this.alternativeService.calculateWeightedSums();
-      console.log(this.normalizedAlternatives);
   }
 
 }

@@ -294,7 +294,6 @@ export class AlternativeService {
 
         this.calculatedAlternatives = normalizedAlternatives;
         this.getSumsOfValues();
-        console.log(this.calculatedAlternatives);
     }
 
     getSumsOfValues() {
