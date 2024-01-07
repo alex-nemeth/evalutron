@@ -12,6 +12,8 @@ import { CriteriaService } from "../../services/criteria.service";
 import { ButtonComponent } from "../common/button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { ICriteria } from "../../models/criteria.model";
+import { AlternativesGridComponent } from "../common/alternatives-grid/alternatives-grid.component";
+import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 
 interface IAlternative {
     // change to [key: string] : number
@@ -23,7 +25,7 @@ interface IAlternative {
     standalone: true,
     selector: "app-define-alternatives",
     templateUrl: "./define-alternatives.component.html",
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent, AlternativesGridComponent],
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
@@ -33,6 +35,8 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     sumsOfValues!: {[key: string]: number};
 
     showCalculatedValues: boolean = false;
+
+    AlternativesGridMode = AlternativesGridMode;
 
     formGroup = new FormGroup({});
 
@@ -72,10 +76,6 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
             id: `a${this.alternatives.length + 1}`,
             ...this.formGroup.value,
         });
-    }
-
-    getObjectKeys(obj: IAlternative) {
-        return Object.keys(obj);
     }
 
     toggleNormalization() {
