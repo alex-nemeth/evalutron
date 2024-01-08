@@ -7,6 +7,16 @@
         <p class="text-center">Click the button to below to get started!</p>
         <mcea-nav-button
             route="/criteria"
-            text="Start"
+            text="Start with a clean slate"
         />
+        <button
+            class="bg-mcea-2 px-4 h-10 rounded-md font-bold
+                    hover:bg-opacity-80 hover:scale-110
+                    active:bg-opacity-50
+                    transition-all"
+            routerLink="/criteria"
+            (click)="loadDemoData()"
+        >
+            {{ "Demo with example data" }}
+        </button>
     </div>
