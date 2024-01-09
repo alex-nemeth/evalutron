@@ -17,6 +17,10 @@ export class CriteriaService {
         return this.criteria.map((criterion) => criterion.title);
     }
 
+    removeCriteria(id: string) {
+        this.criteria = this.criteria.filter((criterion) => criterion.id !== id);
+    }
+
     loadDemoCriteria() {
         this.criteria = demoCriteria;
     }

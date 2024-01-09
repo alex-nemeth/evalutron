@@ -20,7 +20,7 @@ import { SubmitButtonComponent } from "../common/submit-button/submit-button.com
     imports: [CommonModule, ReactiveFormsModule, RouterModule, NavButtonComponent, SubmitButtonComponent],
 })
 export class DefineCriteriaComponent {
-    criteria$ = of(this.criteriaService.criteria);
+    criteria!: ICriteria[];
 
     formGroup = new FormGroup({
         id: new FormControl(""),
@@ -30,11 +30,20 @@ export class DefineCriteriaComponent {
 
     constructor(private criteriaService: CriteriaService) {}
 
+    ngOnInit(): void {
+        this.criteria = this.criteriaService.criteria;
+    }
+
     addCriteria() {
         if (this.formGroup.valid) {
             this.criteriaService.addCriteria(this.formGroup.value as ICriteria);
             this.formGroup.reset();
             this.formGroup.controls.minmax.setValue("MIN");
         }
+    }
+
+    removeCriteria(id: string) {
+        this.criteriaService.removeCriteria(id);
+        this.criteria = this.criteriaService.criteria;
     }
 }
