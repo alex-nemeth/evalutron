@@ -75,14 +75,14 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     }
 
     toggleNormalization() {
-    //     if (!this.showCalculatedValues) {
-    //         this.alternativeService.calculateAlternativesValues();
-    //         this.sumsOfValues = this.alternativeService.sumsOfValues;
-    //     }
-    //     this.showCalculatedValues = !this.showCalculatedValues;
+        if (!this.showCalculatedValues) {
+            this.alternativeService.generateCalculatedAlternatives();
+            this.sumsOfValues = this.alternativeService.sumsOfValues;
+        }
+        this.showCalculatedValues = !this.showCalculatedValues;
     }
 
     ngOnDestroy() {
-        // this.alternativeService.calculateAlternativesValues();
+        this.alternativeService.generateCalculatedAlternatives();
     }
 }

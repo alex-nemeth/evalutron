@@ -30,8 +30,8 @@ export class SummaryComponent {
     constructor(private alternativeService: AlternativeService, private weightService: WeightService, private criteriaService: CriteriaService) {}
 
     ngOnInit() {
-      this.normalizedAlternatives = this.alternativeService.normalizedAlternatives;
-      this.alternativeService.calculateWeightedSums();
+      // this.normalizedAlternatives = this.alternativeService.normalizedAlternatives;
+      // this.alternativeService.calculateWeightedSums();
   }
 
 }
