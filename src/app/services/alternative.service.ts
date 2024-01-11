@@ -13,7 +13,7 @@ import {
     providedIn: "root",
 })
 export class AlternativeService {
-    public alternatives: {}[] = [];
+    public alternatives: IAlternative[] = [];
     public calculatedAlternatives: {}[] = [];
     public normalizedAlternatives: any = {};
     public sumsOfValues: { [key: string]: number } = {};
@@ -22,78 +22,78 @@ export class AlternativeService {
 
     constructor(private criteriaService: CriteriaService) {}
 
-    initAlternatives() {
-        if (!this.alternatives) {
-            this.alternatives = [];
-        }
-    }
+    // initAlternatives() {
+    //     if (!this.alternatives) {
+    //         this.alternatives = [];
+    //     }
+    // }
 
-    addAlternative(alternative: IAlternative) {
+    addAlternative(alternative: Partial<IAlternative>) {
       this.alternatives.push({
         id: `a${this.alternatives.length + 1}`,
         ...alternative,
-    });
+    } as IAlternative);
     }
 
-    findMaxValues() {
-        const maxValues: { [key: string]: number } = {};
-        this.alternatives.forEach((obj: Record<string, number>) => {
-            Object.keys(obj).forEach((key) => {
-                if (key === "id" || key === "Title") return;
-                if (!(key in maxValues) || Number(obj[key]) > maxValues[key])
-                    maxValues[key] = Number(obj[key]);
-            });
-        });
-        this.maxValues = maxValues;
-    }
+    // findMaxValues() {
+    //     const maxValues: { [key: string]: number } = {};
+    //     this.alternatives.forEach((obj: Record<string, number>) => {
+    //         Object.keys(obj).forEach((key) => {
+    //             if (key === "id" || key === "Title") return;
+    //             if (!(key in maxValues) || Number(obj[key]) > maxValues[key])
+    //                 maxValues[key] = Number(obj[key]);
+    //         });
+    //     });
+    //     this.maxValues = maxValues;
+    // }
 
-    findMinValues() {
-        const minValues: { [key: string]: number } = {};
-        this.alternatives.forEach((obj: Record<string, number>) => {
-            Object.keys(obj).forEach((key) => {
-                if (key !== "id" && key !== "Title")
-                    if (
-                        !(key in minValues) ||
-                        Number(obj[key]) < minValues[key]
-                    ) {
-                        minValues[key] = Number(obj[key]);
-                    }
-            });
-        });
+    // findMinValues() {
+    //     const minValues: { [key: string]: number } = {};
+    //     this.alternatives.forEach((obj: Record<string, number>) => {
+    //         Object.keys(obj).forEach((key) => {
+    //             if (key !== "id" && key !== "Title")
+    //                 if (
+    //                     !(key in minValues) ||
+    //                     Number(obj[key]) < minValues[key]
+    //                 ) {
+    //                     minValues[key] = Number(obj[key]);
+    //                 }
+    //         });
+    //     });
 
-        this.minValues = minValues;
-    }
+    //     this.minValues = minValues;
+    // }
 
     formatValue(value: number): number {
         return Number(value.toPrecision(3));
     }
 
-    calculateAlternativesValues() {
-        this.findMinValues();
-        this.findMaxValues();
+    // calculateAlternativesValues() {
+    //     this.findMinValues();
+    //     this.findMaxValues();
 
-        const normalizedAlternatives: { [key: string]: number }[] = [];
+    //     const normalizedAlternatives: { [key: string]: number }[] = [];
 
-        this.alternatives.forEach((obj: Record<string, number>) => {
-            const normalizedAlternative: Record<string, number> = {};
+    //     this.alternatives.forEach((obj: Record<string, number>) => {
+    //         const normalizedAlternative: Record<string, number> = {};
 
-            Object.keys(obj).forEach((key: string) => {
-                normalizedAlternative[key] =
-                    key === "id" || key === "Title"
-                        ? obj[key]
-                        : this.criteriaService.criteria.find(
-                              (c: ICriteria) => c.title === key
-                          )?.minmax === "MIN"
-                        ? this.formatValue(this.minValues[key] / obj[key])
-                        : this.formatValue(obj[key] / this.maxValues[key]);
-            });
+    //         Object.keys(obj).forEach((key: string) => {
+    //             normalizedAlternative[key] =
+    //                 key === "id" || key === "Title"
+    //                     ? obj[key]
+    //                     : this.criteriaService.criteria.find(
+    //                           (c: ICriteria) => c.title === key
+    //                       )?.minmax === "MIN"
+    //                     ? this.formatValue(this.minValues[key] / obj[key])
+    //                     : this.formatValue(obj[key] / this.maxValues[key]);
+    //         });
 
-            normalizedAlternatives.push(normalizedAlternative);
-        });
+    //         normalizedAlternatives.push(normalizedAlternative);
+    //     });
 
-        this.calculatedAlternatives = normalizedAlternatives;
-        this.getSumsOfValues();
-    }
+    //     this.calculatedAlternatives = normalizedAlternatives;
+    //     this.getSumsOfValues();
+    // }
 
     getSumsOfValues() {
         let sumsOfValues = {};
@@ -107,30 +107,30 @@ export class AlternativeService {
         this.sumsOfValues = sumsOfValues
     }
 
-    calculateNormalizedAlternatives(): any {
-        const normalizedValues: any = {};
+    // calculateNormalizedAlternatives(): any {
+    //     const normalizedValues: any = {};
       
-        this.calculatedAlternatives.forEach((alternative: IAlternative) => {
-          const alternativeName = alternative['Title'];
-          normalizedValues[alternativeName] = {};
+    //     this.calculatedAlternatives.forEach((alternative: IAlternative) => {
+    //       const alternativeName = alternative['Title'];
+    //       normalizedValues[alternativeName] = {};
           
-          let alternativeSum = 0; // Initialize the sum for the alternative
+    //       let alternativeSum = 0; // Initialize the sum for the alternative
       
-          Object.keys(alternative).forEach((key) => {
-            if (key !== 'id' && key !== 'Title') {
-              const normalizedValue =
-                alternative[key] / this.sumsOfValues[key];
-              normalizedValues[alternativeName][key] = normalizedValue;
+    //       Object.keys(alternative).forEach((key) => {
+    //         if (key !== 'id' && key !== 'Title') {
+    //           const normalizedValue =
+    //             alternative[key] / this.sumsOfValues[key];
+    //           normalizedValues[alternativeName][key] = normalizedValue;
       
-              alternativeSum += alternative[key]; // Accumulate the sum
-            }
-          });
+    //           alternativeSum += alternative[key]; // Accumulate the sum
+    //         }
+    //       });
       
-          normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
-        });
+    //       normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
+    //     });
       
-        this.normalizedAlternatives = normalizedValues;
-      }
+    //     this.normalizedAlternatives = normalizedValues;
+    //   }
 
       calculateWeightedSums() {
       for (const key in this.normalizedAlternatives) {
@@ -151,7 +151,7 @@ export class AlternativeService {
     }
 
     loadDemoAlternatives() {
-        this.alternatives = demoAlternatives;
+        // this.alternatives = demoAlternatives;
         this.calculatedAlternatives = demoCalculatedAlternatives;
         this.normalizedAlternatives = demoNormalizedAlternatives;
         this.sumsOfValues = demoSumsOfValues;

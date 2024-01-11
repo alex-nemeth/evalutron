@@ -21,11 +21,11 @@ export class ValueNormalizationComponent {
   constructor(private alternativeService: AlternativeService, private criteriaService: CriteriaService) {}
 
   ngOnInit(): void {
-    this.sumsOfValues = this.alternativeService.sumsOfValues;
-    this.normalizedAlternatives = this.alternativeService.calculatedAlternatives;
+    // this.sumsOfValues = this.alternativeService.sumsOfValues;
+    // this.normalizedAlternatives = this.alternativeService.calculatedAlternatives;
     this.criteria = this.criteriaService.criteria;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-    this.alternativeService.calculateNormalizedAlternatives();
+    // this.alternativeService.calculateNormalizedAlternatives();
   }
 
   getObjectKeys(obj: IAlternative) {

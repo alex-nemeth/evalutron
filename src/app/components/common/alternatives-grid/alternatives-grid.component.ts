@@ -31,23 +31,10 @@ export class AlternativesGridComponent {
   }
 
   getAlternatives(): void {
-    switch (this.gridMode) {
-      case AlternativesGridMode.Normal:
-        this.alternatives = this.alternativeService.alternatives;
-        break;
-      case AlternativesGridMode.Calculated:
-        this.alternatives = this.alternativeService.calculatedAlternatives;
-        break;
-      case AlternativesGridMode.Normalized:
-        this.alternatives = this.alternativeService.normalizedAlternatives;
-        break;
-      default:
-        this.alternatives = this.alternativeService.alternatives;
-        break;
-    }
+      this.alternatives = this.alternativeService.alternatives;
   }
 
-  getObjectKeys(obj: IAlternative) {
+  getObjectKeys(obj: any) {
     return Object.keys(obj);
   }
 

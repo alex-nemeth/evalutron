@@ -2,9 +2,10 @@
 *ngFor="let alternative of alternatives"
 class="grid text-center mb-4"
 [style.gridTemplateColumns]="'repeat(' + columns + ', 1fr)'">
-    <ng-container *ngFor="let key of getObjectKeys(alternative)">
+    <p>{{ alternative.title }}</p>
+    <ng-container *ngFor="let key of getObjectKeys(alternative.values.raw)">
         <p *ngIf="key !== 'id'">
-            {{ alternative[key] }}
+            {{ alternative.values.raw![key] }}
         </p>
     </ng-container>
 </div>

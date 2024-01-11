@@ -25,7 +25,6 @@ import { IAlternative } from "../../models/alternative.model";
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
-    alternatives!: IAlternative[];
     calculatedAlternatives!: IAlternative[];
     sumsOfValues!: {[key: string]: number};
 
@@ -42,14 +41,14 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.alternativeService.initAlternatives();
+        // this.alternativeService.initAlternatives();
         this.criteria = this.criteriaService.criteria;
         this.initForm();
     }
 
     initForm() {
         const formControls: { [key: string]: AbstractControl } = {};
-        formControls["Title"] = this.formBuilder.control(
+        formControls["title"] = this.formBuilder.control(
             "",
             Validators.required
         );
@@ -63,21 +62,27 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     }
 
     addAlternative() {
-        this.alternativeService.addAlternative(
-            this.formGroup.value as IAlternative
-        );
+        const { title, ...rawValues } = this.formGroup.value as {title: string, [key: string]: any};
+        const newAlternative: Partial<IAlternative> = {
+            title: title,
+            values: {
+                raw: rawValues
+            }
+        };
+        this.alternativeService.addAlternative(newAlternative)
+        console.log(this.alternativeService.alternatives);
         this.formGroup.reset();
     }
 
     toggleNormalization() {
-        if (!this.showCalculatedValues) {
-            this.alternativeService.calculateAlternativesValues();
-            this.sumsOfValues = this.alternativeService.sumsOfValues;
-        }
-        this.showCalculatedValues = !this.showCalculatedValues;
+    //     if (!this.showCalculatedValues) {
+    //         this.alternativeService.calculateAlternativesValues();
+    //         this.sumsOfValues = this.alternativeService.sumsOfValues;
+    //     }
+    //     this.showCalculatedValues = !this.showCalculatedValues;
     }
 
     ngOnDestroy() {
-        this.alternativeService.calculateAlternativesValues();
+        // this.alternativeService.calculateAlternativesValues();
     }
 }
