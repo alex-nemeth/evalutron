@@ -26,7 +26,7 @@ import { IAlternative } from "../../models/alternative.model";
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
     calculatedAlternatives!: IAlternative[];
-    sumsOfValues!: {[key: string]: number};
+    sumsOfValues!: { [key: string]: number };
 
     showCalculatedValues: boolean = false;
 
@@ -38,7 +38,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder
-    ) {}
+    ) { }
 
     ngOnInit() {
         // this.alternativeService.initAlternatives();
@@ -62,15 +62,27 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     }
 
     addAlternative() {
-        const { title, ...rawValues } = this.formGroup.value as {title: string, [key: string]: any};
+        // Extraction of data from the form
+        const { title, ...rawValues } = this.formGroup.value as {
+            title: string,
+            [key: string]: any
+        };
+
+        // Conversion of values to numbers
+        Object.keys(rawValues).forEach((key) => {
+            rawValues[key] = parseInt(rawValues[key]);
+        });
+
+        // Creation of Partial<IAlternative>
+        // object to pass to the service
         const newAlternative: Partial<IAlternative> = {
             title: title,
             values: {
                 raw: rawValues
             }
         };
+
         this.alternativeService.addAlternative(newAlternative)
-        console.log(this.alternativeService.alternatives);
         this.formGroup.reset();
     }
 

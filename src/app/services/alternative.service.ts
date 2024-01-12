@@ -3,10 +3,10 @@ import { CriteriaService } from "./criteria.service";
 import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
 import {
-  alternatives as demoAlternatives,
-  calculatedAlternatives as demoCalculatedAlternatives,
-  normalizedAlternatives as demoNormalizedAlternatives,
-  sumsOfValues as demoSumsOfValues
+    alternatives as demoAlternatives,
+    calculatedAlternatives as demoCalculatedAlternatives,
+    normalizedAlternatives as demoNormalizedAlternatives,
+    sumsOfValues as demoSumsOfValues
 } from "../data/demo-data";
 
 @Injectable({
@@ -20,13 +20,13 @@ export class AlternativeService {
     public maxValues: { [key: string]: number } = {};
     public minValues: { [key: string]: number } = {};
 
-    constructor(private criteriaService: CriteriaService) {}
+    constructor(private criteriaService: CriteriaService) { }
 
     addAlternative(alternative: Partial<IAlternative>) {
-      this.alternatives.push({
-        id: `a${this.alternatives.length + 1}`,
-        ...alternative,
-    } as IAlternative);
+        this.alternatives.push({
+            id: `a${this.alternatives.length + 1}`,
+            ...alternative,
+        } as IAlternative);
     }
 
     findMaxValues() {
@@ -64,34 +64,15 @@ export class AlternativeService {
                 alternative.values.calculated = {
                     ...alternative.values!.calculated,
                     [key]: this.criteriaService.criteria.find(
-                                (c: ICriteria) => c.title === key
-                            )?.minmax === "MIN"
-                                ? this.minValues[key] / alternative.values!.raw![key]
-                                : alternative.values!.raw![key] / this.maxValues[key]
+                        (c: ICriteria) => c.title === key
+                    )?.minmax === "MIN"
+                        ? this.minValues[key] / alternative.values!.raw![key]
+                        : alternative.values!.raw![key] / this.maxValues[key]
                 };
             })
         })
+        this.getSumsOfValues();
     }
-
-        // const normalizedAlternatives: { [key: string]: number }[] = [];
-
-        // this.alternatives.forEach((alternative: IAlternative) => {
-        //     const calculatedValues: Record<string, number> = {};
-        //     Object.keys(alternative).forEach((key: string) => {
-        //         calculatedValues[key] =
-        //             key === "id" || key === "Title"
-        //                 ? obj[key]
-        //                 : this.criteriaService.criteria.find(
-        //                       (c: ICriteria) => c.title === key
-        //                   )?.minmax === "MIN"
-        //                 ? this.formatValue(this.minValues[key] / obj[key])
-        //                 : this.formatValue(obj[key] / this.maxValues[key]);
-        //     });
-        //     normalizedAlternatives.push(calculatedvalues);
-        // });
-
-        // this.calculatedAlternatives = normalizedAlternatives;
-        // this.getSumsOfValues();
 
     getSumsOfValues() {
         let sumsOfValues = {};
@@ -100,33 +81,33 @@ export class AlternativeService {
             this.alternatives.forEach((alt: IAlternative) =>
                 sum += alt.values.calculated![c.title]
             );
-            sumsOfValues = {...sumsOfValues, [c.title]: sum};
+            sumsOfValues = { ...sumsOfValues, [c.title]: sum };
         })
         this.sumsOfValues = sumsOfValues
     }
 
     // calculateNormalizedAlternatives(): any {
     //     const normalizedValues: any = {};
-      
+
     //     this.calculatedAlternatives.forEach((alternative: IAlternative) => {
     //       const alternativeName = alternative['Title'];
     //       normalizedValues[alternativeName] = {};
-          
+
     //       let alternativeSum = 0; // Initialize the sum for the alternative
-      
+
     //       Object.keys(alternative).forEach((key) => {
     //         if (key !== 'id' && key !== 'Title') {
     //           const normalizedValue =
     //             alternative[key] / this.sumsOfValues[key];
     //           normalizedValues[alternativeName][key] = normalizedValue;
-      
+
     //           alternativeSum += alternative[key]; // Accumulate the sum
     //         }
     //       });
-      
+
     //       normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
     //     });
-      
+
     //     this.normalizedAlternatives = normalizedValues;
     //   }
 
@@ -134,26 +115,26 @@ export class AlternativeService {
     //   for (const key in this.normalizedAlternatives) {
     //     if (this.normalizedAlternatives.hasOwnProperty(key)) {
     //       const alternative = this.normalizedAlternatives[key];
-      
+
     //       let weightedSum = 0;
-      
+
     //       this.criteriaService.criteria.forEach((criterion) => {
     //         const criterionValue = alternative[criterion.title];
     //         const weightedValue = criterionValue * criterion.weightPercentage!;
     //         weightedSum += weightedValue;
     //       });
-      
+
     //       alternative['WeightedSum'] = weightedSum;
     //     }
     //   }
     // }
 
-    // loadDemoAlternatives() {
-    //     // this.alternatives = demoAlternatives;
-    //     this.calculatedAlternatives = demoCalculatedAlternatives;
-    //     this.normalizedAlternatives = demoNormalizedAlternatives;
-    //     this.sumsOfValues = demoSumsOfValues;
-    // }
+    loadDemoAlternatives() {
+        //     // this.alternatives = demoAlternatives;
+        //     this.calculatedAlternatives = demoCalculatedAlternatives;
+        //     this.normalizedAlternatives = demoNormalizedAlternatives;
+        //     this.sumsOfValues = demoSumsOfValues;
+    }
 
     clearData() {
         this.alternatives = [];

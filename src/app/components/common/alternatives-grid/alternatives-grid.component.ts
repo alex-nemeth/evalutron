@@ -4,6 +4,7 @@ import { CriteriaService } from '../../../services/criteria.service';
 import { AlternativeService } from '../../../services/alternative.service';
 import { IAlternative } from '../../../models/alternative.model';
 import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'mcea-alternatives-grid',
@@ -14,28 +15,34 @@ import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum
 export class AlternativesGridComponent {
 
   @Input() gridMode!: AlternativesGridMode;
-    AlternativesGridMode = AlternativesGridMode;
+  AlternativesGridMode = AlternativesGridMode;
 
   columns!: number;
-  alternatives!: IAlternative[];
+  alternatives$!: Observable<IAlternative[]>;
   sumsOfValues!: { [key: string]: number };
   criteriaTitles!: string[];
 
-  constructor(private criteriaService: CriteriaService, private alternativeService: AlternativeService) {}
+  constructor(
+    private criteriaService: CriteriaService,
+    private alternativeService: AlternativeService
+  ) { }
 
   ngOnInit(): void {
     this.columns = this.criteriaService.criteria.length + 1;
-    this.getAlternatives();
+    this.alternatives$ = of(this.alternativeService.alternatives);
     this.sumsOfValues = this.alternativeService.sumsOfValues;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-  }
 
-  getAlternatives(): void {
-      this.alternatives = this.alternativeService.alternatives;
+    console.log(this.gridMode);
+    console.log(this.alternativeService.sumsOfValues);
   }
 
   getObjectKeys(obj: any) {
     return Object.keys(obj);
+  }
+
+  formatValue(value: number): number {
+    return Number(value.toFixed(3));
   }
 
 }
