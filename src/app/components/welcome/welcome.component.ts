@@ -4,12 +4,13 @@ import { RouterModule } from "@angular/router";
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { CriteriaService } from "../../services/criteria.service";
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     standalone: true,
     selector: "app-welcome",
     templateUrl: "./welcome.component.html",
-    imports: [CommonModule, RouterModule, NavButtonComponent],
+    imports: [CommonModule, RouterModule, NavButtonComponent, MatButtonModule],
 })
 export class WelcomeComponent {
 

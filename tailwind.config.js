@@ -12,6 +12,9 @@ module.exports = {
       "mcea-4": "#DDF2FD",
       white: colors.white,
       black: colors.black,
+      dark: '#303030',
+      primary: '#9c27b0',
+      accent: '#69f0ae'
     },
     extend: {},
   },

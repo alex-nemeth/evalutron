@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 * {
-    background-color: #164863;
     color: white;
 }
 
-html,
+
+html, body {
+    height: 100%
+}
+
 body {
-    height: 100vh;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #303030;
 }
