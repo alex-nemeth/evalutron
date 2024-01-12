@@ -16,3 +16,9 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #303030;
 }
+
+.mdc-notched-outline__notch { border-right: none; }
+
+.mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}

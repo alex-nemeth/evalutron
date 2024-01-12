@@ -9,26 +9,26 @@ import {
 import { RouterModule } from "@angular/router";
 import { ICriteria } from "../../models/criteria.model";
 import { CriteriaService } from "../../services/criteria.service";
-import { of } from "rxjs";
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { SubmitButtonComponent } from "../common/submit-button/submit-button.component";
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
     standalone: true,
     selector: "app-define-criteria",
     templateUrl: "./define-criteria.component.html",
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, NavButtonComponent, SubmitButtonComponent],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, NavButtonComponent, SubmitButtonComponent, MatFormFieldModule, MatInputModule],
 })
 export class DefineCriteriaComponent {
     criteria!: ICriteria[];
 
     formGroup = new FormGroup({
-        id: new FormControl(""),
         title: new FormControl("", [Validators.required]),
         minmax: new FormControl("MIN", [Validators.required]),
     });
 
-    constructor(private criteriaService: CriteriaService) {}
+    constructor(private criteriaService: CriteriaService) { }
 
     ngOnInit(): void {
         this.criteria = this.criteriaService.criteria;
