@@ -10,12 +10,14 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Alternative</th>
           <th>Weighted Sum</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let alternative of alternatives">
+        <tr *ngFor="let alternative of sortBySum(alternatives)">
+          <td>{{ alternative.id }}</td>
           <td>{{ alternative.title }}</td>
           <td>{{ alternative.values.weightedSum }}</td>
         </tr>
