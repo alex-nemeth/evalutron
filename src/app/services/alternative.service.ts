@@ -4,8 +4,6 @@ import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
 import {
     alternatives as demoAlternatives,
-    calculatedAlternatives as demoCalculatedAlternatives,
-    normalizedAlternatives as demoNormalizedAlternatives,
     sumsOfValues as demoSumsOfValues
 } from "../data/demo-data";
 
@@ -14,8 +12,6 @@ import {
 })
 export class AlternativeService {
     public alternatives: IAlternative[] = [];
-    // public calculatedAlternatives: {}[] = [];
-    // public normalizedAlternatives: any = {};
     public sumsOfValues: { [key: string]: number } = {};
     public maxValues: { [key: string]: number } = {};
     public minValues: { [key: string]: number } = {};
@@ -56,7 +52,7 @@ export class AlternativeService {
     }
 
     // @TODO: Assure that the values are being calculated correctly
-    generateCalculatedAlternatives() {
+    generateCalculatedValues(): void {
         this.findMinValues();
         this.findMaxValues();
         this.alternatives.forEach((alternative: IAlternative) => {
@@ -74,6 +70,39 @@ export class AlternativeService {
         this.getSumsOfValues();
     }
 
+    generateNormalizedValues(): any {
+        this.alternatives.forEach((alternative: IAlternative) => {
+            Object.keys(alternative.values.calculated!).forEach((key: string) => {
+                alternative.values.normalized = {
+                    ...alternative.values!.normalized,
+                    [key]: alternative.values!.calculated![key] / this.sumsOfValues[key]
+                };
+            })
+        });
+        //     const normalizedValues: any = {};
+
+        //     this.calculatedAlternatives.forEach((alternative: IAlternative) => {
+        //       const alternativeName = alternative['Title'];
+        //       normalizedValues[alternativeName] = {};
+
+        //       let alternativeSum = 0; // Initialize the sum for the alternative
+
+        //       Object.keys(alternative).forEach((key) => {
+        //         if (key !== 'id' && key !== 'Title') {
+        //           const normalizedValue =
+        //             alternative[key] / this.sumsOfValues[key];
+        //           normalizedValues[alternativeName][key] = normalizedValue;
+
+        //           alternativeSum += alternative[key]; // Accumulate the sum
+        //         }
+        //       });
+
+        //       normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
+        //     });
+
+        //     this.normalizedAlternatives = normalizedValues;
+    }
+
     getSumsOfValues() {
         let sumsOfValues = {};
         this.criteriaService.criteria.forEach((c: ICriteria) => {
@@ -85,31 +114,6 @@ export class AlternativeService {
         })
         this.sumsOfValues = sumsOfValues
     }
-
-    // calculateNormalizedAlternatives(): any {
-    //     const normalizedValues: any = {};
-
-    //     this.calculatedAlternatives.forEach((alternative: IAlternative) => {
-    //       const alternativeName = alternative['Title'];
-    //       normalizedValues[alternativeName] = {};
-
-    //       let alternativeSum = 0; // Initialize the sum for the alternative
-
-    //       Object.keys(alternative).forEach((key) => {
-    //         if (key !== 'id' && key !== 'Title') {
-    //           const normalizedValue =
-    //             alternative[key] / this.sumsOfValues[key];
-    //           normalizedValues[alternativeName][key] = normalizedValue;
-
-    //           alternativeSum += alternative[key]; // Accumulate the sum
-    //         }
-    //       });
-
-    //       normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
-    //     });
-
-    //     this.normalizedAlternatives = normalizedValues;
-    //   }
 
     //   calculateWeightedSums() {
     //   for (const key in this.normalizedAlternatives) {
@@ -131,8 +135,6 @@ export class AlternativeService {
 
     loadDemoAlternatives() {
         //     // this.alternatives = demoAlternatives;
-        //     this.calculatedAlternatives = demoCalculatedAlternatives;
-        //     this.normalizedAlternatives = demoNormalizedAlternatives;
         //     this.sumsOfValues = demoSumsOfValues;
     }
 

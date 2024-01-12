@@ -32,9 +32,6 @@ export class AlternativesGridComponent {
     this.alternatives$ = of(this.alternativeService.alternatives);
     this.sumsOfValues = this.alternativeService.sumsOfValues;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-
-    console.log(this.gridMode);
-    console.log(this.alternativeService.sumsOfValues);
   }
 
   getObjectKeys(obj: any) {

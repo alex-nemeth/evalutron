@@ -13,26 +13,30 @@ import { NavButtonComponent } from '../common/nav-button/button.component';
   templateUrl: './value-normalization.component.html',
 })
 export class ValueNormalizationComponent {
-  normalizedAlternatives!: IAlternative[];
-  sumsOfValues!: IAlternative;
+  alternatives!: IAlternative[];
+  sumsOfValues!: { [key: string]: number };
   criteria!: ICriteria[];
   criteriaTitles!: string[];
 
-  constructor(private alternativeService: AlternativeService, private criteriaService: CriteriaService) {}
+  constructor(private alternativeService: AlternativeService, private criteriaService: CriteriaService) { }
 
   ngOnInit(): void {
-    // this.sumsOfValues = this.alternativeService.sumsOfValues;
-    // this.normalizedAlternatives = this.alternativeService.calculatedAlternatives;
+    this.alternatives = this.alternativeService.alternatives;
+    this.sumsOfValues = this.alternativeService.sumsOfValues;
     this.criteria = this.criteriaService.criteria;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-    // this.alternativeService.calculateNormalizedAlternatives();
+    this.alternativeService.generateNormalizedValues();
   }
 
-  getObjectKeys(obj: IAlternative) {
+  getObjectKeys(obj: any) {
     return Object.keys(obj);
   }
 
   isNumeric(value: any) {
     return !isNaN(value);
+  }
+
+  formatValue(value: number): number {
+    return Number(value.toPrecision(3));
   }
 }
