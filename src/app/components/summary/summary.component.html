@@ -15,9 +15,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let alternative of normalizedAlternatives | keyvalue">
-          <td>{{ alternative.key }}</td>
-          <td>{{ alternative.value['WeightedSum'] }}</td>
+        <tr *ngFor="let alternative of alternatives">
+          <td>{{ alternative.title }}</td>
+          <td>{{ alternative.values.weightedSum }}</td>
         </tr>
       </tbody>
     </table>

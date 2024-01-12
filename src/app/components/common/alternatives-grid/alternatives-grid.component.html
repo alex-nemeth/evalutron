@@ -1,10 +1,11 @@
 <div
-*ngFor="let alternative of alternatives"
+*ngFor="let alternative of alternatives$ | async"
 class="grid text-center mb-4"
 [style.gridTemplateColumns]="'repeat(' + columns + ', 1fr)'">
-    <ng-container *ngFor="let key of getObjectKeys(alternative)">
+    <p>{{ alternative.title }}</p>
+    <ng-container *ngFor="let key of getObjectKeys(alternative.values[gridMode])">
         <p *ngIf="key !== 'id'">
-            {{ alternative[key] }}
+            {{ formatValue(alternative.values[gridMode]![key]) }}
         </p>
     </ng-container>
 </div>
@@ -16,7 +17,7 @@ class="grid text-center mb-4"
     <p>SUM</p>
     <p
     *ngFor="let title of criteriaTitles">
-        {{sumsOfValues[title]}}
+        {{ formatValue(sumsOfValues[title]) }}
     </p>
 </div>
 </ng-container>

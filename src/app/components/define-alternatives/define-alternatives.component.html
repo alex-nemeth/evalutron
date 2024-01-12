@@ -14,14 +14,14 @@
 
 <div *ngIf="!showCalculatedValues">
     <mcea-alternatives-grid
-        [gridMode]="AlternativesGridMode.Normal"
+        [gridMode]="AlternativesGridMode.Raw"
     />
     <form
         class="flex flex-col gap-2"
         [formGroup]="formGroup"
         (ngSubmit)="addAlternative()">
         <input
-            formControlName="Title"
+            formControlName="title"
             placeholder="Alternative title"
             type="text"
             class="bg-white rounded-sm border-blue-600 h-6 text-black px-2"
@@ -45,7 +45,7 @@
     [gridMode]="AlternativesGridMode.Calculated"
 />
 
-<mcea-submit-button (click)="toggleNormalization()" text="{{showCalculatedValues ? 'View real values' : 'View calculated values'}}" />
+<mcea-submit-button (click)="toggleNormalization()" text="{{ showCalculatedValues ? 'View real values' : 'View calculated values' }}" />
 
 <div class="flex flex-row justify-between mt-4">
     <mcea-nav-button route="/weights-estimation" text="Back" />

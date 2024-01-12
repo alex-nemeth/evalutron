@@ -11,15 +11,13 @@
     </p>
 </div>
 <div
-*ngFor="let alternative of normalizedAlternatives"
-class="grid text-center mb-4"
-[style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
-    <ng-container *ngFor="let key of getObjectKeys(alternative)">
-        <p *ngIf="key !== 'id'">
-            {{ isNumeric(alternative[key])
-                ? (alternative[key] / sumsOfValues[key]).toFixed(3)
-                : alternative[key]
-            }}
+    *ngFor="let alternative of alternatives"
+    class="grid text-center mb-4"
+    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
+    <p> {{ alternative.title }}</p>
+    <ng-container *ngFor="let key of getObjectKeys(alternative.values.calculated!)">
+        <p>
+            {{ formatValue(alternative.values.normalized![key]) }}
         </p>
     </ng-container>
 </div>

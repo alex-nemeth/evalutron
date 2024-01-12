@@ -25,9 +25,8 @@ import { IAlternative } from "../../models/alternative.model";
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
-    alternatives!: IAlternative[];
     calculatedAlternatives!: IAlternative[];
-    sumsOfValues!: {[key: string]: number};
+    sumsOfValues!: { [key: string]: number };
 
     showCalculatedValues: boolean = false;
 
@@ -39,17 +38,17 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder
-    ) {}
+    ) { }
 
     ngOnInit() {
-        this.alternativeService.initAlternatives();
+        // this.alternativeService.initAlternatives();
         this.criteria = this.criteriaService.criteria;
         this.initForm();
     }
 
     initForm() {
         const formControls: { [key: string]: AbstractControl } = {};
-        formControls["Title"] = this.formBuilder.control(
+        formControls["title"] = this.formBuilder.control(
             "",
             Validators.required
         );
@@ -63,21 +62,39 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     }
 
     addAlternative() {
-        this.alternativeService.addAlternative(
-            this.formGroup.value as IAlternative
-        );
+        // Extraction of data from the form
+        const { title, ...rawValues } = this.formGroup.value as {
+            title: string,
+            [key: string]: any
+        };
+
+        // Conversion of values to numbers
+        Object.keys(rawValues).forEach((key) => {
+            rawValues[key] = parseInt(rawValues[key]);
+        });
+
+        // Creation of Partial<IAlternative>
+        // object to pass to the service
+        const newAlternative: Partial<IAlternative> = {
+            title: title,
+            values: {
+                raw: rawValues
+            }
+        };
+
+        this.alternativeService.addAlternative(newAlternative)
         this.formGroup.reset();
     }
 
     toggleNormalization() {
         if (!this.showCalculatedValues) {
-            this.alternativeService.calculateAlternativesValues();
+            this.alternativeService.generateCalculatedValues();
             this.sumsOfValues = this.alternativeService.sumsOfValues;
         }
         this.showCalculatedValues = !this.showCalculatedValues;
     }
 
     ngOnDestroy() {
-        this.alternativeService.calculateAlternativesValues();
+        this.alternativeService.generateCalculatedValues();
     }
 }

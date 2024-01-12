@@ -25,13 +25,13 @@ export class SummaryComponent {
     Would be nice to also sort the table by the sum of final values.
   */
 
-  normalizedAlternatives!: {[key: string]: IAlternative};
+  alternatives!: IAlternative[];
 
-    constructor(private alternativeService: AlternativeService, private weightService: WeightService, private criteriaService: CriteriaService) {}
+  constructor(private alternativeService: AlternativeService, private weightService: WeightService, private criteriaService: CriteriaService) { }
 
-    ngOnInit() {
-      this.normalizedAlternatives = this.alternativeService.normalizedAlternatives;
-      this.alternativeService.calculateWeightedSums();
+  ngOnInit() {
+    this.alternatives = this.alternativeService.alternatives;
+    this.alternativeService.calculateWeightedSums();
   }
 
 }
