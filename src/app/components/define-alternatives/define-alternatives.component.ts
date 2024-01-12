@@ -54,14 +54,21 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         );
         this.criteria.forEach((criterion: ICriteria) => {
             formControls[criterion.title] = this.formBuilder.control(
-                "",
-                Validators.required
+                "", [
+                Validators.required,
+                Validators.min(0),
+                Validators.pattern(/^\d*(\.\d+)?$/) // Regex: Only positive numbers
+            ]
             );
         });
         this.formGroup = this.formBuilder.group(formControls);
     }
 
     addAlternative() {
+        if (this.formGroup.invalid) {
+            console.log('skill issue');
+            return;
+        }
         // Extraction of data from the form
         const { title, ...rawValues } = this.formGroup.value as {
             title: string,
