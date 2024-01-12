@@ -32,7 +32,7 @@ export class EstimationOfWeightsComponent {
     constructor(
         private criteriaService: CriteriaService,
         private weightService: WeightService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;

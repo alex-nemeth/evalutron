@@ -50,7 +50,6 @@ export class AlternativeService {
         return Number(value.toPrecision(3));
     }
 
-    // @TODO: Assure that the values are being calculated correctly
     generateCalculatedValues(): void {
         this.findMinValues();
         this.findMaxValues();
@@ -107,8 +106,7 @@ export class AlternativeService {
 
 
     loadDemoAlternatives() {
-        //     // this.alternatives = demoAlternatives;
-        //     this.sumsOfValues = demoSumsOfValues;
+        this.alternatives = demoAlternatives;
     }
 
     clearData() {

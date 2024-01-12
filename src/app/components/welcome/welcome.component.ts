@@ -16,7 +16,7 @@ export class WelcomeComponent {
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService
-    ){}
+    ) { }
 
     ngOnInit() {
         this.alternativeService.clearData();
@@ -24,7 +24,7 @@ export class WelcomeComponent {
     }
 
     loadDemoData() {
-        // this.alternativeService.loadDemoAlternatives();
+        this.alternativeService.loadDemoAlternatives();
         this.criteriaService.loadDemoCriteria();
     }
 }
