@@ -17,7 +17,7 @@
     <p> {{ alternative.title }}</p>
     <ng-container *ngFor="let key of getObjectKeys(alternative.values.calculated!)">
         <p>
-            {{ formatValue(alternative.values.normalized![key] / sumsOfValues[key]) }}
+            {{ formatValue(alternative.values.normalized![key]) }}
         </p>
     </ng-container>
 </div>

@@ -11,5 +11,6 @@ export interface IAlternative {
         normalized?: {
             [key: string]: number;
         }
+        weightedSum?: number;
     }
 }

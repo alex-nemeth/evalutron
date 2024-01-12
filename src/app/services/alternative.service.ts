@@ -4,7 +4,6 @@ import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
 import {
     alternatives as demoAlternatives,
-    sumsOfValues as demoSumsOfValues
 } from "../data/demo-data";
 
 @Injectable({
@@ -74,33 +73,23 @@ export class AlternativeService {
         this.alternatives.forEach((alternative: IAlternative) => {
             Object.keys(alternative.values.calculated!).forEach((key: string) => {
                 alternative.values.normalized = {
-                    ...alternative.values!.normalized,
+                    ...alternative.values.normalized,
                     [key]: alternative.values!.calculated![key] / this.sumsOfValues[key]
                 };
             })
         });
-        //     const normalizedValues: any = {};
+    }
 
-        //     this.calculatedAlternatives.forEach((alternative: IAlternative) => {
-        //       const alternativeName = alternative['Title'];
-        //       normalizedValues[alternativeName] = {};
-
-        //       let alternativeSum = 0; // Initialize the sum for the alternative
-
-        //       Object.keys(alternative).forEach((key) => {
-        //         if (key !== 'id' && key !== 'Title') {
-        //           const normalizedValue =
-        //             alternative[key] / this.sumsOfValues[key];
-        //           normalizedValues[alternativeName][key] = normalizedValue;
-
-        //           alternativeSum += alternative[key]; // Accumulate the sum
-        //         }
-        //       });
-
-        //       normalizedValues[alternativeName]['Sum'] = alternativeSum; // Add the sum to the result
-        //     });
-
-        //     this.normalizedAlternatives = normalizedValues;
+    calculateWeightedSums() {
+        this.alternatives.forEach((alternative: IAlternative) => {
+            let weightedSum = 0;
+            this.criteriaService.criteria.forEach((criterion: ICriteria) => {
+                const criterionValue = alternative.values.normalized![criterion.title];
+                const weightedValue = criterionValue * criterion.weightPercentage!;
+                weightedSum += weightedValue;
+            });
+            alternative.values.weightedSum = weightedSum;
+        });
     }
 
     getSumsOfValues() {
@@ -115,23 +104,7 @@ export class AlternativeService {
         this.sumsOfValues = sumsOfValues
     }
 
-    //   calculateWeightedSums() {
-    //   for (const key in this.normalizedAlternatives) {
-    //     if (this.normalizedAlternatives.hasOwnProperty(key)) {
-    //       const alternative = this.normalizedAlternatives[key];
 
-    //       let weightedSum = 0;
-
-    //       this.criteriaService.criteria.forEach((criterion) => {
-    //         const criterionValue = alternative[criterion.title];
-    //         const weightedValue = criterionValue * criterion.weightPercentage!;
-    //         weightedSum += weightedValue;
-    //       });
-
-    //       alternative['WeightedSum'] = weightedSum;
-    //     }
-    //   }
-    // }
 
     loadDemoAlternatives() {
         //     // this.alternatives = demoAlternatives;
