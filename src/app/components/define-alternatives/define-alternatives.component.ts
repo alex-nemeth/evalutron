@@ -41,7 +41,6 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        // this.alternativeService.initAlternatives();
         this.criteria = this.criteriaService.criteria;
         this.initForm();
     }
