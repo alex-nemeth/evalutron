@@ -20,23 +20,21 @@
         class="flex flex-col gap-2"
         [formGroup]="formGroup"
         (ngSubmit)="addAlternative()">
-        <input
-            formControlName="title"
-            placeholder="Alternative title"
-            type="text"
-            class="bg-white rounded-sm border-blue-600 h-6 text-black px-2"
-        >
-        <div class="grid gap-2"
-            [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'">
-            <input
-                *ngFor="let criterion of criteria"
-                formControlName={{criterion.title}}
-                placeholder={{criterion.title}}    
-                type="number"
-                class="bg-white rounded-sm border-blue-600 h-6 text-black px-2 w-full"
-            >
+
+        <!-- Alternative Title -->
+        <mat-form-field color="accent">
+            <mat-label>Alternative title</mat-label>
+          <input matInput formControlName="title">
+        </mat-form-field>
+      
+        <!-- Alternative Values -->
+        <div class="grid gap-2" [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'">
+          <mat-form-field color="accent" *ngFor="let criterion of criteria">
+            <input matInput formControlName="{{criterion.title}}" placeholder="{{criterion.title}}" type="number">
+          </mat-form-field>
         </div>
-        <mcea-submit-button class="mb-4" text="Add Alternative"/>
+
+        <mcea-submit-button [disabled]="!formGroup.valid" class="mb-4" text="Add Alternative"/>
     </form>
 </div>
 

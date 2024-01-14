@@ -16,12 +16,23 @@ import { AlternativesGridComponent } from "../common/alternatives-grid/alternati
 import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 import { SubmitButtonComponent } from "../common/submit-button/submit-button.component";
 import { IAlternative } from "../../models/alternative.model";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
     standalone: true,
     selector: "app-define-alternatives",
     templateUrl: "./define-alternatives.component.html",
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, NavButtonComponent, AlternativesGridComponent, SubmitButtonComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        NavButtonComponent,
+        AlternativesGridComponent,
+        SubmitButtonComponent,
+        MatInputModule,
+        MatFormFieldModule
+    ],
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
     criteria!: ICriteria[];
@@ -68,6 +79,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
             console.log('skill issue');
             return;
         }
+
         // Extraction of data from the form
         const { title, ...rawValues } = this.formGroup.value as {
             title: string,
