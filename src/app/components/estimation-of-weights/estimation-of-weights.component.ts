@@ -11,6 +11,10 @@ import {
 import { ICriteria } from "../../models/criteria.model";
 import { WeightService } from "../../services/weight.service";
 import { NavButtonComponent } from "../common/nav-button/button.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
     standalone: true,
@@ -20,12 +24,23 @@ import { NavButtonComponent } from "../common/nav-button/button.component";
     input:disabled {
       opacity: .50;
     }`,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, NavButtonComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NavButtonComponent,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule
+    ],
 })
 export class EstimationOfWeightsComponent {
     criteria!: ICriteria[];
     weights: any[] = [];
     sumOfWeights!: number;
+
+    displayedColumns!: string[];
 
     formGroup = new FormGroup({});
 
@@ -37,6 +52,7 @@ export class EstimationOfWeightsComponent {
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.criteria.forEach((criteria) => this.weights.push([]));
+        this.displayedColumns = ['ghostCell', ...this.criteria.map(c => c.id), 'geomean', 'weightPercentage'];
         this.weights = this.weightService.weights;
         this.initForm();
     }
@@ -56,8 +72,19 @@ export class EstimationOfWeightsComponent {
         const mirrorWeightCell: HTMLElement | null = document.querySelector(
             `#${mirrorID}`
         );
-        weightCell!.style.backgroundColor = "#34d399";
-        mirrorWeightCell!.style.backgroundColor = "#34d399";
+        // Cringe code below
+        // (This targets the parent Material table cell
+        // So that the entire cell is highlighted)
+        weightCell!
+            .parentElement!
+            .parentElement!
+            .parentElement!
+            .style.backgroundColor = "#69f0ae";
+        mirrorWeightCell!
+            .parentElement!
+            .parentElement!
+            .parentElement!
+            .style.backgroundColor = "#69f0ae";
         this.updateWeights();
     }
 
