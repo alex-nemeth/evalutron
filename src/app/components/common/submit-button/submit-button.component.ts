@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `<button
               type="submit"
-              class="bg-mcea-2 w-full h-8 rounded-md
+              class="bg-primary w-full h-8 rounded-md
                     hover:bg-opacity-80 hover:scale-105
                     active:bg-opacity-50
                     transition-all

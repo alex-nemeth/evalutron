@@ -12,8 +12,8 @@
         <div class="flex flex-row justify-center items-center gap-2">
             <p> {{ criterion.minmax }} </p>
             <button
-                class="bg-mcea-2 w-6 h-6 rounded-full bg-white text-mcea-1 text-xl font-bold
-                    hover:bg-opacity-80 hover:scale-x-110
+                class="w-6 h-6 rounded-full text-dark text-xl font-bold
+                    hover:bg-opacity-80
                     active:bg-opacity-40
                     transition-all"
                     (click)="removeCriteria(criterion.id)">
@@ -30,32 +30,37 @@
     </div>
 
     <form
-        class="flex flex-col justify-evenly items-center gap-2 w-full"
+        class="flex flex-col justify-evenly items-center gap-2 w-full mt-4"
         [formGroup]="formGroup">
         <div class="grid grid-cols-2 justify-between gap-5 items-center w-full">
-            <input
-                formControlName="title"
-                placeholder="Criteria title"
-                type="text"
-                class="bg-white rounded-sm border-blue-600 h-10 text-black px-2">
+            <mat-form-field
+                color="accent">
+                <mat-label>
+                    Criteria
+                </mat-label>
+                <input
+                    matInput
+                    formControlName="title"
+                    type="text">
+            </mat-form-field>
 
             <div class="flex flex-row h-full rounded-md justify-center items-center gap-1">
                 <button
-                    class="bg-mcea-2 w-16 h-full rounded-l-lg font-bold
+                    class="bg-primary w-16 h-full rounded-l-lg font-bold
                             hover:bg-opacity-80 hover:scale-x-110
                             active:bg-opacity-40
                             transition-all"
-                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-mcea-2 hover:bg-opacity-60': formGroup.controls.minmax.value === 'MAX'}"
+                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60': formGroup.controls.minmax.value === 'MAX'}"
                     (click)="formGroup.controls.minmax.setValue('MIN')">
                     MIN
                 </button>
 
                 <button
-                    class="bg-mcea-2 w-16 h-full rounded-r-lg font-bold
+                    class="bg-primary w-16 h-full rounded-r-lg font-bold
                             hover:bg-opacity-80 hover:scale-x-110
                             active:bg-opacity-40
                             transition-all"
-                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-mcea-2 hover:bg-opacity-60': formGroup.controls.minmax.value === 'MIN'}"
+                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60': formGroup.controls.minmax.value === 'MIN'}"
                     (click)="formGroup.controls.minmax.setValue('MAX')">
                     MAX
                 </button>
