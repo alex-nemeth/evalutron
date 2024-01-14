@@ -3,21 +3,12 @@
     Define Alternatives
 </header>
 
-<div
-    class="grid text-center mb-4 font-bold"
-    [style.gridTemplateColumns]="'repeat(' + (criteria.length + 1) + ', 1fr)'">
-    <p> Title </p>
-    <p *ngFor="let criterion of criteria">
-        {{criterion.title }}
-    </p>
-</div>
-
 <div *ngIf="!showCalculatedValues">
     <mcea-alternatives-grid
         [gridMode]="AlternativesGridMode.Raw"
     />
     <form
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-2 mt-4"
         [formGroup]="formGroup"
         (ngSubmit)="addAlternative()">
 

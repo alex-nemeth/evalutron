@@ -5,11 +5,12 @@ import { AlternativeService } from '../../../services/alternative.service';
 import { IAlternative } from '../../../models/alternative.model';
 import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum';
 import { Observable, of } from 'rxjs';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'mcea-alternatives-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTableModule],
   templateUrl: './alternatives-grid.component.html'
 })
 export class AlternativesGridComponent {
@@ -32,6 +33,15 @@ export class AlternativesGridComponent {
     this.alternatives$ = of(this.alternativeService.alternatives);
     this.sumsOfValues = this.alternativeService.sumsOfValues;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
+  }
+
+  get displayedColumns(): string[] {
+    const sampleAlternative = this.alternativeService.alternatives[0]; // Assuming alternatives is an array
+    if (!sampleAlternative) {
+      return [];
+    }
+
+    return Object.keys(sampleAlternative.values[this.gridMode]!);
   }
 
   getObjectKeys(obj: any) {
