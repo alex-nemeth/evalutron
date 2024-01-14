@@ -1,33 +1,35 @@
 <header class="m-10 text-3xl text-center">Define Criteria</header>
 
-    <div class="grid grid-cols-2 text-center mb-4 font-bold">
-        <p>Title</p>
-        <p>Min/Max</p>
-    </div>
+<mat-table #table [ngClass]="{ 'hidden': !!!criteria.length }" [dataSource]="criteria" class="mat-elevation-z8">
 
-    <div
-        class="grid grid-cols-2 text-center leading-8"
-        *ngFor="let criterion of criteria">
-        <p class="text-left"> {{ criterion.title }} </p>
-        <div class="flex flex-row justify-center items-center gap-2">
-            <p> {{ criterion.minmax }} </p>
-            <button
-                class="w-6 h-6 rounded-full text-dark text-xl font-bold
-                    hover:bg-opacity-80
-                    active:bg-opacity-40
-                    transition-all"
-                    (click)="removeCriteria(criterion.id)">
-                    <svg
-                        class="fill-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <title>minus-circle</title>
-                        <path d="M17,13H7V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                    </svg>
-            </button>
-
-        </div>
-    </div>
+    <!-- Title and Min/Max Header Row -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let criterion">{{ criterion.title }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="minmax">
+      <mat-header-cell *matHeaderCellDef>Min/Max</mat-header-cell>
+      <mat-cell *matCellDef="let criterion">{{ criterion.minmax }}</mat-cell>
+    </ng-container>
+  
+    <!-- Action Header Row -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let criterion">
+        <button mat-icon-button (click)="removeCriteria(criterion.id)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Header Row -->
+    <mat-header-row *matHeaderRowDef="['title', 'minmax', 'actions']"></mat-header-row>
+    <!-- Data Row -->
+    <mat-row *matRowDef="let criterion; columns: ['title', 'minmax', 'actions']"></mat-row>
+  
+  </mat-table>
+  
 
     <form
         class="flex flex-col justify-evenly items-center gap-2 w-full mt-4"
