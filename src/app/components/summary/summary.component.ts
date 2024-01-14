@@ -5,11 +5,12 @@ import { AlternativeService } from '../../services/alternative.service';
 import { WeightService } from '../../services/weight.service';
 import { CriteriaService } from '../../services/criteria.service';
 import { IAlternative } from '../../models/alternative.model';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule, NavButtonComponent],
+  imports: [CommonModule, NavButtonComponent, MatTableModule],
   templateUrl: './summary.component.html'
 })
 export class SummaryComponent {

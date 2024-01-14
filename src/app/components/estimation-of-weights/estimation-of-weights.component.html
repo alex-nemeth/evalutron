@@ -1,53 +1,63 @@
 <header class="m-10 text-3xl text-center">Estimation of Weights</header>
 
 <div class="flex flex-col justify-evenly items-center mx-8">
-    <table class="w-full">
-        <thead>
-            <!-- ROWS-->
-            <tr>
-                <!-- Ghost Cell for Spacing -->
-                <th></th>
-                <th class="w-8" *ngFor="let criterion of criteria"
-                >{{ criterion.title}}</th>
-                <th class="w-8">GEOMEAN</th>
-                <th class="w-12">Weight %</th>
-            </tr>
-        </thead>
-        <tbody
-            [formGroup]="formGroup">
-            <tr
-                id="{{ criterion.id }}"
-                *ngFor="let criterion of criteria"
-            >
-                <td class="font-bold">
-                    {{ criterion.title }}
-                </td>
-                <td *ngFor="let criterionCompared of criteria">
-                    <input
-                        id="{{ criterion.id }}-{{ criterionCompared.id }}"
-                        [formControlName]="getFormControlName(criterion.id, criterionCompared.id)"
-                        class="bg-mcea-4 text-black w-20"
-                        type="text"
-                        min="0.11111111"
-                        max="9"
-                        placeholder="1-9"
-                        (change)="manageWeights($event)"
-                        [disabled]="isFieldDisabled(criterion.id, criterionCompared.id)"
-                    />
-                </td>
-                <td><p>{{criterion.weight ? criterion.weight : 1}}</p></td>
-                <td><p>{{criterion.weight ? (criterion.weight / sumOfWeights * 100).toFixed(3) : '33.333%'}}</p></td>
+    
+<mat-table [dataSource]="criteria" class="mat-elevation-z8 max-w-full" [formGroup]="formGroup">
 
-          </tr>
-          <!-- Row for Sum of Weights -->
-          <tr>
-            <td><p class="font-bold">SUM</p></td>
-            <td *ngFor="let criterion of criteria">
-                <td><p>{{sumOfWeights ? sumOfWeights : this.criteria.length}}</p></td>
-                <td><p>100%</p></td>
-          </tr>
-        </tbody>
-    </table>
+    <!-- Ghost Cell for Spacing -->
+    <ng-container matColumnDef="ghostCell">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.title }}
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Columns for Criteria -->
+    <ng-container *ngFor="let criterion of criteria" matColumnDef="{{criterion.id}}">
+      <mat-header-cell *matHeaderCellDef class="w-8">{{ criterion.title }}</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field>
+            <input
+              matInput
+              [id]="element.id + '-' + criterion.id"
+              [formControlName]="getFormControlName(element.id, criterion.id)"
+              class="bg-mcea-4 text-black w-20"
+              type="text"
+              min="0.11111111"
+              max="9"
+              placeholder="1-9"
+              (change)="manageWeights($event)"
+              [disabled]="isFieldDisabled(element.id, criterion.id)"
+            />
+          </mat-form-field>
+          
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Column for GEOMEAN -->
+    <ng-container matColumnDef="geomean">
+      <mat-header-cell *matHeaderCellDef class="w-8">GEOMEAN</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Column for Weight % -->
+    <ng-container matColumnDef="weightPercentage">
+      <mat-header-cell *matHeaderCellDef class="w-12">Weight %</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Header Row -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  
+    <!-- Data Rows -->
+    <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+  
+  </mat-table>
+  
     <div class="flex flex-row justify-between w-full mt-4">
         <mcea-nav-button route="/criteria" text="Back"/>
         <mcea-nav-button route="/alternatives" text="Next"/>

@@ -5,11 +5,13 @@ import { ICriteria } from '../../models/criteria.model';
 import { CriteriaService } from '../../services/criteria.service';
 import { IAlternative } from '../../models/alternative.model';
 import { NavButtonComponent } from '../common/nav-button/button.component';
+import { AlternativesGridComponent } from '../common/alternatives-grid/alternatives-grid.component';
+import { AlternativesGridMode } from '../../enums/alternatives-grid-mode.enum';
 
 @Component({
   selector: 'app-value-normalization',
   standalone: true,
-  imports: [CommonModule, NavButtonComponent],
+  imports: [CommonModule, NavButtonComponent, AlternativesGridComponent],
   templateUrl: './value-normalization.component.html',
 })
 export class ValueNormalizationComponent {
@@ -17,6 +19,8 @@ export class ValueNormalizationComponent {
   sumsOfValues!: { [key: string]: number };
   criteria!: ICriteria[];
   criteriaTitles!: string[];
+
+  AlternativesGridMode = AlternativesGridMode;
 
   constructor(private alternativeService: AlternativeService, private criteriaService: CriteriaService) { }
 
