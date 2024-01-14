@@ -1,4 +1,4 @@
-# MCEA (Multi-Criteria Evaluation of Alternatives)
+# Evalutron
 
 This project is a tool which serves as a **user-friendly** way to get an output from various methods of **multi-criteria evaluation of alternatives**.
 
