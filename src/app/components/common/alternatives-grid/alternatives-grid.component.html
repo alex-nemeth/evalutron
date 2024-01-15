@@ -34,7 +34,17 @@
         </td>
       </ng-container>
     </ng-container>
+
+    <!-- Action Header Row -->    
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let alternative">
+        <button mat-icon-button (click)="removeAlternative(alternative.id)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="['title'].concat(displayedColumns)"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['title'].concat(displayedColumns)"></tr>    
+    <tr mat-header-row *matHeaderRowDef="['title'].concat(displayedColumns).concat('actions')"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['title'].concat(displayedColumns).concat('actions')"></tr>    
   </table>
