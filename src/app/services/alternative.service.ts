@@ -24,6 +24,12 @@ export class AlternativeService {
         } as IAlternative);
     }
 
+    removeAlternative(id: string) {
+        this.alternatives = this.alternatives.filter(
+            (alternative: IAlternative) => alternative.id !== id
+        );
+    }
+
     findMaxValues() {
         const maxValues: { [key: string]: number } = {};
         this.alternatives.forEach((alternative: IAlternative) => {

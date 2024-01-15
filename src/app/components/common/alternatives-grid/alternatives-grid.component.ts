@@ -1,19 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CriteriaService } from '../../../services/criteria.service';
 import { AlternativeService } from '../../../services/alternative.service';
 import { IAlternative } from '../../../models/alternative.model';
 import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum';
 import { Observable, of } from 'rxjs';
-import { MatTableModule } from '@angular/material/table';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'mcea-alternatives-grid',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatIconModule],
   templateUrl: './alternatives-grid.component.html'
 })
 export class AlternativesGridComponent {
+  @ViewChild(MatTable) table!: MatTable<IAlternative[]>;
+
 
   @Input() gridMode!: AlternativesGridMode;
   AlternativesGridMode = AlternativesGridMode;
@@ -42,6 +45,14 @@ export class AlternativesGridComponent {
     }
 
     return Object.keys(sampleAlternative.values[this.gridMode]!);
+  }
+
+  removeAlternative(id: string) {
+    console.log(id);
+    this.alternativeService.removeAlternative(id);
+    this.alternatives$ = of(this.alternativeService.alternatives);
+    this.table.renderRows();
+
   }
 
   getObjectKeys(obj: any) {
