@@ -18,6 +18,7 @@ import { SubmitButtonComponent } from "../common/submit-button/submit-button.com
 import { IAlternative } from "../../models/alternative.model";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
     standalone: true,
@@ -48,12 +49,17 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
     constructor(
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private loadingService: LoadingService
     ) { }
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.initForm();
+    }
+
+    ngAfterViewInit(): void {
+        this.loadingService.hide();
     }
 
     initForm() {

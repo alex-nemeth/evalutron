@@ -15,6 +15,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
     standalone: true,
@@ -46,7 +47,8 @@ export class EstimationOfWeightsComponent {
 
     constructor(
         private criteriaService: CriteriaService,
-        private weightService: WeightService
+        private weightService: WeightService,
+        private loadingService: LoadingService
     ) { }
 
     ngOnInit() {
@@ -55,6 +57,10 @@ export class EstimationOfWeightsComponent {
         this.displayedColumns = ['ghostCell', ...this.criteria.map(c => c.id), 'geomean', 'weightPercentage'];
         this.weights = this.weightService.weights;
         this.initForm();
+    }
+
+    ngAfterViewInit(): void {
+        this.loadingService.hide();
     }
 
     isFieldDisabled(id1: string, id2: string) {

@@ -7,6 +7,7 @@ import { IAlternative } from '../../models/alternative.model';
 import { NavButtonComponent } from '../common/nav-button/button.component';
 import { AlternativesGridComponent } from '../common/alternatives-grid/alternatives-grid.component';
 import { AlternativesGridMode } from '../../enums/alternatives-grid-mode.enum';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-value-normalization',
@@ -22,7 +23,10 @@ export class ValueNormalizationComponent {
 
   AlternativesGridMode = AlternativesGridMode;
 
-  constructor(private alternativeService: AlternativeService, private criteriaService: CriteriaService) { }
+  constructor(
+    private alternativeService: AlternativeService,
+    private criteriaService: CriteriaService,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.alternatives = this.alternativeService.alternatives;
@@ -30,6 +34,10 @@ export class ValueNormalizationComponent {
     this.criteria = this.criteriaService.criteria;
     this.criteriaTitles = this.criteriaService.getCriteriaTitles();
     this.alternativeService.generateNormalizedValues();
+  }
+
+  ngAfterViewInit(): void {
+    this.loadingService.hide();
   }
 
   getObjectKeys(obj: any) {

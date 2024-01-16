@@ -5,6 +5,7 @@ import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { CriteriaService } from "../../services/criteria.service";
 import { MatButtonModule } from '@angular/material/button';
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
     standalone: true,
@@ -16,7 +17,8 @@ export class WelcomeComponent {
 
     constructor(
         private alternativeService: AlternativeService,
-        private criteriaService: CriteriaService
+        private criteriaService: CriteriaService,
+        private loadingService: LoadingService
     ) { }
 
     ngOnInit() {
@@ -24,7 +26,12 @@ export class WelcomeComponent {
         this.criteriaService.clearData();
     }
 
+    ngAfterViewInit(): void {
+        this.loadingService.hide();
+    }
+
     loadDemoData() {
+        this.loadingService.show();
         this.alternativeService.loadDemoAlternatives();
         this.criteriaService.loadDemoCriteria();
     }

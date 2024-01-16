@@ -16,6 +16,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatTable, MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
     standalone: true,
@@ -56,10 +57,17 @@ export class DefineCriteriaComponent {
         minmax: new FormControl("MIN", [Validators.required]),
     });
 
-    constructor(private criteriaService: CriteriaService) { }
+    constructor(
+        private criteriaService: CriteriaService,
+        private loadingService: LoadingService
+    ) { }
 
     ngOnInit(): void {
         this.criteria = this.criteriaService.criteria;
+    }
+
+    ngAfterViewInit(): void {
+        this.loadingService.hide();
     }
 
     addCriteria() {

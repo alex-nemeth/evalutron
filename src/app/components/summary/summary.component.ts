@@ -6,6 +6,7 @@ import { WeightService } from '../../services/weight.service';
 import { CriteriaService } from '../../services/criteria.service';
 import { IAlternative } from '../../models/alternative.model';
 import { MatTableModule } from '@angular/material/table';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-summary',
@@ -17,11 +18,19 @@ export class SummaryComponent {
 
   alternatives!: IAlternative[];
 
-  constructor(private alternativeService: AlternativeService, private weightService: WeightService, private criteriaService: CriteriaService) { }
+  constructor(
+    private alternativeService: AlternativeService,
+    private weightService: WeightService,
+    private criteriaService: CriteriaService,
+    private loadingService: LoadingService) { }
 
   ngOnInit() {
     this.alternatives = this.alternativeService.alternatives;
     this.alternativeService.calculateWeightedSums();
+  }
+
+  ngAfterViewInit(): void {
+    this.loadingService.hide();
   }
 
   sortBySum(alternatives: IAlternative[]) {
