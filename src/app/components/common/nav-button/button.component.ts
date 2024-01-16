@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { LoadingService } from "../../../services/loading.service";
 
 @Component({
     selector: "mcea-nav-button",
@@ -12,6 +13,7 @@ import { RouterModule } from "@angular/router";
                     hover:bg-opacity-80 hover:scale-110
                     active:bg-opacity-50
                     transition-all"
+            (click)="onClick()"
             [routerLink]="route"
         >
             {{ text ? text : "Next" }}
@@ -21,4 +23,10 @@ import { RouterModule } from "@angular/router";
 export class NavButtonComponent {
     @Input() route!: string;
     @Input() text!: string;
+
+    constructor(private loadingService: LoadingService) { }
+
+    onClick() {
+        this.loadingService.show();
+    }
 }
