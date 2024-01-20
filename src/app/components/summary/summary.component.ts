@@ -22,7 +22,8 @@ export class SummaryComponent {
     private alternativeService: AlternativeService,
     private weightService: WeightService,
     private criteriaService: CriteriaService,
-    private loadingService: LoadingService) { }
+    private loadingService: LoadingService
+    ) { }
 
   ngOnInit() {
     this.alternatives = this.alternativeService.alternatives;
