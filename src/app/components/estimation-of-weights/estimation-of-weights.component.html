@@ -1,4 +1,4 @@
-<header class="m-10 text-3xl text-center">Estimation of Weights</header>
+<header class="m-10 text-3xl text-center">{{ 'estimationOfWeights.estimation' | translate }}</header>
 
 <div class="flex flex-col justify-evenly items-center mx-8">
     
@@ -36,7 +36,7 @@
   
     <!-- Column for GEOMEAN -->
     <ng-container matColumnDef="geomean">
-      <mat-header-cell *matHeaderCellDef class="w-8">GEOMEAN</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef class="w-8">{{ 'estimationOfWeights.geomean' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
       </mat-cell>
@@ -44,7 +44,7 @@
   
     <!-- Column for Weight % -->
     <ng-container matColumnDef="weightPercentage">
-      <mat-header-cell *matHeaderCellDef class="w-12">Weight %</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef class="w-12">{{ 'estimationOfWeights.weightPercentage' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
       </mat-cell>

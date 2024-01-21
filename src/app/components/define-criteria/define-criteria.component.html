@@ -1,4 +1,4 @@
-<header class="m-10 text-3xl text-center">Define Criteria</header>
+<header class="m-10 text-3xl text-center">{{ 'defineCriteria.defineCriteria' | translate }}</header>
 
 <mat-table #table [ngClass]="{ 'hidden': !!!criteria.length }" [dataSource]="criteria" class="mat-elevation-z8">
 
@@ -38,7 +38,7 @@
             <mat-form-field
                 color="accent">
                 <mat-label>
-                    Criteria
+                    {{ 'defineCriteria.criterion' | translate }}
                 </mat-label>
                 <input
                     matInput
@@ -71,7 +71,4 @@
         <mcea-submit-button text="Add Criterion" [disabled]="!formGroup.valid" (click)="addCriteria()"/>
     </form>
 
-    <div class="flex flex-row justify-between my-4">
-        <mcea-nav-button route="/" text="Back" />
-        <mcea-nav-button route="/weights-estimation" />
-    </div>
+    <mcea-nav-button-group routeBack="/" routeForward="/weights-estimation"/>

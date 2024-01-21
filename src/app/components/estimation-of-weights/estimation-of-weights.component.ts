@@ -16,6 +16,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { LoadingService } from "../../services/loading.service";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     standalone: true,
@@ -33,7 +34,8 @@ import { LoadingService } from "../../services/loading.service";
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule
     ],
 })
 export class EstimationOfWeightsComponent {

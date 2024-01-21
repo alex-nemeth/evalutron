@@ -6,19 +6,20 @@ import { AlternativeService } from "../../services/alternative.service";
 import { CriteriaService } from "../../services/criteria.service";
 import { MatButtonModule } from '@angular/material/button';
 import { LoadingService } from "../../services/loading.service";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
     standalone: true,
     selector: "app-welcome",
     templateUrl: "./welcome.component.html",
-    imports: [CommonModule, RouterModule, NavButtonComponent, MatButtonModule],
+    imports: [CommonModule, RouterModule, NavButtonComponent, MatButtonModule, TranslateModule],
 })
 export class WelcomeComponent {
 
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
     ) { }
 
     ngOnInit() {
