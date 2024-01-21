@@ -1,0 +1,11 @@
+{
+    "welcome": {
+        "welcome": "Vitajte!",
+        "description": "Táto aplikácia je nástroj, ktorý slúži pre získavanie výstupov z rôznych metód viackriteriálneho rozhodovania alternatív.",
+        "aim": "Cieľom aplikácie je poskytnúť jednoduchý a intuitívny spôsob, ktorý môže pomôcť pri rozhodovaní sa.",
+        "clickTheButton": "Kliknite na tlačidlo nižšie a môžete začať!",
+        "start": "Začať na novo",
+        "demo": "Použiť ukážkové dáta"
+    }
+
+}

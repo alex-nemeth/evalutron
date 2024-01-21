@@ -1,0 +1,10 @@
+{
+    "welcome": {
+        "welcome": "Welcome!",
+        "description": "This is a tool which serves as a user-friendly way to get an output from various methods of multi-criteria evaluation of alternatives.",
+        "aim": "The aim of this tool is to provide a way of getting such calculations with ease, requiring as little input as possible, therefore allowing you to skip a lot of excel work, or often even coding.",
+        "clickTheButton": "Click the button below to get started!",
+        "start": "Start with a clean slate",
+        "demo": "Demo with example data"
+    }
+}

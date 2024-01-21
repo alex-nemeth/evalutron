@@ -1,22 +1,30 @@
-    <div class="flex flex-col gap-4 justify-center items-center h-full">
-<!-- test commit -->
-        <h1 class="text-xl text-center my-4">Welcome!</h1>
+<div class="flex flex-col gap-4 justify-center items-center h-full">
+    <h1 class="text-xl text-center my-4">
+        {{ 'welcome.welcome' | translate }}
+    </h1>
 
-        <p class="text-left">This is a tool which serves as a user-friendly way to get an output from various methods of multi-criteria evaluation of alternatives.</p>
-        <p class="text-left">The aim of this tool is to provide a way of getting such calculations with ease, requiring as little input as possible, therefore allowing you to skip a lot of excel work, or often even coding.</p>
-        <p class="text-center">Click the button to below to get started!</p>
-        <mcea-nav-button
-            route="/criteria"
-            text="Start with a clean slate"
-        />
-        <button
-            class="bg-accent text-dark px-4 h-10 rounded-md
-                    hover:bg-opacity-80 hover:scale-110
-                    active:bg-opacity-50
-                    transition-all"
-            routerLink="/criteria"
-            (click)="loadDemoData()"
-        >
-            {{ "Demo with example data" }}
-        </button>
-    </div>
+    <p class="text-left">
+        {{ 'welcome.description' | translate }}
+    </p>
+    <p class="text-left">
+        {{ 'welcome.aim' | translate }}
+    </p>
+    <p class="text-center">
+        {{ 'welcome.clickTheButton' | translate }}
+    </p>
+    
+    <mcea-nav-button
+        route="/criteria"
+        [text]="'welcome.start' | translate"
+    />
+    <button
+        class="bg-accent text-dark px-4 h-10 rounded-md
+                hover:bg-opacity-80 hover:scale-110
+                active:bg-opacity-50
+                transition-all"
+        routerLink="/criteria"
+        (click)="loadDemoData()"
+    >
+        {{ 'welcome.demo' | translate }}
+    </button>
+</div>
