@@ -15,6 +15,11 @@
     "navigation": {
         "next": "Ďalej",
         "back": "Späť"
+    },
+    "estimationOfWeights": {
+        "estimation": "Odhad váh",
+        "geomean": "Geometrický priemer",
+        "weightPercentage": "Váhový podiel"
     }
 
 }

@@ -15,5 +15,10 @@
     "navigation": {
         "next": "Next",
         "back": "Back"
+    },
+    "estimationOfWeights": {
+        "estimation": "Estimation of Weights",
+        "geomean": "Geometric Mean",
+        "weightPercentage": "Weight %"
     }
 }
