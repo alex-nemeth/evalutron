@@ -6,6 +6,15 @@
         "clickTheButton": "Kliknite na tlačidlo nižšie a môžete začať!",
         "start": "Začať na novo",
         "demo": "Použiť ukážkové dáta"
+    },
+    "defineCriteria": {
+        "defineCriteria": "Definícia kritérií",
+        "addCriterion": "Pridať kritérium",
+        "criterion": "Kritérium"
+    },
+    "navigation": {
+        "next": "Ďalej",
+        "back": "Späť"
     }
 
 }

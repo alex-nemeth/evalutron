@@ -17,6 +17,8 @@ import { MatTable, MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { LoadingService } from "../../services/loading.service";
+import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     standalone: true,
@@ -26,13 +28,14 @@ import { LoadingService } from "../../services/loading.service";
         CommonModule,
         ReactiveFormsModule,
         RouterModule,
-        NavButtonComponent,
+        NavButtonGroupComponent,
         SubmitButtonComponent,
         MatFormFieldModule,
         MatInputModule,
         MatTableModule,
         MatIconModule,
         MatButtonModule,
+        TranslateModule
     ],
     styles: [`
         /* Adjust the width of the action column */
