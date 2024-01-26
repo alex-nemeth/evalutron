@@ -1,74 +1,87 @@
-<header class="m-10 text-3xl text-center">{{ 'defineCriteria.defineCriteria' | translate }}</header>
+<header class="m-10 text-3xl text-center">
+    {{ 'defineCriteria.defineCriteria' | translate }}
+</header>
 
-<mat-table #table [ngClass]="{ 'hidden': !!!criteria.length }" [dataSource]="criteria" class="mat-elevation-z8">
-
+<mat-table
+    #table
+    [ngClass]="{ hidden: !!!criteria.length }"
+    [dataSource]="criteria"
+    class="mat-elevation-z8"
+>
     <!-- Title and Min/Max Header Row -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-      <mat-cell *matCellDef="let criterion">{{ criterion.title }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let criterion">{{ criterion.title }}</mat-cell>
     </ng-container>
-  
+
     <ng-container matColumnDef="minmax">
-      <mat-header-cell *matHeaderCellDef>Min/Max</mat-header-cell>
-      <mat-cell *matCellDef="let criterion">{{ criterion.minmax }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Min/Max</mat-header-cell>
+        <mat-cell *matCellDef="let criterion">{{ criterion.minmax }}</mat-cell>
     </ng-container>
-  
+
     <!-- Action Header Row -->
     <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let criterion">
-        <button mat-icon-button (click)="removeCriteria(criterion.id)">
-          <mat-icon>remove_circle</mat-icon>
-        </button>
-      </mat-cell>
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let criterion">
+            <button mat-icon-button (click)="removeCriteria(criterion.id)">
+                <mat-icon>remove_circle</mat-icon>
+            </button>
+        </mat-cell>
     </ng-container>
-  
+
     <!-- Header Row -->
-    <mat-header-row *matHeaderRowDef="['title', 'minmax', 'actions']"></mat-header-row>
+    <mat-header-row
+        *matHeaderRowDef="['title', 'minmax', 'actions']"
+    ></mat-header-row>
     <!-- Data Row -->
-    <mat-row *matRowDef="let criterion; columns: ['title', 'minmax', 'actions']"></mat-row>
-  
-  </mat-table>
-  
+    <mat-row
+        *matRowDef="let criterion; columns: ['title', 'minmax', 'actions']"
+    ></mat-row>
+</mat-table>
 
-    <form
-        class="flex flex-col justify-evenly items-center gap-2 w-full mt-4"
-        [formGroup]="formGroup">
-        <div class="grid grid-cols-2 justify-between gap-5 items-center w-full">
-            <mat-form-field
-                color="accent">
-                <mat-label>
-                    {{ 'defineCriteria.criterion' | translate }}
-                </mat-label>
-                <input
-                    matInput
-                    formControlName="title"
-                    type="text">
-            </mat-form-field>
+<form
+    class="flex flex-col justify-evenly items-center gap-2 w-full mt-4"
+    [formGroup]="formGroup"
+>
+    <div class="grid grid-cols-2 justify-between gap-5 items-center w-full">
+        <mat-form-field color="accent">
+            <mat-label>
+                {{ 'defineCriteria.criterion' | translate }}
+            </mat-label>
+            <input matInput formControlName="title" type="text" />
+        </mat-form-field>
 
-            <div class="flex flex-row h-full rounded-md justify-center items-center gap-1">
-                <button
-                    class="bg-primary w-16 h-full rounded-l-lg font-bold
-                            hover:bg-opacity-80 hover:scale-x-110
-                            active:bg-opacity-40
-                            transition-all"
-                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60': formGroup.controls.minmax.value === 'MAX'}"
-                    (click)="formGroup.controls.minmax.setValue('MIN')">
-                    MIN
-                </button>
+        <div
+            class="flex flex-row h-full rounded-md justify-center items-center gap-1"
+        >
+            <button
+                class="bg-primary w-16 h-full rounded-l-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
+                [ngClass]="{
+                    'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60':
+                        formGroup.controls.minmax.value === 'MAX'
+                }"
+                (click)="formGroup.controls.minmax.setValue('MIN')"
+            >
+                MIN
+            </button>
 
-                <button
-                    class="bg-primary w-16 h-full rounded-r-lg font-bold
-                            hover:bg-opacity-80 hover:scale-x-110
-                            active:bg-opacity-40
-                            transition-all"
-                    [ngClass]="{'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60': formGroup.controls.minmax.value === 'MIN'}"
-                    (click)="formGroup.controls.minmax.setValue('MAX')">
-                    MAX
-                </button>
-            </div>
+            <button
+                class="bg-primary w-16 h-full rounded-r-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
+                [ngClass]="{
+                    'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60':
+                        formGroup.controls.minmax.value === 'MIN'
+                }"
+                (click)="formGroup.controls.minmax.setValue('MAX')"
+            >
+                MAX
+            </button>
         </div>
-        <mcea-submit-button text="Add Criterion" [disabled]="!formGroup.valid" (click)="addCriteria()"/>
-    </form>
+    </div>
+    <mcea-submit-button
+        text="Add Criterion"
+        [disabled]="!formGroup.valid"
+        (click)="addCriteria()"
+    />
+</form>
 
-    <mcea-nav-button-group routeBack="/" routeForward="/weights-estimation"/>
+<mcea-nav-button-group routeBack="/" routeForward="/weights-estimation" />

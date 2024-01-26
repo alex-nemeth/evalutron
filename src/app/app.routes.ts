@@ -9,7 +9,7 @@ import { SummaryComponent } from "./components/summary/summary.component";
 export const routes: Routes = [
     {
         path: "",
-        title: "MCEA",
+        title: "Evalutron",
         component: WelcomeComponent,
     },
     {
@@ -35,6 +35,6 @@ export const routes: Routes = [
     {
         path: "summary",
         title: "Summary",
-        component: SummaryComponent
-    }
+        component: SummaryComponent,
+    },
 ];

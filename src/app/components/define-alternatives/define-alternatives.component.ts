@@ -20,6 +20,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
+import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 
 @Component({
     standalone: true,
@@ -30,6 +31,7 @@ import { TranslateModule } from "@ngx-translate/core";
         ReactiveFormsModule,
         RouterModule,
         NavButtonComponent,
+        NavButtonGroupComponent,
         AlternativesGridComponent,
         SubmitButtonComponent,
         MatInputModule,

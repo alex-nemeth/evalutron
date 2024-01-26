@@ -1,5 +1,5 @@
 <header class="m-10 text-3xl text-center">
-    {{ "normalizedTable.normalizedTable" | translate }}
+    {{ 'normalizedTable.normalizedTable' | translate }}
 </header>
 
 <mcea-alternatives-grid [gridMode]="AlternativesGridMode.Normalized" />
@@ -18,13 +18,4 @@
     </div>
 -->
 
-<div class="flex flex-row justify-between m-4">
-    <mcea-nav-button
-        route="/alternatives"
-        text="{{ 'navigation.back' | translate }}"
-    />
-    <mcea-nav-button
-        route="/summary"
-        text="{{ 'navigation.summary' | translate }}"
-    />
-</div>
+<mcea-nav-button-group routeBack="/alternatives" routeForward="/summary" />

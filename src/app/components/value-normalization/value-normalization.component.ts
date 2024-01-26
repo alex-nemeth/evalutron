@@ -9,6 +9,7 @@ import { AlternativesGridComponent } from "../common/alternatives-grid/alternati
 import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
+import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 
 @Component({
     selector: "app-value-normalization",
@@ -16,6 +17,7 @@ import { TranslateModule } from "@ngx-translate/core";
     imports: [
         CommonModule,
         NavButtonComponent,
+        NavButtonGroupComponent,
         AlternativesGridComponent,
         TranslateModule,
     ],

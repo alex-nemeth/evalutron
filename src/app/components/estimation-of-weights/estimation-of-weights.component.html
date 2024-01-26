@@ -1,5 +1,5 @@
 <header class="m-10 text-3xl text-center">
-    {{ "estimationOfWeights.estimation" | translate }}
+    {{ 'estimationOfWeights.estimation' | translate }}
 </header>
 
 <div class="flex flex-col justify-evenly items-center mx-8">
@@ -47,14 +47,14 @@
         <!-- Column for GEOMEAN -->
         <ng-container matColumnDef="geomean">
             <mat-header-cell *matHeaderCellDef class="w-8">{{
-                "estimationOfWeights.geomean" | translate
+                'estimationOfWeights.geomean' | translate
             }}</mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <p>
                     {{
                         element.weight
                             ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                            : "33.333%"
+                            : '33.333%'
                     }}
                 </p>
             </mat-cell>
@@ -63,14 +63,14 @@
         <!-- Column for Weight % -->
         <ng-container matColumnDef="weightPercentage">
             <mat-header-cell *matHeaderCellDef class="w-12">{{
-                "estimationOfWeights.weightPercentage" | translate
+                'estimationOfWeights.weightPercentage' | translate
             }}</mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <p>
                     {{
                         element.weight
                             ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                            : "33.333%"
+                            : '33.333%'
                     }}
                 </p>
             </mat-cell>
@@ -82,9 +82,6 @@
         <!-- Data Rows -->
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-
-    <div class="flex flex-row justify-between w-full mt-4">
-        <mcea-nav-button route="/criteria" text="Back" />
-        <mcea-nav-button route="/alternatives" text="Next" />
-    </div>
 </div>
+
+<mcea-nav-button-group routeBack="/criteria" routeForward="/alternatives" />

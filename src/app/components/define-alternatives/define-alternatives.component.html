@@ -55,13 +55,7 @@
     }}"
 />
 
-<div class="flex flex-row justify-between mt-4">
-    <mcea-nav-button
-        route="/weights-estimation"
-        text="{{ 'navigation.back' | translate }}"
-    />
-    <mcea-nav-button
-        route="/normalization"
-        text="{{ 'navigation.next' | translate }}"
-    />
-</div>
+<mcea-nav-button-group
+    routeBack="/weights-estimation"
+    routeForward="/normalization"
+/>
