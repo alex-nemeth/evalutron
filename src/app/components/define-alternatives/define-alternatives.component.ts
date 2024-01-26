@@ -86,19 +86,15 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // Extraction of data from the form
         const { title, ...rawValues } = this.formGroup.value as {
             title: string,
             [key: string]: any
         };
 
-        // Conversion of values to numbers
         Object.keys(rawValues).forEach((key) => {
             rawValues[key] = parseInt(rawValues[key]);
         });
 
-        // Creation of Partial<IAlternative>
-        // object to pass to the service
         const newAlternative: Partial<IAlternative> = {
             title: title,
             values: {

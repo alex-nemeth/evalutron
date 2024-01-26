@@ -114,10 +114,6 @@ export class EstimationOfWeightsComponent {
         }
         this.weightService.saveWeights(sortedWeights);
         this.sumOfWeights = Number(this.weightService.sumOfWeights.toFixed(3));
-        // sorted weights (string[][]) is saved into the service for future reference
-        // it includes all 3 iterations of 'arr'
-        // geomean is calculated by passing 'arr' into the geomean function
-        // at the end of every parent loop
     }
 
     initForm() {
