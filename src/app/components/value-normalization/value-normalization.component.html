@@ -1,10 +1,8 @@
 <header class="m-10 text-3xl text-center">
-    Normalized Table
+    {{ 'normalizedTable.normalizedTable' | translate }}
 </header>
 
-<mcea-alternatives-grid
-    [gridMode]="AlternativesGridMode.Normalized"
-    />
+<mcea-alternatives-grid [gridMode]="AlternativesGridMode.Normalized" />
 
 <!--
     @TODO: Reimplement this, ideally inside the alternatives-grid component.
@@ -20,7 +18,4 @@
     </div>
 -->
 
-<div class="flex flex-row justify-between m-4">
-    <mcea-nav-button route="/alternatives" text="Back"/>
-    <mcea-nav-button route="/summary" text="Summary"/>
-</div>
+<mcea-nav-button-group routeBack="/alternatives" routeForward="/summary" />

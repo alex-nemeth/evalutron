@@ -10,15 +10,37 @@
     "defineCriteria": {
         "defineCriteria": "Define Criteria",
         "addCriterion": "Add Criterion",
-        "criterion": "Criterion"
+        "criterion": "Criterion",
+        "title": "Title"
     },
     "navigation": {
         "next": "Next",
-        "back": "Back"
+        "back": "Back",
+        "summary": "Summary"
     },
     "estimationOfWeights": {
         "estimation": "Estimation of Weights",
         "geomean": "Geometric Mean",
         "weightPercentage": "Weight %"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Define Alternatives",
+        "alternativeTitle": "Alternative Title",
+        "addAlternative": "Add Alternative",
+        "viewCalculatedValues": "View calculated values",
+        "viewRealValues": "View real values",
+        "title": "Title"
+    },
+    "alternativesGrid": {
+        "title": "Title"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalized Table"
+    },
+    "summary": {
+        "summary": "Summary",
+        "weightedSumMethod": "Weighted Sum Method",
+        "alternative": "Alternative",
+        "weightedSum": "Weighted Sum"
     }
 }

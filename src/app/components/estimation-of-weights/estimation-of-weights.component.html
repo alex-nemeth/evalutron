@@ -1,65 +1,87 @@
-<header class="m-10 text-3xl text-center">{{ 'estimationOfWeights.estimation' | translate }}</header>
+<header class="m-10 text-3xl text-center">
+    {{ 'estimationOfWeights.estimation' | translate }}
+</header>
 
 <div class="flex flex-col justify-evenly items-center mx-8">
-    
-<mat-table [dataSource]="criteria" class="mat-elevation-z8 max-w-full" [formGroup]="formGroup">
+    <mat-table
+        [dataSource]="criteria"
+        class="mat-elevation-z8 max-w-full"
+        [formGroup]="formGroup"
+    >
+        <!-- Ghost Cell for Spacing -->
+        <ng-container matColumnDef="ghostCell">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                {{ element.title }}
+            </mat-cell>
+        </ng-container>
 
-    <!-- Ghost Cell for Spacing -->
-    <ng-container matColumnDef="ghostCell">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{ element.title }}
-      </mat-cell>
-    </ng-container>
-  
-    <!-- Columns for Criteria -->
-    <ng-container *ngFor="let criterion of criteria" matColumnDef="{{criterion.id}}">
-      <mat-header-cell *matHeaderCellDef class="w-8">{{ criterion.title }}</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <mat-form-field>
-            <input
-              matInput
-              [id]="element.id + '-' + criterion.id"
-              [formControlName]="getFormControlName(element.id, criterion.id)"
-              class="bg-mcea-4 text-black w-20"
-              type="text"
-              min="0.11111111"
-              max="9"
-              placeholder="1-9"
-              (change)="manageWeights($event)"
-              [disabled]="isFieldDisabled(element.id, criterion.id)"
-            />
-          </mat-form-field>
-          
-      </mat-cell>
-    </ng-container>
-  
-    <!-- Column for GEOMEAN -->
-    <ng-container matColumnDef="geomean">
-      <mat-header-cell *matHeaderCellDef class="w-8">{{ 'estimationOfWeights.geomean' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
-      </mat-cell>
-    </ng-container>
-  
-    <!-- Column for Weight % -->
-    <ng-container matColumnDef="weightPercentage">
-      <mat-header-cell *matHeaderCellDef class="w-12">{{ 'estimationOfWeights.weightPercentage' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <p>{{ element.weight ? (element.weight / sumOfWeights * 100).toFixed(3) : '33.333%' }}</p>
-      </mat-cell>
-    </ng-container>
-  
-    <!-- Header Row -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  
-    <!-- Data Rows -->
-    <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
-  
-  </mat-table>
-  
-    <div class="flex flex-row justify-between w-full mt-4">
-        <mcea-nav-button route="/criteria" text="Back"/>
-        <mcea-nav-button route="/alternatives" text="Next"/>
-    </div>
+        <!-- Columns for Criteria -->
+        <ng-container
+            *ngFor="let criterion of criteria"
+            matColumnDef="{{ criterion.id }}"
+        >
+            <mat-header-cell *matHeaderCellDef class="w-8">{{
+                criterion.title
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field>
+                    <input
+                        matInput
+                        [id]="element.id + '-' + criterion.id"
+                        [formControlName]="
+                            getFormControlName(element.id, criterion.id)
+                        "
+                        class="bg-mcea-4 text-black w-20"
+                        type="text"
+                        min="0.11111111"
+                        max="9"
+                        placeholder="1-9"
+                        (change)="manageWeights($event)"
+                        [disabled]="isFieldDisabled(element.id, criterion.id)"
+                    />
+                </mat-form-field>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Column for GEOMEAN -->
+        <ng-container matColumnDef="geomean">
+            <mat-header-cell *matHeaderCellDef class="w-8">{{
+                'estimationOfWeights.geomean' | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <p>
+                    {{
+                        element.weight
+                            ? ((element.weight / sumOfWeights) * 100).toFixed(3)
+                            : '33.333%'
+                    }}
+                </p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Column for Weight % -->
+        <ng-container matColumnDef="weightPercentage">
+            <mat-header-cell *matHeaderCellDef class="w-12">{{
+                'estimationOfWeights.weightPercentage' | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <p>
+                    {{
+                        element.weight
+                            ? ((element.weight / sumOfWeights) * 100).toFixed(3)
+                            : '33.333%'
+                    }}
+                </p>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Header Row -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <!-- Data Rows -->
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
 </div>
+
+<mcea-nav-button-group routeBack="/criteria" routeForward="/alternatives" />

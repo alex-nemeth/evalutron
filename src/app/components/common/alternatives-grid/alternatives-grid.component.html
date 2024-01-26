@@ -1,50 +1,59 @@
 <table mat-table [dataSource]="alternatives$" class="mat-elevation-z8">
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Title</th>
-      <td mat-cell *matCellDef="let alternative">{{ alternative.title }}</td>
+        <th mat-header-cell *matHeaderCellDef>
+            {{ 'alternativesGrid.title' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let alternative">{{ alternative.title }}</td>
     </ng-container>
-  
+
     <!-- Other Columns -->
     <ng-container *ngFor="let key of displayedColumns">
         <ng-container matColumnDef="{{ key }}">
-          <th mat-header-cell *matHeaderCellDef>{{ key }}</th>
-          <td mat-cell *matCellDef="let alternative">
-            {{ formatValue(alternative.values[gridMode][key]) }}
-          </td>
+            <th mat-header-cell *matHeaderCellDef>{{ key }}</th>
+            <td mat-cell *matCellDef="let alternative">
+                {{ formatValue(alternative.values[gridMode][key]) }}
+            </td>
         </ng-container>
-      </ng-container>
-  
+    </ng-container>
+
     <!-- Sum Column (Only for Calculated GridMode) -->
     <ng-container *ngIf="gridMode === AlternativesGridMode.Calculated">
-      <ng-container matColumnDef="sum">
-        <th mat-header-cell *matHeaderCellDef>SUM</th>
-        <td mat-cell *matCellDef="let alternative">
-          {{ (sumsOfValues[alternative]) }}
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="sum">
+            <th mat-header-cell *matHeaderCellDef>SUM</th>
+            <td mat-cell *matCellDef="let alternative">
+                {{ sumsOfValues[alternative] }}
+            </td>
+        </ng-container>
     </ng-container>
 
     <!-- Sum Column (Only for Normalized GridMode) -->
     <ng-container *ngIf="gridMode === AlternativesGridMode.Normalized">
-      <ng-container matColumnDef="sum">
-        <th mat-header-cell *matHeaderCellDef>SUM</th>
-        <td mat-cell *matCellDef="let alternative">
-          1
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="sum">
+            <th mat-header-cell *matHeaderCellDef>SUM</th>
+            <td mat-cell *matCellDef="let alternative">1</td>
+        </ng-container>
     </ng-container>
 
-<!-- Action Header Row -->    
-<ng-container matColumnDef="actions">
-  <th mat-header-cell class="h-full" *matHeaderCellDef></th>
-  <td mat-cell *matCellDef="let alternative">
-    <button mat-icon-button (click)="removeAlternative(alternative.id)">
-      <mat-icon>remove_circle</mat-icon>
-    </button>
-  </td>
-</ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="['title'].concat(displayedColumns).concat('actions')"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['title'].concat(displayedColumns).concat('actions')"></tr>    
-  </table>
+    <!-- Action Header Row -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell class="h-full" *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let alternative">
+            <button mat-icon-button (click)="removeAlternative(alternative.id)">
+                <mat-icon>remove_circle</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr
+        mat-header-row
+        *matHeaderRowDef="['title'].concat(displayedColumns).concat('actions')"
+    ></tr>
+    <tr
+        mat-row
+        *matRowDef="
+            let row;
+            columns: ['title'].concat(displayedColumns).concat('actions')
+        "
+    ></tr>
+</table>

@@ -17,6 +17,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
+import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 
 @Component({
     standalone: true,
@@ -31,11 +32,12 @@ import { TranslateModule } from "@ngx-translate/core";
         FormsModule,
         ReactiveFormsModule,
         NavButtonComponent,
+        NavButtonGroupComponent,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        TranslateModule
+        TranslateModule,
     ],
 })
 export class EstimationOfWeightsComponent {
@@ -51,12 +53,17 @@ export class EstimationOfWeightsComponent {
         private criteriaService: CriteriaService,
         private weightService: WeightService,
         private loadingService: LoadingService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.criteria.forEach((criteria) => this.weights.push([]));
-        this.displayedColumns = ['ghostCell', ...this.criteria.map(c => c.id), 'geomean', 'weightPercentage'];
+        this.displayedColumns = [
+            "ghostCell",
+            ...this.criteria.map((c) => c.id),
+            "geomean",
+            "weightPercentage",
+        ];
         this.weights = this.weightService.weights;
         this.initForm();
     }
@@ -83,16 +90,10 @@ export class EstimationOfWeightsComponent {
         // Cringe code below
         // (This targets the parent Material table cell
         // So that the entire cell is highlighted)
-        weightCell!
-            .parentElement!
-            .parentElement!
-            .parentElement!
-            .style.backgroundColor = "#69f0ae";
-        mirrorWeightCell!
-            .parentElement!
-            .parentElement!
-            .parentElement!
-            .style.backgroundColor = "#69f0ae";
+        weightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
+            "#69f0ae";
+        mirrorWeightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
+            "#69f0ae";
         this.updateWeights();
     }
 
@@ -110,14 +111,13 @@ export class EstimationOfWeightsComponent {
             }
             sortedWeights.push(arr);
             this.criteria[i].weight = this.weightService.geomean(arr);
-            this.criteria[i].weightPercentage = (this.weightService.geomean(arr) / this.weightService.sumOfWeights) * 100;
+            this.criteria[i].weightPercentage =
+                (this.weightService.geomean(arr) /
+                    this.weightService.sumOfWeights) *
+                100;
         }
         this.weightService.saveWeights(sortedWeights);
         this.sumOfWeights = Number(this.weightService.sumOfWeights.toFixed(3));
-        // sorted weights (string[][]) is saved into the service for future reference
-        // it includes all 3 iterations of 'arr'
-        // geomean is calculated by passing 'arr' into the geomean function
-        // at the end of every parent loop
     }
 
     initForm() {

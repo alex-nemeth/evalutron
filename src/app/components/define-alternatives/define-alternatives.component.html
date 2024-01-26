@@ -1,31 +1,42 @@
-   
 <header class="m-10 text-3xl text-center">
-    Define Alternatives
+    {{ 'defineAlternatives.defineAlternatives' | translate }}
 </header>
 
 <div *ngIf="!showCalculatedValues">
-    <mcea-alternatives-grid
-        [gridMode]="AlternativesGridMode.Raw"
-    />
+    <mcea-alternatives-grid [gridMode]="AlternativesGridMode.Raw" />
     <form
         class="flex flex-col gap-2 mt-4"
         [formGroup]="formGroup"
-        (ngSubmit)="addAlternative()">
-
+        (ngSubmit)="addAlternative()"
+    >
         <!-- Alternative Title -->
         <mat-form-field color="accent">
-            <mat-label>Alternative title</mat-label>
-          <input matInput formControlName="title">
+            <mat-label>{{
+                'defineAlternatives.alternativeTitle' | translate
+            }}</mat-label>
+            <input matInput formControlName="title" />
         </mat-form-field>
-      
+
         <!-- Alternative Values -->
-        <div class="grid gap-2" [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'">
-          <mat-form-field color="accent" *ngFor="let criterion of criteria">
-            <input matInput formControlName="{{criterion.title}}" placeholder="{{criterion.title}}" type="number">
-          </mat-form-field>
+        <div
+            class="grid gap-2"
+            [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'"
+        >
+            <mat-form-field color="accent" *ngFor="let criterion of criteria">
+                <input
+                    matInput
+                    formControlName="{{ criterion.title }}"
+                    placeholder="{{ criterion.title }}"
+                    type="number"
+                />
+            </mat-form-field>
         </div>
 
-        <mcea-submit-button [disabled]="!formGroup.valid" class="mb-4" text="Add Alternative"/>
+        <mcea-submit-button
+            [disabled]="!formGroup.valid"
+            class="mb-4"
+            text="{{ 'defineAlternatives.addAlternative' | translate }}"
+        />
     </form>
 </div>
 
@@ -34,9 +45,17 @@
     [gridMode]="AlternativesGridMode.Calculated"
 />
 
-<mcea-submit-button (click)="toggleNormalization()" text="{{ showCalculatedValues ? 'View real values' : 'View calculated values' }}" />
+<mcea-submit-button
+    (click)="toggleNormalization()"
+    text="{{
+        (showCalculatedValues
+            ? 'defineAlternatives.viewRealValues'
+            : 'defineAlternatives.viewCalculatedValues'
+        ) | translate
+    }}"
+/>
 
-<div class="flex flex-row justify-between mt-4">
-    <mcea-nav-button route="/weights-estimation" text="Back" />
-    <mcea-nav-button route="/normalization" text="Next" />
-</div>
+<mcea-nav-button-group
+    routeBack="/weights-estimation"
+    routeForward="/normalization"
+/>

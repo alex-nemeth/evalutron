@@ -7,11 +7,12 @@ import { AlternativesGridMode } from '../../../enums/alternatives-grid-mode.enum
 import { Observable, of } from 'rxjs';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'mcea-alternatives-grid',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, TranslateModule],
   templateUrl: './alternatives-grid.component.html'
 })
 export class AlternativesGridComponent {

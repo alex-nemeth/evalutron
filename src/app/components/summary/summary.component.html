@@ -1,40 +1,61 @@
 <header class="m-10 text-3xl text-center">
-    Summary
+    {{ "summary.summary" | translate }}
 </header>
 
 <header class="m-10 text-xl text-center">
-    Weighted Sum Method
+    {{ "summary.weightedSumMethod" | translate }}
 </header>
 
 <div class="flex flex-col justify-evenly mx-4">
-  <table mat-table [dataSource]="sortBySum(alternatives)" class="mat-elevation-z8 mb-4">
+    <table
+        mat-table
+        [dataSource]="sortBySum(alternatives)"
+        class="mat-elevation-z8 mb-4"
+    >
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let alternative">{{ alternative.id }}</td>
+        </ng-container>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let alternative">{{ alternative.id }}</td>
-    </ng-container>
+        <!-- Alternative Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ "summary.alternative" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let alternative">
+                {{ alternative.title }}
+            </td>
+        </ng-container>
 
-    <!-- Alternative Column -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Alternative</th>
-      <td mat-cell *matCellDef="let alternative">{{ alternative.title }}</td>
-    </ng-container>
+        <!-- Weighted Sum Column -->
+        <ng-container matColumnDef="weightedSum">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ "summary.weightedSum" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let alternative">
+                {{ alternative.values.weightedSum }}
+            </td>
+        </ng-container>
 
-    <!-- Weighted Sum Column -->
-    <ng-container matColumnDef="weightedSum">
-      <th mat-header-cell *matHeaderCellDef>Weighted Sum</th>
-      <td mat-cell *matCellDef="let alternative">{{ alternative.values.weightedSum }}</td>
-    </ng-container>
+        <!-- Header Row -->
+        <tr
+            mat-header-row
+            *matHeaderRowDef="['id', 'title', 'weightedSum']"
+        ></tr>
 
-    <!-- Header Row -->
-    <tr mat-header-row *matHeaderRowDef="['id', 'title', 'weightedSum']"></tr>
+        <!-- Data Rows -->
+        <tr
+            mat-row
+            *matRowDef="
+                let alternative;
+                columns: ['id', 'title', 'weightedSum']
+            "
+        ></tr>
+    </table>
 
-    <!-- Data Rows -->
-    <tr mat-row *matRowDef="let alternative; columns: ['id', 'title', 'weightedSum']"></tr>
-  </table>
-
-  <mcea-nav-button text="Back" route="/normalization" />
-
+    <mcea-nav-button
+        text="{{ 'navigation.back' | translate }}"
+        route="/normalization"
+    />
 </div>
-

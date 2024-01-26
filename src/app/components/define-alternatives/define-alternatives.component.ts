@@ -19,6 +19,8 @@ import { IAlternative } from "../../models/alternative.model";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoadingService } from "../../services/loading.service";
+import { TranslateModule } from "@ngx-translate/core";
+import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 
 @Component({
     standalone: true,
@@ -29,10 +31,12 @@ import { LoadingService } from "../../services/loading.service";
         ReactiveFormsModule,
         RouterModule,
         NavButtonComponent,
+        NavButtonGroupComponent,
         AlternativesGridComponent,
         SubmitButtonComponent,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        TranslateModule,
     ],
 })
 export class DefineAlternativesComponent implements OnInit, OnDestroy {
@@ -51,7 +55,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder,
         private loadingService: LoadingService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
@@ -69,44 +73,38 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
             Validators.required
         );
         this.criteria.forEach((criterion: ICriteria) => {
-            formControls[criterion.title] = this.formBuilder.control(
-                "", [
+            formControls[criterion.title] = this.formBuilder.control("", [
                 Validators.required,
                 Validators.min(0),
-                Validators.pattern(/^\d*(\.\d+)?$/) // Regex: Only positive numbers
-            ]
-            );
+                Validators.pattern(/^\d*(\.\d+)?$/), // Regex: Only positive numbers
+            ]);
         });
         this.formGroup = this.formBuilder.group(formControls);
     }
 
     addAlternative() {
         if (this.formGroup.invalid) {
-            console.log('skill issue');
+            console.log("skill issue");
             return;
         }
 
-        // Extraction of data from the form
         const { title, ...rawValues } = this.formGroup.value as {
-            title: string,
-            [key: string]: any
+            title: string;
+            [key: string]: any;
         };
 
-        // Conversion of values to numbers
         Object.keys(rawValues).forEach((key) => {
             rawValues[key] = parseInt(rawValues[key]);
         });
 
-        // Creation of Partial<IAlternative>
-        // object to pass to the service
         const newAlternative: Partial<IAlternative> = {
             title: title,
             values: {
-                raw: rawValues
-            }
+                raw: rawValues,
+            },
         };
 
-        this.alternativeService.addAlternative(newAlternative)
+        this.alternativeService.addAlternative(newAlternative);
         this.formGroup.reset();
     }
 

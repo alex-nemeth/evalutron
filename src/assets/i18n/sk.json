@@ -8,18 +8,39 @@
         "demo": "Použiť ukážkové dáta"
     },
     "defineCriteria": {
-        "defineCriteria": "Definícia kritérií",
+        "defineCriteria": "Definícia Kritérií",
         "addCriterion": "Pridať kritérium",
-        "criterion": "Kritérium"
+        "criterion": "Kritérium",
+        "title": "Názov"
     },
     "navigation": {
         "next": "Ďalej",
-        "back": "Späť"
+        "back": "Späť",
+        "summary": "Zhrnutie"
     },
     "estimationOfWeights": {
         "estimation": "Odhad váh",
         "geomean": "Geometrický priemer",
         "weightPercentage": "Váhový podiel"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Definícia Alternatív",
+        "alternativeTitle": "Názov alternatívy",
+        "addAlternative": "Pridať alternatívu",
+        "viewCalculatedValues": "Zobraziť vypočítané hodnoty",
+        "viewRealValues": "Zobraziť reálne hodnoty",
+        "title": "Názov"
+    },
+    "alternativesGrid": {
+        "title": "Názov"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalizovaná Tabuľka"
+    },
+    "summary": {
+        "summary": "Zhrnutie",
+        "weightedSumMethod": "Metóda váženého súčtu",
+        "alternative": "Alternatíva",
+        "weightedSum": "Vážený súčet"
     }
-
 }
