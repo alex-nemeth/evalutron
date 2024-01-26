@@ -1,5 +1,5 @@
 <header class="m-10 text-3xl text-center">
-    {{ "defineAlternatives.defineAlternatives" | translate }}
+    {{ 'defineAlternatives.defineAlternatives' | translate }}
 </header>
 
 <div *ngIf="!showCalculatedValues">
@@ -12,7 +12,7 @@
         <!-- Alternative Title -->
         <mat-form-field color="accent">
             <mat-label>{{
-                "defineAlternatives.alternativeTitle" | translate
+                'defineAlternatives.alternativeTitle' | translate
             }}</mat-label>
             <input matInput formControlName="title" />
         </mat-form-field>
@@ -56,6 +56,12 @@
 />
 
 <div class="flex flex-row justify-between mt-4">
-    <mcea-nav-button route="/weights-estimation" text="Back" />
-    <mcea-nav-button route="/normalization" text="Next" />
+    <mcea-nav-button
+        route="/weights-estimation"
+        text="{{ 'navigation.back' | translate }}"
+    />
+    <mcea-nav-button
+        route="/normalization"
+        text="{{ 'navigation.next' | translate }}"
+    />
 </div>

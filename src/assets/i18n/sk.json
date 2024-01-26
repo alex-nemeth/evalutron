@@ -31,5 +31,11 @@
     },
     "normalizedTable": {
         "normalizedTable": "Normalizovaná Tabuľka"
-    }
+    },
+    "summary": {
+      "summary": "Zhrnutie",
+      "weightedSumMethod": "Metóda váženého súčtu",
+      "alternative": "Alternatíva",
+      "weightedSum": "Vážený súčet"
+  }
 }

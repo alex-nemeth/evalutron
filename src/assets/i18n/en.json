@@ -31,5 +31,11 @@
     },
     "normalizedTable": {
         "normalizedTable": "Normalized Table"
+    },
+    "summary": {
+        "summary": "Summary",
+        "weightedSumMethod": "Weighted Sum Method",
+        "alternative": "Alternative",
+        "weightedSum": "Weighted Sum"
     }
 }
