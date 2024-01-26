@@ -20,5 +20,12 @@
         "estimation": "Estimation of Weights",
         "geomean": "Geometric Mean",
         "weightPercentage": "Weight %"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Define Alternatives",
+        "alternativeTitle": "Alternative Title",
+        "addAlternative": "Add Alternative",
+        "viewCalculatedValues": "View calculated values",
+        "viewRealValues": "View real values"
     }
 }

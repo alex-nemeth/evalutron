@@ -8,7 +8,7 @@
         "demo": "Použiť ukážkové dáta"
     },
     "defineCriteria": {
-        "defineCriteria": "Definícia kritérií",
+        "defineCriteria": "Definícia Kritérií",
         "addCriterion": "Pridať kritérium",
         "criterion": "Kritérium"
     },
@@ -20,6 +20,12 @@
         "estimation": "Odhad váh",
         "geomean": "Geometrický priemer",
         "weightPercentage": "Váhový podiel"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Definícia Alternatív",
+        "alternativeTitle": "Názov alternatívy",
+        "addAlternative": "Pridať alternatívu",
+        "viewCalculatedValues": "Zobraziť vypočítané hodnoty",
+        "viewRealValues": "Zobraziť reálne hodnoty"
     }
-
 }
