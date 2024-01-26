@@ -6,7 +6,7 @@ import { AlternativeService } from "../../services/alternative.service";
 import { CriteriaService } from "../../services/criteria.service";
 import { MatButtonModule } from "@angular/material/button";
 import { LoadingService } from "../../services/loading.service";
-import { TranslateModule } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
     standalone: true,
@@ -21,10 +21,13 @@ import { TranslateModule } from "@ngx-translate/core";
     ],
 })
 export class WelcomeComponent {
+    currentLang: string = "en";
+
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private translateService: TranslateService
     ) {}
 
     ngOnInit() {
@@ -40,5 +43,10 @@ export class WelcomeComponent {
         this.loadingService.show();
         this.alternativeService.loadDemoAlternatives();
         this.criteriaService.loadDemoCriteria();
+    }
+
+    setLanguage(lang: string) {
+        this.translateService.setDefaultLang(lang);
+        this.currentLang = lang;
     }
 }

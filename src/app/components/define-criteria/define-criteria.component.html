@@ -10,7 +10,9 @@
 >
     <!-- Title and Min/Max Header Row -->
     <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>{{
+            'defineCriteria.title' | translate
+        }}</mat-header-cell>
         <mat-cell *matCellDef="let criterion">{{ criterion.title }}</mat-cell>
     </ng-container>
 
@@ -78,7 +80,7 @@
         </div>
     </div>
     <mcea-submit-button
-        text="Add Criterion"
+        text="{{ 'defineCriteria.addCriterion' | translate }}"
         [disabled]="!formGroup.valid"
         (click)="addCriteria()"
     />

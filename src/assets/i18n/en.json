@@ -10,7 +10,8 @@
     "defineCriteria": {
         "defineCriteria": "Define Criteria",
         "addCriterion": "Add Criterion",
-        "criterion": "Criterion"
+        "criterion": "Criterion",
+        "title": "Title"
     },
     "navigation": {
         "next": "Next",
@@ -27,7 +28,11 @@
         "alternativeTitle": "Alternative Title",
         "addAlternative": "Add Alternative",
         "viewCalculatedValues": "View calculated values",
-        "viewRealValues": "View real values"
+        "viewRealValues": "View real values",
+        "title": "Title"
+    },
+    "alternativesGrid": {
+        "title": "Title"
     },
     "normalizedTable": {
         "normalizedTable": "Normalized Table"
