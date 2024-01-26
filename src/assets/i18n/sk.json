@@ -14,7 +14,8 @@
     },
     "navigation": {
         "next": "Ďalej",
-        "back": "Späť"
+        "back": "Späť",
+        "summary": "Zhrnutie"
     },
     "estimationOfWeights": {
         "estimation": "Odhad váh",
@@ -27,5 +28,8 @@
         "addAlternative": "Pridať alternatívu",
         "viewCalculatedValues": "Zobraziť vypočítané hodnoty",
         "viewRealValues": "Zobraziť reálne hodnoty"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalizovaná Tabuľka"
     }
 }

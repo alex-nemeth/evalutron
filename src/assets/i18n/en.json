@@ -14,7 +14,8 @@
     },
     "navigation": {
         "next": "Next",
-        "back": "Back"
+        "back": "Back",
+        "summary": "Summary"
     },
     "estimationOfWeights": {
         "estimation": "Estimation of Weights",
@@ -27,5 +28,8 @@
         "addAlternative": "Add Alternative",
         "viewCalculatedValues": "View calculated values",
         "viewRealValues": "View real values"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalized Table"
     }
 }
