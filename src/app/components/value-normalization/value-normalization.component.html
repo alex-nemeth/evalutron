@@ -1,8 +1,8 @@
-<header class="m-10 text-3xl text-center">
+<header class="p-10 text-3xl text-center">
     {{ 'normalizedTable.normalizedTable' | translate }}
 </header>
 
-<mcea-alternatives-grid [gridMode]="AlternativesGridMode.Normalized" />
+<eval-alternatives-grid [gridMode]="AlternativesGridMode.Normalized" />
 
 <!--
     @TODO: Reimplement this, ideally inside the alternatives-grid component.
@@ -18,4 +18,4 @@
     </div>
 -->
 
-<mcea-nav-button-group routeBack="/alternatives" routeForward="/summary" />
+<eval-nav-button-group routeBack="/alternatives" routeForward="/summary" />

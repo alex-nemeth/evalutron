@@ -1,9 +1,9 @@
-<header class="m-10 text-3xl text-center">
+<header class="p-10 text-3xl text-center">
     {{ 'defineAlternatives.defineAlternatives' | translate }}
 </header>
 
 <div *ngIf="!showCalculatedValues">
-    <mcea-alternatives-grid [gridMode]="AlternativesGridMode.Raw" />
+    <eval-alternatives-grid [gridMode]="AlternativesGridMode.Raw" />
     <form
         class="flex flex-col gap-2 mt-4"
         [formGroup]="formGroup"
@@ -32,7 +32,7 @@
             </mat-form-field>
         </div>
 
-        <mcea-submit-button
+        <eval-submit-button
             [disabled]="!formGroup.valid"
             class="mb-4"
             text="{{ 'defineAlternatives.addAlternative' | translate }}"
@@ -40,12 +40,12 @@
     </form>
 </div>
 
-<mcea-alternatives-grid
+<eval-alternatives-grid
     *ngIf="showCalculatedValues"
     [gridMode]="AlternativesGridMode.Calculated"
 />
 
-<mcea-submit-button
+<eval-submit-button
     (click)="toggleNormalization()"
     text="{{
         (showCalculatedValues
@@ -55,7 +55,7 @@
     }}"
 />
 
-<mcea-nav-button-group
+<eval-nav-button-group
     routeBack="/weights-estimation"
     routeForward="/normalization"
 />

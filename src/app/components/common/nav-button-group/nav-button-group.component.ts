@@ -4,16 +4,16 @@ import { NavButtonComponent } from "../nav-button/button.component";
 import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-    selector: "mcea-nav-button-group",
+    selector: "eval-nav-button-group",
     standalone: true,
     imports: [CommonModule, NavButtonComponent, TranslateModule],
     template: `
         <div class="flex flex-row justify-between my-4">
-            <mcea-nav-button
+            <eval-nav-button
                 [route]="routeBack"
                 [text]="'navigation.back' | translate"
             />
-            <mcea-nav-button
+            <eval-nav-button
                 [route]="routeForward"
                 [text]="'navigation.next' | translate"
                 [disabled]="disableForward"

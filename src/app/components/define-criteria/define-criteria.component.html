@@ -1,4 +1,4 @@
-<header class="m-10 text-3xl text-center">
+<header class="p-10 text-3xl text-center">
     {{ 'defineCriteria.defineCriteria' | translate }}
 </header>
 
@@ -79,14 +79,14 @@
             </button>
         </div>
     </div>
-    <mcea-submit-button
+    <eval-submit-button
         text="{{ 'defineCriteria.addCriterion' | translate }}"
         [disabled]="!formGroup.valid"
         (click)="addCriteria()"
     />
 </form>
 
-<mcea-nav-button-group
+<eval-nav-button-group
     (click)="showAlert()"
     routeBack="/"
     routeForward="/weights-estimation"

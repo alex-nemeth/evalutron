@@ -5,7 +5,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
-    selector: "mcea-nav-button",
+    selector: "eval-nav-button",
     standalone: true,
     imports: [CommonModule, RouterModule, MatTooltipModule],
     template: `
