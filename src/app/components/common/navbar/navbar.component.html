@@ -18,14 +18,14 @@
             (click)="setLanguage('en')"
             [ngClass]="{ 'border-b-2 border-accent': currentLang === 'en' }"
         >
-            English
+            {{ 'navbar.english' | translate }}
         </button>
         <button
             class="hover:text-accent transition-opacity duration-300"
             (click)="setLanguage('sk')"
             [ngClass]="{ 'border-b-2 border-accent': currentLang === 'sk' }"
         >
-            Slovenčina
+            {{ 'navbar.slovak' | translate }}
         </button>
     </div>
 </nav>

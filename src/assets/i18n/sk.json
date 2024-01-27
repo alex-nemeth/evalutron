@@ -1,4 +1,8 @@
 {
+    "navbar": {
+        "english": "Angličtina",
+        "slovak": "Slovenčina"
+    },
     "welcome": {
         "welcome": "Vitajte!",
         "description": "Táto aplikácia je nástroj, ktorý slúži pre získavanie výstupov z rôznych metód viackriteriálneho rozhodovania alternatív.",
