@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Option to delete Alternatives (#27).
 -   This changelog (#49)!
 -   Tooltips for disabled buttons (#35).
+-   Persistent navbar with language options (#50).
 
 ### Fixed
 
@@ -38,6 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Refactored demo data structure (#32).
 -   All clunky grid/flex elements replaced with Material components (#38).
 -   Replaced repeated template patterns for common components (#18).
+-   Moved language options from welcome screen to a persistent navbar (#50).
 
 ### Removed
 
