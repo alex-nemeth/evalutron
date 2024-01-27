@@ -11,7 +11,8 @@
         "defineCriteria": "Definícia Kritérií",
         "addCriterion": "Pridať kritérium",
         "criterion": "Kritérium",
-        "title": "Názov"
+        "title": "Názov",
+        "disabledTooltip": "Prosím zadefinujte aspoň 2 kritéria."
     },
     "navigation": {
         "next": "Ďalej",
