@@ -1,0 +1,31 @@
+<nav
+    class="w-full bg-primary h-10 flex flex-row justify-between items-center px-2"
+>
+    <div
+        class="flex flex-row gap-2 justify-center items-center cursor-pointer"
+        routerLink="/"
+    >
+        <img
+            src="../assets/images/icon.png"
+            alt="Evalutron"
+            class="w-6 h-6 cursor-pointer"
+        />
+        <span class="font-bold text-lg">Evalutron</span>
+    </div>
+    <div class="flex flex-row gap-4">
+        <button
+            class="hover:text-accent transition-opacity duration-300"
+            (click)="setLanguage('en')"
+            [ngClass]="{ 'border-b-2 border-accent': currentLang === 'en' }"
+        >
+            English
+        </button>
+        <button
+            class="hover:text-accent transition-opacity duration-300"
+            (click)="setLanguage('sk')"
+            [ngClass]="{ 'border-b-2 border-accent': currentLang === 'sk' }"
+        >
+            Slovenčina
+        </button>
+    </div>
+</nav>
