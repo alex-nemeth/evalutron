@@ -86,4 +86,10 @@
     />
 </form>
 
-<mcea-nav-button-group routeBack="/" routeForward="/weights-estimation" />
+<mcea-nav-button-group
+    (click)="showAlert()"
+    routeBack="/"
+    routeForward="/weights-estimation"
+    [disableForward]="criteria.length < 2"
+    [tooltipForward]="'defineCriteria.disabledTooltip' | translate"
+/>

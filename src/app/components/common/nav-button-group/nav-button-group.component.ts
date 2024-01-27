@@ -16,6 +16,8 @@ import { TranslateModule } from "@ngx-translate/core";
             <mcea-nav-button
                 [route]="routeForward"
                 [text]="'navigation.next' | translate"
+                [disabled]="disableForward"
+                [tooltip]="tooltipForward"
             />
         </div>
     `,
@@ -23,4 +25,6 @@ import { TranslateModule } from "@ngx-translate/core";
 export class NavButtonGroupComponent {
     @Input() routeBack!: string;
     @Input() routeForward!: string;
+    @Input() disableForward!: boolean;
+    @Input() tooltipForward!: string;
 }
