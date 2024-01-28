@@ -1,0 +1,28 @@
+<footer class="flex flex-col items-center justify-center">
+    <p>&copy; 2024 Evalutron</p>
+    <p>Version: alpha 0.1.0</p>
+    <p>
+        <a
+            class="text-primary italic hover:text-accent transition-all cursor-pointer"
+            (click)="redirectTo('https://github.com/alex-nemeth/evalutron')"
+            >Source code</a
+        >
+    </p>
+    <div>
+        <p>Created by Alex Németh</p>
+        <div class="flex gap-2 justify-center">
+            <img
+                class="h-6 w-6 hover:scale-125 active:scale-100 transition-all cursor-pointer"
+                src="../../../../assets/images/github.png"
+                alt="GitHub"
+                (click)="redirectTo('https://github.com/alex-nemeth')"
+            />
+            <img
+                class="h-6 w-6 hover:scale-125 active:scale-100 transition-all cursor-pointer"
+                src="../../../../assets/images/linkedin.png"
+                alt="LinkedIn"
+                (click)="redirectTo('https://linkedin.com/in/alexnemeth')"
+            />
+        </div>
+    </div>
+</footer>

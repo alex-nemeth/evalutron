@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   This changelog (#49)!
 -   Tooltips for disabled buttons (#35).
 -   Persistent navbar with language options (#50).
+-   Release information on the landing screen (#51).
 
 ### Fixed
 

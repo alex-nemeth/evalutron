@@ -7,6 +7,7 @@ import { CriteriaService } from "../../services/criteria.service";
 import { MatButtonModule } from "@angular/material/button";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { FooterComponent } from "../common/footer/footer.component";
 
 @Component({
     standalone: true,
@@ -18,6 +19,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
         NavButtonComponent,
         MatButtonModule,
         TranslateModule,
+        FooterComponent,
     ],
 })
 export class WelcomeComponent {
