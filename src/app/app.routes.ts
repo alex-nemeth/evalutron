@@ -14,27 +14,27 @@ export const routes: Routes = [
     },
     {
         path: "criteria",
-        title: "Define Criteria",
+        title: "Define Criteria - Evalutron",
         component: DefineCriteriaComponent,
     },
     {
         path: "weights-estimation",
-        title: "Estimation of Weights",
+        title: "Estimation of Weights - Evalutron",
         component: EstimationOfWeightsComponent,
     },
     {
         path: "alternatives",
-        title: "Define Alternatives",
+        title: "Define Alternatives - Evalutron",
         component: DefineAlternativesComponent,
     },
     {
         path: "normalization",
-        title: "Normalization of Values",
+        title: "Normalization of Values - Evalutron",
         component: ValueNormalizationComponent,
     },
     {
         path: "summary",
-        title: "Summary",
+        title: "Summary - Evalutron",
         component: SummaryComponent,
     },
 ];
