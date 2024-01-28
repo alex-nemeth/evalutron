@@ -39,7 +39,7 @@ export class AlternativesGridComponent {
     }
 
     get displayedColumns(): string[] {
-        const sampleAlternative = this.alternativeService.alternatives[0]; // Assuming alternatives is an array
+        const sampleAlternative = this.alternativeService.alternatives[0];
         if (!sampleAlternative) {
             return [];
         }
@@ -52,13 +52,5 @@ export class AlternativesGridComponent {
         this.alternativeService.removeAlternative(id);
         this.alternatives$ = of(this.alternativeService.alternatives);
         this.table.renderRows();
-    }
-
-    getObjectKeys(obj: any) {
-        return Object.keys(obj);
-    }
-
-    formatValue(value: number): number {
-        return Number(value.toFixed(3));
     }
 }

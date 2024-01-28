@@ -49,15 +49,7 @@ export class ValueNormalizationComponent {
         this.loadingService.hide();
     }
 
-    getObjectKeys(obj: any) {
-        return Object.keys(obj);
-    }
-
     isNumeric(value: any) {
         return !isNaN(value);
-    }
-
-    formatValue(value: number): number {
-        return Number(value.toPrecision(3));
     }
 }
