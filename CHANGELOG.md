@@ -40,7 +40,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   All clunky grid/flex elements replaced with Material components (#38).
 -   Replaced repeated template patterns for common components (#18).
 -   Moved language options from welcome screen to a persistent navbar (#50).
+-   Moved helper functions to a util file (#30).
 
 ### Removed
 
 -   Repeated template patterns (#19).
+-   Repeated functions (#30).
