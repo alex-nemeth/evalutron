@@ -26,12 +26,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
--   Fixed type mismatch in alternative definition (#22).
+-   Type mismatch in alternative definition (#22).
 -   Styling in Criteria Definition (#5).
 -   Radio buttons for min/max inputs in Define Criteria (#14).
 -   Form validation for Criteria definition (#20).
 -   Type validation for alternatives (#21).
 -   Next button disabled if no criteria are defined (#35).
+-   Form validation for weight estimation (#40).
 
 ### Changed
 

@@ -34,10 +34,8 @@
                         "
                         class="bg-mcea-4 text-black w-20"
                         type="text"
-                        min="0.11111111"
-                        max="9"
                         placeholder="1-9"
-                        (change)="manageWeights($event)"
+                        (change)="updateWeights($event)"
                         [disabled]="isFieldDisabled(element.id, criterion.id)"
                     />
                 </mat-form-field>

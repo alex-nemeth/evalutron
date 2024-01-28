@@ -7,6 +7,8 @@ import {
     FormGroup,
     FormsModule,
     ReactiveFormsModule,
+    ValidationErrors,
+    ValidatorFn,
 } from "@angular/forms";
 import { ICriteria } from "../../models/criteria.model";
 import { WeightService } from "../../services/weight.service";
@@ -18,6 +20,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
+import { checkWeightInput } from "../../utils/weight.helper";
 
 @Component({
     standalone: true,
@@ -26,6 +29,10 @@ import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-g
     styles: `
     input:disabled {
       opacity: .50;
+    }
+    :host ::ng-deep .mat-mdc-cell.mdc-data-table__cell {
+      margin-left: 0px;
+      margin-right:0px;
     }`,
     imports: [
         CommonModule,
@@ -57,7 +64,7 @@ export class EstimationOfWeightsComponent {
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
-        this.criteria.forEach((criteria) => this.weights.push([]));
+        this.criteria.forEach(() => this.weights.push([]));
         this.displayedColumns = [
             "ghostCell",
             ...this.criteria.map((c) => c.id),
@@ -76,14 +83,20 @@ export class EstimationOfWeightsComponent {
         return id1 === id2;
     }
 
-    manageWeights(e: any) {
+    updateWeights(e: any) {
         const weight = e.target.value;
-        const mirrorID = e.target.id.split("-").reverse().join("-");
-        const mirrorControl = this.formGroup.get(mirrorID) as AbstractControl;
-        mirrorControl.setValue(`${this.weightService.mirrorWeight(weight)}`);
         const weightCell: HTMLElement | null = document.querySelector(
             `#${e.target.id}`
         );
+
+        if (!checkWeightInput(weight)) {
+            weightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
+                "red";
+            return;
+        }
+        const mirrorID = e.target.id.split("-").reverse().join("-");
+        const mirrorControl = this.formGroup.get(mirrorID) as AbstractControl;
+        mirrorControl.setValue(`${this.weightService.mirrorWeight(weight)}`);
         const mirrorWeightCell: HTMLElement | null = document.querySelector(
             `#${mirrorID}`
         );
@@ -94,14 +107,14 @@ export class EstimationOfWeightsComponent {
             "#69f0ae";
         mirrorWeightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
             "#69f0ae";
-        this.updateWeights();
+        this.saveWeights();
     }
 
     getFormControlName(id1: string, id2: string): string {
         return `${id1}-${id2}`;
     }
 
-    updateWeights() {
+    saveWeights() {
         const weights: string[] = Object.values(this.formGroup.getRawValue());
         let sortedWeights: string[][] = [];
         for (let i = 0; i < this.criteria.length; i++) {
@@ -125,16 +138,23 @@ export class EstimationOfWeightsComponent {
         this.criteria.forEach((criteria) => {
             this.criteria.forEach((criteria2) => {
                 formControls[`${criteria.id}-${criteria2.id}`] =
-                    new FormControl({
-                        value: "1",
-                        disabled: this.isFieldDisabled(
-                            criteria.id,
-                            criteria2.id
-                        ),
-                        // TODO: Validation - Validators.pattern();
-                    });
+                    new FormControl(
+                        {
+                            value: "",
+                            disabled: this.isFieldDisabled(
+                                criteria.id,
+                                criteria2.id
+                            ),
+                        },
+                        [this.weightValidator()]
+                    );
             });
         });
         this.formGroup = new FormGroup(formControls);
+    }
+
+    weightValidator(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null =>
+            checkWeightInput(control.value) ? null : { invalidNumber: true };
     }
 }
