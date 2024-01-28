@@ -1,0 +1,51 @@
+{
+    "navbar": {
+        "english": "Angličtina",
+        "slovak": "Slovenčina"
+    },
+    "welcome": {
+        "welcome": "Vitajte!",
+        "description": "Táto aplikácia je nástroj, ktorý slúži pre získavanie výstupov z rôznych metód viackriteriálneho rozhodovania alternatív.",
+        "aim": "Cieľom aplikácie je poskytnúť jednoduchý a intuitívny spôsob, ktorý môže pomôcť pri rozhodovaní sa.",
+        "clickTheButton": "Kliknite na tlačidlo nižšie a môžete začať!",
+        "start": "Začať na novo",
+        "demo": "Použiť ukážkové dáta"
+    },
+    "defineCriteria": {
+        "defineCriteria": "Definícia Kritérií",
+        "addCriterion": "Pridať kritérium",
+        "criterion": "Kritérium",
+        "title": "Názov",
+        "disabledTooltip": "Prosím zadefinujte aspoň 2 kritéria."
+    },
+    "navigation": {
+        "next": "Ďalej",
+        "back": "Späť",
+        "summary": "Zhrnutie"
+    },
+    "estimationOfWeights": {
+        "estimation": "Odhad váh",
+        "geomean": "Geometrický priemer",
+        "weightPercentage": "Váhový podiel"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Definícia Alternatív",
+        "alternativeTitle": "Názov alternatívy",
+        "addAlternative": "Pridať alternatívu",
+        "viewCalculatedValues": "Zobraziť vypočítané hodnoty",
+        "viewRealValues": "Zobraziť reálne hodnoty",
+        "title": "Názov"
+    },
+    "alternativesGrid": {
+        "title": "Názov"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalizovaná Tabuľka"
+    },
+    "summary": {
+        "summary": "Zhrnutie",
+        "weightedSumMethod": "Metóda váženého súčtu",
+        "alternative": "Alternatíva",
+        "weightedSum": "Vážený súčet"
+    }
+}

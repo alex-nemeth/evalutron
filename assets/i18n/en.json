@@ -1,0 +1,51 @@
+{
+    "navbar": {
+        "english": "English",
+        "slovak": "Slovak"
+    },
+    "welcome": {
+        "welcome": "Welcome!",
+        "description": "This is a tool which serves as a user-friendly way to get an output from various methods of multi-criteria evaluation of alternatives.",
+        "aim": "The aim of this tool is to provide a way of getting such calculations with ease, requiring as little input as possible, therefore allowing you to skip a lot of excel work, or often even coding.",
+        "clickTheButton": "Click the button below to get started!",
+        "start": "Start with a clean slate",
+        "demo": "Demo with example data"
+    },
+    "defineCriteria": {
+        "defineCriteria": "Define Criteria",
+        "addCriterion": "Add Criterion",
+        "criterion": "Criterion",
+        "title": "Title",
+        "disabledTooltip": "Please define at least 2 criteria to continue."
+    },
+    "navigation": {
+        "next": "Next",
+        "back": "Back",
+        "summary": "Summary"
+    },
+    "estimationOfWeights": {
+        "estimation": "Estimation of Weights",
+        "geomean": "Geometric Mean",
+        "weightPercentage": "Weight %"
+    },
+    "defineAlternatives": {
+        "defineAlternatives": "Define Alternatives",
+        "alternativeTitle": "Alternative Title",
+        "addAlternative": "Add Alternative",
+        "viewCalculatedValues": "View calculated values",
+        "viewRealValues": "View real values",
+        "title": "Title"
+    },
+    "alternativesGrid": {
+        "title": "Title"
+    },
+    "normalizedTable": {
+        "normalizedTable": "Normalized Table"
+    },
+    "summary": {
+        "summary": "Summary",
+        "weightedSumMethod": "Weighted Sum Method",
+        "alternative": "Alternative",
+        "weightedSum": "Weighted Sum"
+    }
+}
