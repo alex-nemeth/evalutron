@@ -34,6 +34,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Type validation for alternatives (#21).
 -   Next button disabled if no criteria are defined (#35).
 -   Form validation for weight estimation (#40).
+-   App config for the translations to work in production (#41).
 
 ### Changed
 
