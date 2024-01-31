@@ -14,7 +14,7 @@ export class WeightService {
         let sumOfWeights = 0;
         this.weights.forEach((weight) => {
             sumOfWeights += this.geomean(weight);
-        })
+        });
         this.sumOfWeights = sumOfWeights;
     }
 

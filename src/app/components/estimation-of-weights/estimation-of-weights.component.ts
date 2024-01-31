@@ -140,7 +140,7 @@ export class EstimationOfWeightsComponent {
                 formControls[`${criteria.id}-${criteria2.id}`] =
                     new FormControl(
                         {
-                            value: "",
+                            value: "1",
                             disabled: this.isFieldDisabled(
                                 criteria.id,
                                 criteria2.id
@@ -156,5 +156,9 @@ export class EstimationOfWeightsComponent {
     weightValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null =>
             checkWeightInput(control.value) ? null : { invalidNumber: true };
+    }
+
+    hasValue(val: number) {
+        return !isNaN(Number(((val / this.sumOfWeights) * 100).toFixed(3)));
     }
 }

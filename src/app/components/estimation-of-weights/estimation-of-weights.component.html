@@ -50,9 +50,9 @@
             <mat-cell *matCellDef="let element">
                 <p>
                     {{
-                        element.weight
+                        hasValue(element.weight)
                             ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                            : '33.333%'
+                            : '33.333'
                     }}
                 </p>
             </mat-cell>
@@ -66,9 +66,9 @@
             <mat-cell *matCellDef="let element">
                 <p>
                     {{
-                        element.weight
+                        hasValue(element.weight)
                             ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                            : '33.333%'
+                            : (100 / criteria.length).toFixed(3) + '%'
                     }}
                 </p>
             </mat-cell>

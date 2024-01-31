@@ -49,3 +49,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 -   Repeated template patterns (#19).
 -   Repeated functions (#30).
+
+### Unreleased (0.1.3)
+
+-   To fix Geomean & Weight% calculations (#52).
