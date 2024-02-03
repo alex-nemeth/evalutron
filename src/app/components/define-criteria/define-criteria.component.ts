@@ -9,7 +9,6 @@ import {
 import { RouterModule } from "@angular/router";
 import { ICriteria } from "../../models/criteria.model";
 import { CriteriaService } from "../../services/criteria.service";
-import { NavButtonComponent } from "../common/nav-button/button.component";
 import { SubmitButtonComponent } from "../common/submit-button/submit-button.component";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -20,6 +19,8 @@ import { LoadingService } from "../../services/loading.service";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { AlertService } from "../../services/alert.service";
+import { AlertType } from "../../enums/alert-type.enum";
 
 @Component({
     standalone: true,
@@ -41,12 +42,12 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     ],
     styles: [
         `
-            /* Adjust the width of the action column */
+            // Adjust the width of the action column
             .mat-column-actions {
                 flex: 0 0 100px;
             }
 
-            /* Align the action column to the right */
+            // Align the action column to the right
             .mat-header-cell.actions-header,
             .mat-cell.actions-cell {
                 justify-content: flex-end;
@@ -67,7 +68,8 @@ export class DefineCriteriaComponent {
 
     constructor(
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private alertService: AlertService
     ) {}
 
     ngOnInit(): void {
@@ -79,11 +81,19 @@ export class DefineCriteriaComponent {
     }
 
     addCriteria() {
+        if (this.criteria.some((c) => c.title === this.formGroup.value.title)) {
+            this.formGroup.controls.title.setErrors({ duplicate: true });
+            return this.alertService.showAlert(
+                `Criteria with title '${this.formGroup.value.title}' already exists.`,
+                AlertType.Error
+            );
+        }
         if (this.formGroup.valid) {
             this.criteriaService.addCriteria(this.formGroup.value as ICriteria);
-            this.formGroup.reset();
-            this.formGroup.controls.minmax.setValue("MIN");
             this.table.renderRows();
+            this.formGroup.reset();
+            this.formGroup.controls.title.setErrors(null);
+            this.formGroup.controls.minmax.setValue("MIN");
         }
     }
 
@@ -91,9 +101,5 @@ export class DefineCriteriaComponent {
         this.criteriaService.removeCriteria(id);
         this.criteria = this.criteriaService.criteria;
         this.table.renderRows();
-    }
-
-    showAlert() {
-        alert("Please define at least 2 criteria.");
     }
 }
