@@ -50,13 +50,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Repeated template patterns (#19).
 -   Repeated functions (#30).
 
-## [alpha_0.1.3] - 2024-02-XX
+## [alpha_0.1.4] - 2024-02-03
 
 ### Added
 
 -   Criteria validation check for already used criteria names (#54).
 -   Alert service for rendering Material Snackbars (#54).
+-   Alert types enum to use with alert service (#54).
+-   Localization and version date in the footer (#58).
+-   Constants file for versioning to use in the footer (#58).
 
 ### Fixed
 
 -   Geomean & Weight% calculations (#52).
+-   Weighted sum in Summary displaying NaN values (#55).
