@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [alpha_0.1.0] - 2023-01-30
+## [alpha_0.1.0] - 2024-01-30
 
 ### Added
 
@@ -50,6 +50,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Repeated template patterns (#19).
 -   Repeated functions (#30).
 
-### Unreleased (0.1.3)
+## [alpha_0.1.3] - 2024-02-XX
 
--   To fix Geomean & Weight% calculations (#52).
+### Added
+
+-   Criteria validation check for already used criteria names (#54).
+-   Alert service for rendering Material Snackbars (#54).
+
+### Fixed
+
+-   Geomean & Weight% calculations (#52).
