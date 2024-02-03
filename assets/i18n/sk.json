@@ -3,6 +3,11 @@
         "english": "Angličtina",
         "slovak": "Slovenčina"
     },
+    "footer": {
+        "version": "Verzia",
+        "sourceCode": "Zdrojový kód",
+        "createdBy": "Vytvoril"
+    },
     "welcome": {
         "welcome": "Vitajte!",
         "description": "Táto aplikácia je nástroj, ktorý slúži pre získavanie výstupov z rôznych metód viackriteriálneho rozhodovania alternatív.",

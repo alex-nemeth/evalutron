@@ -3,6 +3,11 @@
         "english": "English",
         "slovak": "Slovak"
     },
+    "footer": {
+        "version": "Version",
+        "sourceCode": "Source code",
+        "createdBy": "Created by"
+    },
     "welcome": {
         "welcome": "Welcome!",
         "description": "This is a tool which serves as a user-friendly way to get an output from various methods of multi-criteria evaluation of alternatives.",
