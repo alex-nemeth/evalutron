@@ -22,7 +22,7 @@ export class AlternativesGridComponent {
     AlternativesGridMode = AlternativesGridMode;
 
     columns!: number;
-    alternatives$!: Observable<IAlternative[]>;
+    alternatives!: IAlternative[];
     sumsOfValues!: { [key: string]: number };
     criteriaTitles!: string[];
 
@@ -33,9 +33,15 @@ export class AlternativesGridComponent {
 
     ngOnInit(): void {
         this.columns = this.criteriaService.criteria.length + 1;
-        this.alternatives$ = of(this.alternativeService.alternatives);
+        this.alternatives = this.alternativeService.alternatives;
         this.sumsOfValues = this.alternativeService.sumsOfValues;
         this.criteriaTitles = this.criteriaService.getCriteriaTitles();
+        this.alternativeService.alternativesChangedBS.subscribe((change) => {
+            if (change) {
+                this.alternatives = this.alternativeService.alternatives;
+                this.table.renderRows();
+            }
+        });
     }
 
     get displayedColumns(): string[] {
@@ -48,9 +54,8 @@ export class AlternativesGridComponent {
     }
 
     removeAlternative(id: string) {
-        console.log(id);
         this.alternativeService.removeAlternative(id);
-        this.alternatives$ = of(this.alternativeService.alternatives);
+        this.alternatives = this.alternativeService.alternatives;
         this.table.renderRows();
     }
 }

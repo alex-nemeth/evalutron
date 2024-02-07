@@ -3,6 +3,7 @@ import { CriteriaService } from "./criteria.service";
 import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
 import { alternatives as demoAlternatives } from "../data/demo-data";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -13,6 +14,8 @@ export class AlternativeService {
     public maxValues: { [key: string]: number } = {};
     public minValues: { [key: string]: number } = {};
 
+    public alternativesChangedBS = new BehaviorSubject<any>(null);
+
     constructor(private criteriaService: CriteriaService) {}
 
     addAlternative(alternative: Partial<IAlternative>) {
@@ -20,6 +23,7 @@ export class AlternativeService {
             id: `a${this.alternatives.length + 1}`,
             ...alternative,
         } as IAlternative);
+        this.alternativesChangedBS.next(true);
     }
 
     removeAlternative(id: string) {

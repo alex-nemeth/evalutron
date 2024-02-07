@@ -50,7 +50,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Repeated template patterns (#19).
 -   Repeated functions (#30).
 
-## [alpha_0.1.4] - 2024-02-03
+## [alpha_0.1.5] - 2024-02-07
 
 ### Added
 
@@ -64,3 +64,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 -   Geomean & Weight% calculations (#52).
 -   Weighted sum in Summary displaying NaN values (#55).
+-   Adding new alternatives rerenders the table (#59).
