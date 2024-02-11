@@ -59,32 +59,12 @@ export class AlternativesGridComponent {
         this.table.renderRows();
     }
 
-    logKey(key: string) {
-        // TODO: Implement this as a tooltip on the info icon hover
-        // &: Do not render the info icon if there is no description
-        //       This will require a function to pass for an ngIf
-        //       inside the mat-icon tag.
-        console.log(
-            this.criteriaService.criteria.find(
-                (criteria) => criteria.title === key
-            )?.description
-        );
-    }
-
-    getTooltip(key: string): string {
-        return (
-            this.criteriaService.criteria.find(
-                (criteria) => criteria.title === key
-            )?.description || ""
-        );
+    getTooltip(criterionTitle: string): string {
+        return this.criteriaService.getCriterionDescription(criterionTitle);
     
     }
 
     hasDescription(key: string): boolean {
-        return (
-            this.criteriaService.criteria.find(
-                (criteria) => criteria.title === key
-            )?.description !== undefined
-        );
+        return this.criteriaService.hasDescription(key);
     }
 }
