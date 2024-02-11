@@ -21,7 +21,7 @@
             'defineCriteria.description' | translate
         }}</mat-header-cell>
         <mat-cell *matCellDef="let criterion">{{
-            criterion.description
+            criterion.description || 'defineCriteria.noDescription' | translate
         }}</mat-cell>
     </ng-container>
 

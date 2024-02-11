@@ -69,6 +69,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [alpha_0.2.0] - 2024-02-11
 
 ### Added
+
 -   Optional description field for criteria (#33).
 -   Description input when defining criteria (#33).
 -   Info icon for criteria in all grids with description tooltip on hover (#33).
+
+## [alpha_0.2.1] - 2024-02-12
+
+### Fixed
+
+-   Description fields say there's no description instead of remaining empty in that case (#64).
