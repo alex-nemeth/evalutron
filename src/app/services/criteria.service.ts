@@ -17,6 +17,22 @@ export class CriteriaService {
         return this.criteria.map((criterion) => criterion.title);
     }
 
+    getCriterionDescription(criterionTitle: string): string {
+        return (
+            this.criteria.find(
+                (criteria) => criteria.title === criterionTitle
+            )?.description || ""
+        );
+    }
+
+    hasDescription(criterionTitle: string): boolean {
+        return (
+            this.criteria.find(
+                (criteria) => criteria.title === criterionTitle
+            )?.description !== undefined
+        );
+    }
+
     removeCriteria(id: string) {
         this.criteria = this.criteria.filter((criterion) => criterion.id !== id);
     }
@@ -28,4 +44,6 @@ export class CriteriaService {
     clearData() {
         this.criteria = [];
     }
+
+
 }

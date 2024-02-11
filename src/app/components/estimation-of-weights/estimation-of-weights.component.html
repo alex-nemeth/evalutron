@@ -21,9 +21,16 @@
             *ngFor="let criterion of criteria"
             matColumnDef="{{ criterion.id }}"
         >
-            <mat-header-cell *matHeaderCellDef class="w-8">{{
-                criterion.title
-            }}</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef class="w-8">
+                <div class="flex flex-row gap-2 pt-3">
+                    <p>{{ criterion.title }}</p>
+                    <mat-icon
+                        *ngIf="hasDescription(criterion.title)"
+                        [matTooltip]="getTooltip(criterion.title)">
+                        info
+                    </mat-icon>
+                </div>
+            </mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <mat-form-field>
                     <input

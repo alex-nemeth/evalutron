@@ -20,6 +20,7 @@
         "defineCriteria": "Definícia Kritérií",
         "addCriterion": "Pridať kritérium",
         "criterion": "Kritérium",
+        "description": "Popis",
         "title": "Názov",
         "disabledTooltip": "Prosím zadefinujte aspoň 2 kritéria."
     },
