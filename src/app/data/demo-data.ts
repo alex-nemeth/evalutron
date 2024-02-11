@@ -241,7 +241,6 @@ export const criteria: ICriteria[] = [
     {
         id: "c1",
         title: "Price",
-        description: "test description price",
         minmax: "MIN",
         weight: 2.466,
         weightPercentage: 65.865,
@@ -249,7 +248,7 @@ export const criteria: ICriteria[] = [
     {
         id: "c2",
         title: "Distance (km)",
-        description: "test description distance",
+        description: "Distance from the city center in kilometres.",
         minmax: "MIN",
         weight: 1.326,
         weightPercentage: 35.416,
@@ -257,7 +256,6 @@ export const criteria: ICriteria[] = [
     {
         id: "c3",
         title: "# of Rooms",
-        description: "test description rooms",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,
@@ -265,7 +263,6 @@ export const criteria: ICriteria[] = [
     {
         id: "c4",
         title: "Size (m2)",
-        description: "test description size",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,
@@ -273,7 +270,7 @@ export const criteria: ICriteria[] = [
     {
         id: "c5",
         title: "Condition",
-        description: "test description condition",
+        description: "1-4",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,
@@ -281,7 +278,7 @@ export const criteria: ICriteria[] = [
     {
         id: "c6",
         title: "Parking",
-        description: "test description parking",
+        description: "1 - Has no parking, 2 - Has nearby public parking, 3 - Has private parking",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,

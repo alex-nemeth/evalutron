@@ -4,15 +4,15 @@ import { CriteriaService } from "../../../services/criteria.service";
 import { AlternativeService } from "../../../services/alternative.service";
 import { IAlternative } from "../../../models/alternative.model";
 import { AlternativesGridMode } from "../../../enums/alternatives-grid-mode.enum";
-import { Observable, of } from "rxjs";
 import { MatTable, MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { TranslateModule } from "@ngx-translate/core";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
     selector: "eval-alternatives-grid",
     standalone: true,
-    imports: [CommonModule, MatTableModule, MatIconModule, TranslateModule],
+    imports: [CommonModule, MatTableModule, MatIconModule, TranslateModule, MatTooltipModule],
     templateUrl: "./alternatives-grid.component.html",
 })
 export class AlternativesGridComponent {
@@ -68,6 +68,23 @@ export class AlternativesGridComponent {
             this.criteriaService.criteria.find(
                 (criteria) => criteria.title === key
             )?.description
+        );
+    }
+
+    getTooltip(key: string): string {
+        return (
+            this.criteriaService.criteria.find(
+                (criteria) => criteria.title === key
+            )?.description || ""
+        );
+    
+    }
+
+    hasDescription(key: string): boolean {
+        return (
+            this.criteriaService.criteria.find(
+                (criteria) => criteria.title === key
+            )?.description !== undefined
         );
     }
 }

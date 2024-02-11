@@ -11,7 +11,15 @@
     <ng-container *ngFor="let key of displayedColumns">
         <ng-container matColumnDef="{{ key }}">
             <th mat-header-cell *matHeaderCellDef>
-                {{ key }} <mat-icon (click)="logKey(key)">info</mat-icon>
+                <div class="flex flex-row gap-2 pt-3">
+                    <p>{{ key }}</p>
+                    <mat-icon
+                        *ngIf="hasDescription(key)"
+                        (click)="logKey(key)"
+                        [matTooltip]="getTooltip(key)">
+                        info
+                    </mat-icon>
+                </div>
             </th>
             <td mat-cell *matCellDef="let alternative">
                 {{ alternative.values[gridMode][key] | number : '1.0-3' }}
