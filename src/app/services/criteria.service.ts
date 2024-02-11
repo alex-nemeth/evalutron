@@ -42,7 +42,7 @@ export class CriteriaService {
     }
 
     loadDemoCriteria() {
-        this.translateService.currentLang === "en"
+        this.translateService.defaultLang === "en"
             ? (this.criteria = demoCriteriaEN)
             : (this.criteria = demoCriteriaSK);
     }

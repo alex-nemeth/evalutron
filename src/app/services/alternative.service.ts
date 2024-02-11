@@ -128,7 +128,7 @@ export class AlternativeService {
     }
 
     loadDemoAlternatives() {
-        this.translateService.currentLang === "en"
+        this.translateService.defaultLang === "en"
             ? (this.alternatives = demoAlternativesEN)
             : (this.alternatives = demoAlternativesSK);
     }
