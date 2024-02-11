@@ -2,8 +2,10 @@ import { Injectable } from "@angular/core";
 import { CriteriaService } from "./criteria.service";
 import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
-import { alternatives as demoAlternatives } from "../data/demo-data";
+import { alternatives as demoAlternativesEN } from "../data/properties-en.data";
+import { alternatives as demoAlternativesSK } from "../data/properties-sk.data";
 import { BehaviorSubject } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
     providedIn: "root",
@@ -16,7 +18,10 @@ export class AlternativeService {
 
     public alternativesChangedBS = new BehaviorSubject<any>(null);
 
-    constructor(private criteriaService: CriteriaService) {}
+    constructor(
+        private criteriaService: CriteriaService,
+        private translateService: TranslateService
+    ) {}
 
     addAlternative(alternative: Partial<IAlternative>) {
         this.alternatives.push({
@@ -123,7 +128,9 @@ export class AlternativeService {
     }
 
     loadDemoAlternatives() {
-        this.alternatives = demoAlternatives;
+        this.translateService.currentLang === "en"
+            ? (this.alternatives = demoAlternativesEN)
+            : (this.alternatives = demoAlternativesSK);
     }
 
     clearData() {

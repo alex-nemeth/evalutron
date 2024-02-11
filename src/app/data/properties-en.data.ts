@@ -237,7 +237,6 @@ export const sumsOfValues: { [key: string]: number } = {
 
 // Criteria Data
 export const criteria: ICriteria[] = [
-    // TODO: Add actual criteria descriptions where necessary
     {
         id: "c1",
         title: "Price",
@@ -270,7 +269,8 @@ export const criteria: ICriteria[] = [
     {
         id: "c5",
         title: "Condition",
-        description: "1-4",
+        description:
+            "1 – Former condition, greater additional investment required, 2 – Partially reconstructed, low additional investment required, 3 – Fully reconstructed, no additional investment required 4 – New building",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,
@@ -278,7 +278,8 @@ export const criteria: ICriteria[] = [
     {
         id: "c6",
         title: "Parking",
-        description: "1 - Has no parking, 2 - Has nearby public parking, 3 - Has private parking",
+        description:
+            "1 - No parking, 2 - Nearby public or paid parking, 3 - Private parking",
         minmax: "MAX",
         weight: 0.306,
         weightPercentage: 8.173,
