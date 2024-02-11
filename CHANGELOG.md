@@ -65,3 +65,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Geomean & Weight% calculations (#52).
 -   Weighted sum in Summary displaying NaN values (#55).
 -   Adding new alternatives rerenders the table (#59).
+
+## [alpha_0.2.0] - 2024-02-11
+
+### Added
+-   Optional description field for criteria (#33).
+-   Description input when defining criteria (#33).
+-   Info icon for criteria in all grids with description tooltip on hover (#33).
