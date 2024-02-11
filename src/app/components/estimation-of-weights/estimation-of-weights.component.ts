@@ -21,6 +21,7 @@ import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 import { checkWeightInput } from "../../utils/weight.helper";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
     standalone: true,
@@ -44,6 +45,7 @@ import { checkWeightInput } from "../../utils/weight.helper";
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
+        MatTooltipModule,
         TranslateModule,
     ],
 })
@@ -160,5 +162,14 @@ export class EstimationOfWeightsComponent {
 
     hasValue(val: number) {
         return !isNaN(Number(((val / this.sumOfWeights) * 100).toFixed(3)));
+    }
+
+    getTooltip(criterionTitle: string): string {
+        return this.criteriaService.getCriterionDescription(criterionTitle);
+    
+    }
+
+    hasDescription(key: string): boolean {
+        return this.criteriaService.hasDescription(key);
     }
 }
