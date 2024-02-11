@@ -16,6 +16,15 @@
         <mat-cell *matCellDef="let criterion">{{ criterion.title }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>{{
+            'defineCriteria.description' | translate
+        }}</mat-header-cell>
+        <mat-cell *matCellDef="let criterion">{{
+            criterion.description
+        }}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="minmax">
         <mat-header-cell *matHeaderCellDef>Min/Max</mat-header-cell>
         <mat-cell *matCellDef="let criterion">{{ criterion.minmax }}</mat-cell>
@@ -33,24 +42,42 @@
 
     <!-- Header Row -->
     <mat-header-row
-        *matHeaderRowDef="['title', 'minmax', 'actions']"
+        *matHeaderRowDef="['title', 'description', 'minmax', 'actions']"
     ></mat-header-row>
     <!-- Data Row -->
     <mat-row
-        *matRowDef="let criterion; columns: ['title', 'minmax', 'actions']"
+        *matRowDef="
+            let criterion;
+            columns: ['title', 'description', 'minmax', 'actions']
+        "
     ></mat-row>
 </mat-table>
 
+<!-- Input form -->
 <form
     class="flex flex-col justify-evenly items-center gap-2 w-full mt-4"
     [formGroup]="formGroup"
 >
-    <div class="grid grid-cols-2 justify-between gap-5 items-center w-full">
+    <div class="grid grid-cols-3 justify-between gap-5 items-center w-full">
         <mat-form-field color="accent">
             <mat-label>
                 {{ 'defineCriteria.criterion' | translate }}
             </mat-label>
             <input matInput formControlName="title" type="text" />
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <mat-label>
+                {{ 'defineCriteria.description' | translate }}
+            </mat-label>
+            <textarea
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                matInput
+                formControlName="description"
+                type="text"
+            ></textarea>
         </mat-form-field>
 
         <div

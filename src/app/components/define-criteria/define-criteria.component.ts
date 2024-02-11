@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, NgZone, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormControl,
@@ -21,6 +21,8 @@ import { TranslateModule } from "@ngx-translate/core";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { AlertService } from "../../services/alert.service";
 import { AlertType } from "../../enums/alert-type.enum";
+import { CdkTextareaAutosize, TextFieldModule } from "@angular/cdk/text-field";
+import { take } from "rxjs";
 
 @Component({
     standalone: true,
@@ -38,6 +40,7 @@ import { AlertType } from "../../enums/alert-type.enum";
         MatIconModule,
         MatButtonModule,
         MatTooltipModule,
+        TextFieldModule,
         TranslateModule,
     ],
     styles: [
@@ -58,18 +61,21 @@ import { AlertType } from "../../enums/alert-type.enum";
 })
 export class DefineCriteriaComponent {
     @ViewChild(MatTable) table!: MatTable<ICriteria[]>;
+    @ViewChild("autosize") autosize!: CdkTextareaAutosize;
 
     criteria!: ICriteria[];
 
     formGroup = new FormGroup({
         title: new FormControl("", [Validators.required]),
+        description: new FormControl(""),
         minmax: new FormControl("MIN", [Validators.required]),
     });
 
     constructor(
         private criteriaService: CriteriaService,
         private loadingService: LoadingService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private ngZone: NgZone
     ) {}
 
     ngOnInit(): void {
@@ -101,5 +107,11 @@ export class DefineCriteriaComponent {
         this.criteriaService.removeCriteria(id);
         this.criteria = this.criteriaService.criteria;
         this.table.renderRows();
+    }
+
+    triggerResize() {
+        this.ngZone.onStable
+            .pipe(take(1))
+            .subscribe(() => this.autosize.resizeToFitContent(true));
     }
 }
