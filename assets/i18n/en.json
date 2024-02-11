@@ -21,6 +21,7 @@
         "addCriterion": "Add Criterion",
         "criterion": "Criterion",
         "title": "Title",
+        "description": "Description",
         "disabledTooltip": "Please define at least 2 criteria to continue."
     },
     "navigation": {
