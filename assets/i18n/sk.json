@@ -21,6 +21,7 @@
         "addCriterion": "Pridať kritérium",
         "criterion": "Kritérium",
         "description": "Popis",
+        "noDescription": "Popis nie je k dispozícii",
         "title": "Názov",
         "disabledTooltip": "Prosím zadefinujte aspoň 2 kritéria."
     },
