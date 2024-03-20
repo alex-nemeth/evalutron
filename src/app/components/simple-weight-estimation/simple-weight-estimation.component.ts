@@ -14,6 +14,7 @@ import {
     ReactiveFormsModule,
     ValidationErrors,
     ValidatorFn,
+    Validators,
 } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
 import { TranslateModule } from "@ngx-translate/core";
@@ -74,12 +75,6 @@ export class SimpleWeightEstimationComponent implements OnInit {
         const weightCell: HTMLElement | null = document.querySelector(
             `#${e.target.id}`
         );
-
-        if (!checkWeightInput(weight)) {
-            weightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
-                "red";
-            return;
-        }
         // Cringe code below
         // (This targets the parent Material table cell
         // So that the entire cell is highlighted)
@@ -94,19 +89,17 @@ export class SimpleWeightEstimationComponent implements OnInit {
 
     saveWeights() {
         const weights: string[] = Object.values(this.formGroup.getRawValue());
-        let sortedWeights: string[][] = [];
+        console.log(weights);
         for (let i = 0; i < this.criteria.length; i++) {
-            let arr: string[] = [];
-            for (let j = 0; j < this.criteria.length; j++) {
-                arr.push(weights[i * this.criteria.length + j]);
-            }
-            sortedWeights.push(arr);
-            this.criteria[i].weight = this.weightService.saatysGeomean(arr);
+            this.criteria[i].weight = Number(weights[i]);
             this.criteria[i].weightPercentage =
-                (Number(arr[0]) / this.weightService.sumOfWeights) * 100;
+                (Number(weights[i]) / this.sumOfWeights) * 100;
         }
-        this.weightService.saveWeights(sortedWeights);
-        this.sumOfWeights = Number(this.weightService.sumOfWeights.toFixed(3));
+        this.sumOfWeights = weights.reduce((a, b) => a + Number(b), 0);
+        this.weightService.sumOfWeights = this.sumOfWeights;
+
+        console.log(this.criteria);
+        console.log(this.sumOfWeights);
     }
 
     initForm() {
@@ -117,15 +110,10 @@ export class SimpleWeightEstimationComponent implements OnInit {
                     value: "1",
                     disabled: false,
                 },
-                [this.weightValidator()]
+                [Validators.required, Validators.min(1)]
             );
         });
         this.formGroup = new FormGroup(formControls);
-    }
-
-    weightValidator(): ValidatorFn {
-        return (control: AbstractControl): ValidationErrors | null =>
-            checkWeightInput(control.value) ? null : { invalidNumber: true };
     }
 
     hasValue(val: number) {
