@@ -26,16 +26,20 @@ import { SimpleWeightEstimationComponent } from "../simple-weight-estimation/sim
 
 @Component({
     standalone: true,
-    selector: "app-estimation-of-weights",
-    templateUrl: "./estimation-of-weights.component.html",
+    selector: "eval-saatys-weight-estimation",
+    templateUrl: "./saatys-weight-estimation.component.html",
     styles: `
     input:disabled {
       opacity: .50;
     }
-    :host ::ng-deep .mat-mdc-cell.mdc-data-table__cell {
+    :host {
+      max-width: 100vw;
+      &::ng-deep .mat-mdc-cell.mdc-data-table__cell {
       margin-left: 0px;
       margin-right:0px;
-    }`,
+    }
+    }
+`,
     imports: [
         CommonModule,
         FormsModule,
@@ -51,12 +55,10 @@ import { SimpleWeightEstimationComponent } from "../simple-weight-estimation/sim
         TranslateModule,
     ],
 })
-export class EstimationOfWeightsComponent {
+export class SaatysWeightEstimation {
     criteria!: ICriteria[];
     weights: any[] = [];
     sumOfWeights!: number;
-    usingSaatysMethod: boolean = false;
-
     displayedColumns!: string[];
 
     formGroup = new FormGroup({});

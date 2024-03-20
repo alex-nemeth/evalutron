@@ -5,15 +5,11 @@ import { CriteriaService } from "../../services/criteria.service";
 import { ICriteria } from "../../models/criteria.model";
 import { WeightService } from "../../services/weight.service";
 import { LoadingService } from "../../services/loading.service";
-import { checkWeightInput } from "../../utils/weight.helper";
 import {
-    AbstractControl,
     FormControl,
     FormGroup,
     FormsModule,
     ReactiveFormsModule,
-    ValidationErrors,
-    ValidatorFn,
     Validators,
 } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
@@ -36,9 +32,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     ],
     templateUrl: "./simple-weight-estimation.component.html",
     styles: `
-    input:disabled {
-      opacity: .50;
-    }
     :host ::ng-deep .mat-mdc-cell.mdc-data-table__cell {
       margin-left: 0px;
       margin-right:0px;
@@ -88,7 +81,6 @@ export class SimpleWeightEstimationComponent implements OnInit {
 
     saveWeights() {
         const weights: string[] = Object.values(this.formGroup.getRawValue());
-        console.log(weights);
         for (let i = 0; i < this.criteria.length; i++) {
             this.criteria[i].weight = Number(weights[i]);
             this.criteria[i].weightPercentage =
@@ -96,9 +88,6 @@ export class SimpleWeightEstimationComponent implements OnInit {
         }
         this.sumOfWeights = weights.reduce((a, b) => a + Number(b), 0);
         this.weightService.sumOfWeights = this.sumOfWeights;
-
-        console.log(this.criteria);
-        console.log(this.sumOfWeights);
     }
 
     initForm() {
