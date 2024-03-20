@@ -18,6 +18,8 @@ import {
 } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
 import { TranslateModule } from "@ngx-translate/core";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
     selector: "eval-simple-weight-estimation",
@@ -29,6 +31,8 @@ import { TranslateModule } from "@ngx-translate/core";
         FormsModule,
         ReactiveFormsModule,
         TranslateModule,
+        MatIconModule,
+        MatTooltipModule,
     ],
     templateUrl: "./simple-weight-estimation.component.html",
     styles: `

@@ -9,7 +9,17 @@
             <mat-header-cell *matHeaderCellDef class="w-8"
                 >Criteria</mat-header-cell
             >
-            <mat-cell *matCellDef="let element">{{ element.title }}</mat-cell>
+            <mat-cell *matCellDef="let element">
+                <div class="flex flex-row gap-2 pt-3">
+                    {{ element.title }}
+                    <mat-icon
+                        *ngIf="hasDescription(element.title)"
+                        [matTooltip]="getTooltip(element.title)"
+                    >
+                        info
+                    </mat-icon>
+                </div></mat-cell
+            >
         </ng-container>
 
         <!-- Columns for Input Fields -->
