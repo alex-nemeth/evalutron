@@ -71,7 +71,6 @@ export class SimpleWeightEstimationComponent implements OnInit {
     }
 
     updateWeights(e: any) {
-        const weight = e.target.value;
         const weightCell: HTMLElement | null = document.querySelector(
             `#${e.target.id}`
         );
@@ -81,10 +80,6 @@ export class SimpleWeightEstimationComponent implements OnInit {
         weightCell!.parentElement!.parentElement!.parentElement!.style.backgroundColor =
             "#69f0ae";
         this.saveWeights();
-    }
-
-    getFormControlName(id1: string): string {
-        return id1;
     }
 
     saveWeights() {
@@ -105,13 +100,10 @@ export class SimpleWeightEstimationComponent implements OnInit {
     initForm() {
         const formControls: any = {};
         this.criteria.forEach((criteria) => {
-            formControls[`${criteria.id}`] = new FormControl(
-                {
-                    value: "1",
-                    disabled: false,
-                },
-                [Validators.required, Validators.min(1)]
-            );
+            formControls[`${criteria.id}`] = new FormControl(1, [
+                Validators.required,
+                Validators.min(1),
+            ]);
         });
         this.formGroup = new FormGroup(formControls);
     }
