@@ -86,3 +86,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 -   Localization for demo data (#63).
 -   Conditional demo data localization loading based on currently selected language (#63).
+
+## [alpha_0.2.3] - 2024-03-20
+
+### Added
+
+-   Possibility to select between a simple and Saaty's weight estimation (#65).
