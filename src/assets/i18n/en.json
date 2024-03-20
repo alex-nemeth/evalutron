@@ -33,7 +33,9 @@
     "estimationOfWeights": {
         "estimation": "Estimation of Weights",
         "geomean": "Geometric Mean",
-        "weightPercentage": "Weight %"
+        "weightPercentage": "Weight %",
+        "manualComparison": "Manual Comparison",
+        "saatysMethod": "Saaty's Method"
     },
     "defineAlternatives": {
         "defineAlternatives": "Define Alternatives",

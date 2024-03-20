@@ -33,7 +33,9 @@
     "estimationOfWeights": {
         "estimation": "Odhad váh",
         "geomean": "Geometrický priemer",
-        "weightPercentage": "Váhový podiel"
+        "weightPercentage": "Váhový podiel",
+        "manualComparison": "Manuálne porovnanie",
+        "saatysMethod": "Saatyho Metóda"
     },
     "defineAlternatives": {
         "defineAlternatives": "Definícia Alternatív",
