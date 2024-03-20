@@ -22,25 +22,31 @@ import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 import { checkWeightInput } from "../../utils/weight.helper";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { SimpleWeightEstimationComponent } from "../simple-weight-estimation/simple-weight-estimation.component";
 
 @Component({
     standalone: true,
-    selector: "app-estimation-of-weights",
-    templateUrl: "./estimation-of-weights.component.html",
+    selector: "eval-saatys-weight-estimation",
+    templateUrl: "./saatys-weight-estimation.component.html",
     styles: `
     input:disabled {
       opacity: .50;
     }
-    :host ::ng-deep .mat-mdc-cell.mdc-data-table__cell {
+    :host {
+      max-width: 100vw;
+      &::ng-deep .mat-mdc-cell.mdc-data-table__cell {
       margin-left: 0px;
       margin-right:0px;
-    }`,
+    }
+    }
+`,
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         NavButtonComponent,
         NavButtonGroupComponent,
+        SimpleWeightEstimationComponent,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
@@ -49,11 +55,10 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         TranslateModule,
     ],
 })
-export class EstimationOfWeightsComponent {
+export class SaatysWeightEstimation {
     criteria!: ICriteria[];
     weights: any[] = [];
     sumOfWeights!: number;
-
     displayedColumns!: string[];
 
     formGroup = new FormGroup({});
@@ -125,9 +130,9 @@ export class EstimationOfWeightsComponent {
                 arr.push(weights[i * this.criteria.length + j]);
             }
             sortedWeights.push(arr);
-            this.criteria[i].weight = this.weightService.geomean(arr);
+            this.criteria[i].weight = this.weightService.saatysGeomean(arr);
             this.criteria[i].weightPercentage =
-                (this.weightService.geomean(arr) /
+                (this.weightService.saatysGeomean(arr) /
                     this.weightService.sumOfWeights) *
                 100;
         }
@@ -166,7 +171,6 @@ export class EstimationOfWeightsComponent {
 
     getTooltip(criterionTitle: string): string {
         return this.criteriaService.getCriterionDescription(criterionTitle);
-    
     }
 
     hasDescription(key: string): boolean {

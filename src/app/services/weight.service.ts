@@ -7,13 +7,11 @@ export class WeightService {
     weights!: string[][];
     sumOfWeights!: number;
 
-    constructor() {}
-
     saveWeights(weights: string[][]) {
         this.weights = weights;
         let sumOfWeights = 0;
         this.weights.forEach((weight) => {
-            sumOfWeights += this.geomean(weight);
+            sumOfWeights += this.saatysGeomean(weight);
         });
         this.sumOfWeights = sumOfWeights;
     }
@@ -22,7 +20,7 @@ export class WeightService {
         return isNaN(Number(weight)) ? weight.split("/")[1] : `1/${weight}`;
     }
 
-    geomean(weights: string[]): number {
+    saatysGeomean(weights: string[]): number {
         let multipliedWeights = 1;
         weights
             .map((weight) =>
