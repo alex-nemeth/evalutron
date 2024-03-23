@@ -92,3 +92,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 -   Possibility to select between a simple and Saaty's weight estimation (#65).
+
+## [alpha_0.2.4] - 2024-03-23
+
+### Added
+
+-   Progress bar within the navbar to indicate how far the user is into the evaluation process (#57).
