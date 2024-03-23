@@ -36,7 +36,6 @@ export class AppComponent {
                     ProgressBarValue[
                         event.url as keyof typeof ProgressBarValue
                     ];
-                console.log(this.value);
             });
     }
 }
