@@ -98,3 +98,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 -   Progress bar within the navbar to indicate how far the user is into the evaluation process (#57).
+
+## [alpha_0.2.5] - 2024-03-23
+
+### Added
+
+-   Sorting for all columns on the summary page (#43).
