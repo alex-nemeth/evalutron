@@ -8,6 +8,7 @@ import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { MatSortModule, Sort } from "@angular/material/sort";
 import { WeightedSumService } from "../../services/weighted-sum.service";
+import { TopsisService } from "../../services/topsis.service";
 
 @Component({
     selector: "app-summary",
@@ -22,17 +23,23 @@ import { WeightedSumService } from "../../services/weighted-sum.service";
     templateUrl: "./summary.component.html",
 })
 export class SummaryComponent {
-    sortedData!: IAlternative[];
+    sortedDataWeightedSum!: IAlternative[];
+    sortedDataTopsis!: IAlternative[];
 
     constructor(
         private alternativeService: AlternativeService,
         private loadingService: LoadingService,
-        private weightedSumService: WeightedSumService
+        private weightedSumService: WeightedSumService,
+        private topsisService: TopsisService
     ) {}
 
     ngOnInit() {
         this.weightedSumService.calculateWeightedSums();
-        this.sortedData = this.sortBySum(
+        this.sortedDataWeightedSum = this.sortByWeightedSum(
+            this.alternativeService.alternatives
+        ).slice();
+        this.topsisService.runAllCalculations();
+        this.sortedDataTopsis = this.sortByTopsis(
             this.alternativeService.alternatives
         ).slice();
     }
@@ -41,20 +48,26 @@ export class SummaryComponent {
         this.loadingService.hide();
     }
 
-    sortBySum(alternatives: IAlternative[]) {
+    sortByWeightedSum(alternatives: IAlternative[]) {
         return alternatives.sort((a, b) => {
             return b.values.weightedSum! - a.values.weightedSum!;
+        });
+    }
+
+    sortByTopsis(alternatives: IAlternative[]) {
+        return alternatives.sort((a, b) => {
+            return b.topsisValues?.finalValue! - a.topsisValues?.finalValue!;
         });
     }
 
     sortData(sort: Sort) {
         const data = this.alternativeService.alternatives.slice();
         if (!sort.active || sort.direction === "") {
-            this.sortedData = data;
+            this.sortedDataWeightedSum = data;
             return;
         }
 
-        this.sortedData = data.sort((a, b) => {
+        this.sortedDataWeightedSum = data.sort((a, b) => {
             const isAsc = sort.direction === "asc";
             switch (sort.active) {
                 case "id":
@@ -69,6 +82,12 @@ export class SummaryComponent {
                     return this.compare(
                         a.values.weightedSum!,
                         b.values.weightedSum!,
+                        isAsc
+                    );
+                case "topsis":
+                    return this.compare(
+                        a.topsisValues!.finalValue!,
+                        b.topsisValues!.finalValue!,
                         isAsc
                     );
                 default:
