@@ -7,6 +7,7 @@ import { MatTableModule } from "@angular/material/table";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { MatSortModule, Sort } from "@angular/material/sort";
+import { WeightedSumService } from "../../services/weighted-sum.service";
 
 @Component({
     selector: "app-summary",
@@ -25,15 +26,15 @@ export class SummaryComponent {
 
     constructor(
         private alternativeService: AlternativeService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private weightedSumService: WeightedSumService
     ) {}
 
     ngOnInit() {
-        this.alternativeService.calculateWeightedSums();
+        this.weightedSumService.calculateWeightedSums();
         this.sortedData = this.sortBySum(
             this.alternativeService.alternatives
         ).slice();
-        console.log("a1".split("a"));
     }
 
     ngAfterViewInit(): void {

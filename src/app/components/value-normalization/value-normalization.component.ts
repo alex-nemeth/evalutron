@@ -10,6 +10,7 @@ import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
+import { TopsisService } from "../../services/topsis.service";
 
 @Component({
     selector: "app-value-normalization",
@@ -34,7 +35,8 @@ export class ValueNormalizationComponent {
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private topsisService: TopsisService
     ) {}
 
     ngOnInit(): void {
@@ -43,6 +45,7 @@ export class ValueNormalizationComponent {
         this.criteria = this.criteriaService.criteria;
         this.criteriaTitles = this.criteriaService.getCriteriaTitles();
         this.alternativeService.generateNormalizedValues();
+        this.topsisService.normalizeValues();
     }
 
     ngAfterViewInit(): void {

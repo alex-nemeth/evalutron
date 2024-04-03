@@ -10,7 +10,14 @@ export interface IAlternative {
         };
         normalized?: {
             [key: string]: number;
-        }
+        };
         weightedSum?: number;
-    }
+    };
+    topsisValues?: {
+        normalized?: {
+            [key: string]: number;
+        };
+        idealValue?: number;
+        basalValue?: number;
+    };
 }
