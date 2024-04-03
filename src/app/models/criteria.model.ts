@@ -5,4 +5,6 @@ export interface ICriteria {
     minmax: string;
     weight?: number;
     weightPercentage?: number;
+    idealValue?: number;
+    basalValue?: number;
 }

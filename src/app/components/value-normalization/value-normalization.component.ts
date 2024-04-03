@@ -35,8 +35,7 @@ export class ValueNormalizationComponent {
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService,
-        private topsisService: TopsisService
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit(): void {
@@ -45,7 +44,6 @@ export class ValueNormalizationComponent {
         this.criteria = this.criteriaService.criteria;
         this.criteriaTitles = this.criteriaService.getCriteriaTitles();
         this.alternativeService.generateNormalizedValues();
-        this.topsisService.normalizeValues();
     }
 
     ngAfterViewInit(): void {
