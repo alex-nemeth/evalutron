@@ -21,6 +21,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
+import { WeightedSumService } from "../../services/weighted-sum.service";
 
 @Component({
     standalone: true,
@@ -54,12 +55,15 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private weightedSumService: WeightedSumService
     ) {}
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.initForm();
+        this.weightedSumService.maximizeValues();
+        console.log(this.alternativeService.alternatives);
     }
 
     ngAfterViewInit(): void {
@@ -99,9 +103,7 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
 
         const newAlternative: Partial<IAlternative> = {
             title: title,
-            values: {
-                raw: rawValues,
-            },
+            rawValues: rawValues,
         };
 
         this.alternativeService.addAlternative(newAlternative);
@@ -110,13 +112,13 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
 
     toggleNormalization() {
         if (!this.showCalculatedValues) {
-            this.alternativeService.generateCalculatedValues();
+            // this.alternativeService.generateCalculatedValues();
             this.sumsOfValues = this.alternativeService.sumsOfValues;
         }
         this.showCalculatedValues = !this.showCalculatedValues;
     }
 
     ngOnDestroy() {
-        this.alternativeService.generateCalculatedValues();
+        //   this.alternativeService.generateCalculatedValues();
     }
 }

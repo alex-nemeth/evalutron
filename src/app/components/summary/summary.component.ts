@@ -50,7 +50,10 @@ export class SummaryComponent {
 
     sortByWeightedSum(alternatives: IAlternative[]) {
         return alternatives.sort((a, b) => {
-            return b.values.weightedSum! - a.values.weightedSum!;
+            return (
+                b.weightedSumValues?.finalValue! -
+                a.weightedSumValues?.finalValue!
+            );
         });
     }
 
@@ -80,8 +83,8 @@ export class SummaryComponent {
                     return this.compare(a.title, b.title, isAsc);
                 case "weightedSum":
                     return this.compare(
-                        a.values.weightedSum!,
-                        b.values.weightedSum!,
+                        a.weightedSumValues?.finalValue!,
+                        b.weightedSumValues?.finalValue!,
                         isAsc
                     );
                 case "topsis":
@@ -92,8 +95,8 @@ export class SummaryComponent {
                     );
                 default:
                     return this.compare(
-                        a.values.weightedSum!,
-                        b.values.weightedSum!,
+                        a.weightedSumValues?.finalValue!,
+                        b.weightedSumValues?.finalValue!,
                         isAsc
                     );
             }

@@ -40,12 +40,12 @@ export class AlternativeService {
     findMaxValues() {
         const maxValues: { [key: string]: number } = {};
         this.alternatives.forEach((alternative: IAlternative) => {
-            Object.keys(alternative.values.raw!).forEach((key) => {
+            Object.keys(alternative.rawValues!).forEach((key) => {
                 if (
                     !(key in maxValues) ||
-                    Number(alternative.values.raw![key]) > maxValues[key]
+                    Number(alternative.rawValues![key]) > maxValues[key]
                 )
-                    maxValues[key] = Number(alternative.values.raw![key]);
+                    maxValues[key] = Number(alternative.rawValues![key]);
             });
         });
         this.maxValues = maxValues;
@@ -54,72 +54,41 @@ export class AlternativeService {
     findMinValues() {
         const minValues: { [key: string]: number } = {};
         this.alternatives.forEach((alternative: IAlternative) => {
-            Object.keys(alternative.values.raw!).forEach((key) => {
+            Object.keys(alternative.rawValues!).forEach((key) => {
                 if (
                     !(key in minValues) ||
-                    Number(alternative.values.raw![key]) < minValues[key]
+                    Number(alternative.rawValues![key]) < minValues[key]
                 )
-                    minValues[key] = Number(alternative.values.raw![key]);
+                    minValues[key] = Number(alternative.rawValues![key]);
             });
         });
         this.minValues = minValues;
     }
 
-    generateCalculatedValues(): void {
+    findMinMaxValues() {
         this.findMinValues();
         this.findMaxValues();
-        this.alternatives.forEach((alternative: IAlternative) => {
-            Object.keys(alternative.values.raw!).forEach((key: string) => {
-                alternative.values.calculated = {
-                    ...alternative.values!.calculated,
-                    [key]:
-                        this.criteriaService.criteria.find(
-                            (c: ICriteria) => c.title === key
-                        )?.minmax === "MIN"
-                            ? this.minValues[key] /
-                              alternative.values!.raw![key]
-                            : alternative.values!.raw![key] /
-                              this.maxValues[key],
-                };
-            });
-        });
-        this.getCalculatedSumsOfValues();
     }
 
-    generateNormalizedValues(): any {
-        this.alternatives.forEach((alternative: IAlternative) => {
-            Object.keys(alternative.values.calculated!).forEach(
-                (key: string) => {
-                    alternative.values.normalized = {
-                        ...alternative.values.normalized,
-                        [key]:
-                            alternative.values!.calculated![key] /
-                            this.sumsOfValues[key],
-                    };
-                }
-            );
-        });
-    }
-
-    getCalculatedSumsOfValues() {
-        let sumsOfValues = {};
-        this.criteriaService.criteria.forEach((c: ICriteria) => {
-            let sum = 0;
-            this.alternatives.forEach(
-                (alt: IAlternative) => (sum += alt.values.calculated![c.title])
-            );
-            sumsOfValues = { ...sumsOfValues, [c.title]: sum };
-        });
-        this.sumsOfValues = sumsOfValues;
-        return this.sumsOfValues;
-    }
+    //  getCalculatedSumsOfValues() {
+    //      let sumsOfValues = {};
+    //      this.criteriaService.criteria.forEach((c: ICriteria) => {
+    //          let sum = 0;
+    //          this.alternatives.forEach(
+    //              (alt: IAlternative) => (sum += alt.values.calculated![c.title])
+    //          );
+    //          sumsOfValues = { ...sumsOfValues, [c.title]: sum };
+    //      });
+    //      this.sumsOfValues = sumsOfValues;
+    //      return this.sumsOfValues;
+    //  }
 
     getRawSumsOfValues() {
         let sumsOfValues = {};
         this.criteriaService.criteria.forEach((c: ICriteria) => {
             let sum = 0;
             this.alternatives.forEach(
-                (alt: IAlternative) => (sum += alt.values.raw![c.title])
+                (alt: IAlternative) => (sum += alt.rawValues![c.title])
             );
             sumsOfValues = { ...sumsOfValues, [c.title]: sum };
         });

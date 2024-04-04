@@ -15,13 +15,14 @@
                     <p>{{ key }}</p>
                     <mat-icon
                         *ngIf="hasDescription(key)"
-                        [matTooltip]="getTooltip(key)">
+                        [matTooltip]="getTooltip(key)"
+                    >
                         info
                     </mat-icon>
                 </div>
             </th>
             <td mat-cell *matCellDef="let alternative">
-                {{ alternative.values[gridMode][key] | number : '1.0-3' }}
+                {{ alternative.rawValues[key] | number : '1.0-3' }}
             </td>
         </ng-container>
     </ng-container>
