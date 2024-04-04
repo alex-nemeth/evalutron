@@ -37,9 +37,6 @@ export class TopsisService {
         );
     }
 
-    //     Then
-    // forEach(alt) => alt.normalizedValue / weight%
-
     precalculateValues() {
         this.alternativeService.alternatives.forEach(
             (alternative: IAlternative) => {
@@ -48,7 +45,7 @@ export class TopsisService {
                         alternative.topsisValues!.calculated = {
                             ...alternative.topsisValues?.calculated,
                             [key]:
-                                alternative.topsisValues!.normalized![key] /
+                                alternative.topsisValues!.normalized![key] *
                                 (this.criteriaService.criteria.find(
                                     (criterion: ICriteria) =>
                                         criterion.title === key
@@ -72,8 +69,8 @@ export class TopsisService {
                         alternative.topsisValues!.calculated![criterion.title]
                     )
             );
-            criterion.basalValue = Math.min(...values);
             criterion.idealValue = Math.max(...values);
+            criterion.basalValue = Math.min(...values);
         });
     }
 
@@ -93,11 +90,19 @@ export class TopsisService {
                             ] - criterion.idealValue!,
                             2
                         );
-                        alternative.topsisValues!.vMinus! +=
+                        alternative.topsisValues!.vMinus! += Math.pow(
                             alternative.topsisValues!.calculated![
                                 criterion.title
-                            ] - criterion.basalValue!;
+                            ] - criterion.basalValue!,
+                            2
+                        );
                     }
+                );
+                alternative.topsisValues!.vPlus = Math.sqrt(
+                    alternative.topsisValues!.vPlus
+                );
+                alternative.topsisValues!.vMinus = Math.sqrt(
+                    alternative.topsisValues!.vMinus
                 );
             }
         );
