@@ -14,6 +14,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a2",
@@ -26,6 +28,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a3",
@@ -38,6 +42,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a4",
@@ -50,6 +56,8 @@ export const alternatives: IAlternative[] = [
             Stav: 1,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a5",
@@ -62,6 +70,8 @@ export const alternatives: IAlternative[] = [
             Stav: 1,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a6",
@@ -74,6 +84,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a7",
@@ -86,6 +98,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a8",
@@ -98,6 +112,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a9",
@@ -110,6 +126,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a10",
@@ -122,6 +140,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a11",
@@ -134,6 +154,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a12",
@@ -146,6 +168,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a13",
@@ -158,6 +182,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a14",
@@ -170,6 +196,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a15",
@@ -182,6 +210,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a16",
@@ -194,6 +224,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
 ];
 
@@ -201,6 +233,8 @@ export const sumsOfValues: { [key: string]: number } = {
     Cena: 4.81,
     "Vzdialenosť (km)": 4.04,
     "Počet izieb": 6.25,
+    weight: 1,
+    weightPercentage: 16.667,
 };
 
 // Criteria Data
@@ -209,30 +243,30 @@ export const criteria: ICriteria[] = [
         id: "c1",
         title: "Cena",
         minmax: "MIN",
-        weight: 2.466,
-        weightPercentage: 65.865,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c2",
         title: "Vzdialenosť (km)",
         description: "Vzdialenosť od centra mesta v kilometroch.",
         minmax: "MIN",
-        weight: 1.326,
-        weightPercentage: 35.416,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c3",
         title: "Počet izieb",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c4",
         title: "Rozloha (m2)",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c5",
@@ -240,15 +274,15 @@ export const criteria: ICriteria[] = [
         description:
             "1 – Pôvodný stav, nutnosť značnej dodatočnej investície, 2 – Čiastočná rekonštrukcia, potrebná dodatočná investícia je minimálna, 3 – Plne zrekonštruovaná, 4 – Novostavba",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c6",
         title: "Parkovanie",
         description: "1 - Žiadne, 2 - Verejné alebo spoplatnené, 3 - Súkromné",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
 ];

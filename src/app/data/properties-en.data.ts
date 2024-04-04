@@ -229,42 +229,36 @@ export const alternatives: IAlternative[] = [
     },
 ];
 
-export const sumsOfValues: { [key: string]: number } = {
-    Price: 4.81,
-    Distance: 4.04,
-    "# of Rooms": 6.25,
-};
-
 // Criteria Data
 export const criteria: ICriteria[] = [
     {
         id: "c1",
         title: "Price",
         minmax: "MIN",
-        weight: 2.466,
-        weightPercentage: 65.865,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c2",
         title: "Distance (km)",
         description: "Distance from the city center in kilometres.",
         minmax: "MIN",
-        weight: 1.326,
-        weightPercentage: 35.416,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c3",
         title: "# of Rooms",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c4",
         title: "Size (m2)",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c5",
@@ -272,8 +266,8 @@ export const criteria: ICriteria[] = [
         description:
             "1 – Former condition, greater additional investment required, 2 – Partially reconstructed, low additional investment required, 3 – Fully reconstructed, no additional investment required 4 – New building",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c6",
@@ -281,7 +275,7 @@ export const criteria: ICriteria[] = [
         description:
             "1 - No parking, 2 - Nearby public or paid parking, 3 - Private parking",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
 ];

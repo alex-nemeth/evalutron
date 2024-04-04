@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormBuilder,
@@ -21,7 +21,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
-import { WeightedSumService } from "../../services/weighted-sum.service";
 
 @Component({
     standalone: true,
@@ -40,12 +39,10 @@ import { WeightedSumService } from "../../services/weighted-sum.service";
         TranslateModule,
     ],
 })
-export class DefineAlternativesComponent implements OnInit, OnDestroy {
+export class DefineAlternativesComponent implements OnInit {
     criteria!: ICriteria[];
     calculatedAlternatives!: IAlternative[];
     sumsOfValues!: { [key: string]: number };
-
-    showCalculatedValues: boolean = false;
 
     AlternativesGridMode = AlternativesGridMode;
 
@@ -55,14 +52,12 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder,
-        private loadingService: LoadingService,
-        private weightedSumService: WeightedSumService
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.initForm();
-        this.weightedSumService.maximizeValues();
     }
 
     ngAfterViewInit(): void {
@@ -107,17 +102,5 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
 
         this.alternativeService.addAlternative(newAlternative);
         this.formGroup.reset();
-    }
-
-    toggleNormalization() {
-        if (!this.showCalculatedValues) {
-            // this.alternativeService.generateCalculatedValues();
-            this.sumsOfValues = this.alternativeService.sumsOfValues;
-        }
-        this.showCalculatedValues = !this.showCalculatedValues;
-    }
-
-    ngOnDestroy() {
-        //   this.alternativeService.generateCalculatedValues();
     }
 }

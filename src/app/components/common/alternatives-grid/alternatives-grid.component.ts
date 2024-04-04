@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { CriteriaService } from "../../../services/criteria.service";
 import { AlternativeService } from "../../../services/alternative.service";
 import { IAlternative } from "../../../models/alternative.model";
-import { AlternativesGridMode } from "../../../enums/alternatives-grid-mode.enum";
 import { MatTable, MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { TranslateModule } from "@ngx-translate/core";
@@ -23,9 +22,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 })
 export class AlternativesGridComponent {
     @ViewChild(MatTable) table!: MatTable<IAlternative[]>;
-
-    @Input() gridMode!: AlternativesGridMode;
-    AlternativesGridMode = AlternativesGridMode;
 
     columns!: number;
     alternatives!: IAlternative[];

@@ -4,13 +4,13 @@ import { Injectable } from "@angular/core";
     providedIn: "root",
 })
 export class WeightService {
-    weights!: string[][];
+    weights!: any;
     sumOfWeights!: number;
 
-    saveWeights(weights: string[][]) {
+    saveWeights(weights: any) {
         this.weights = weights;
         let sumOfWeights = 0;
-        this.weights.forEach((weight) => {
+        this.weights.forEach((weight: any) => {
             sumOfWeights += this.saatysGeomean(weight);
         });
         this.sumOfWeights = sumOfWeights;

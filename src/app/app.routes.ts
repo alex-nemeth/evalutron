@@ -3,7 +3,6 @@ import { DefineCriteriaComponent } from "./components/define-criteria/define-cri
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { SaatysWeightEstimation } from "./components/saatys-weight-estimation/saatys-weight-estimation.component";
 import { DefineAlternativesComponent } from "./components/define-alternatives/define-alternatives.component";
-import { ValueNormalizationComponent } from "./components/value-normalization/value-normalization.component";
 import { SummaryComponent } from "./components/summary/summary.component";
 import { WeightsEstimationComponent } from "./components/weights-estimation/weights-estimation.component";
 
@@ -27,11 +26,6 @@ export const routes: Routes = [
         path: "alternatives",
         title: "Define Alternatives - Evalutron",
         component: DefineAlternativesComponent,
-    },
-    {
-        path: "normalization",
-        title: "Normalization of Values - Evalutron",
-        component: ValueNormalizationComponent,
     },
     {
         path: "summary",
