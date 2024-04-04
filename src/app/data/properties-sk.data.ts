@@ -14,6 +14,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a2",
@@ -26,6 +28,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a3",
@@ -38,6 +42,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a4",
@@ -50,6 +56,8 @@ export const alternatives: IAlternative[] = [
             Stav: 1,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a5",
@@ -62,6 +70,8 @@ export const alternatives: IAlternative[] = [
             Stav: 1,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a6",
@@ -74,6 +84,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a7",
@@ -86,6 +98,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a8",
@@ -98,6 +112,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a9",
@@ -110,6 +126,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a10",
@@ -122,6 +140,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a11",
@@ -134,6 +154,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a12",
@@ -146,6 +168,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a13",
@@ -158,6 +182,8 @@ export const alternatives: IAlternative[] = [
             Stav: 4,
             Parkovanie: 2,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a14",
@@ -170,6 +196,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 1,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a15",
@@ -182,6 +210,8 @@ export const alternatives: IAlternative[] = [
             Stav: 3,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
     {
         id: "a16",
@@ -194,6 +224,8 @@ export const alternatives: IAlternative[] = [
             Stav: 2,
             Parkovanie: 3,
         },
+        weightedSumValues: {},
+        topsisValues: {},
     },
 ];
 

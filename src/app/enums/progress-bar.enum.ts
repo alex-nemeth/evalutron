@@ -1,8 +1,7 @@
 export enum ProgressBarValue {
     "/" = 0,
-    "/criteria" = 20,
-    "/weights-estimation" = 40,
-    "/alternatives" = 60,
-    "/normalization" = 80,
+    "/criteria" = 25,
+    "/weights-estimation" = 50,
+    "/alternatives" = 75,
     "/summary" = 100,
 }

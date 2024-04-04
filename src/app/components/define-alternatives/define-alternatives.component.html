@@ -2,8 +2,8 @@
     {{ 'defineAlternatives.defineAlternatives' | translate }}
 </header>
 
-<div *ngIf="!showCalculatedValues">
-    <eval-alternatives-grid [gridMode]="AlternativesGridMode.Raw" />
+<div>
+    <eval-alternatives-grid />
     <form
         class="flex flex-col gap-2 mt-4"
         [formGroup]="formGroup"
@@ -40,22 +40,7 @@
     </form>
 </div>
 
-<!-- <eval-alternatives-grid
-    *ngIf="showCalculatedValues"
-    [gridMode]="AlternativesGridMode.Calculated"
-/> -->
-
-<eval-submit-button
-    (click)="toggleNormalization()"
-    text="{{
-        (showCalculatedValues
-            ? 'defineAlternatives.viewRealValues'
-            : 'defineAlternatives.viewCalculatedValues'
-        ) | translate
-    }}"
-/>
-
 <eval-nav-button-group
     routeBack="/weights-estimation"
-    routeForward="/normalization"
+    routeForward="/summary"
 />

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormBuilder,
@@ -40,12 +40,10 @@ import { WeightedSumService } from "../../services/weighted-sum.service";
         TranslateModule,
     ],
 })
-export class DefineAlternativesComponent implements OnInit, OnDestroy {
+export class DefineAlternativesComponent implements OnInit {
     criteria!: ICriteria[];
     calculatedAlternatives!: IAlternative[];
     sumsOfValues!: { [key: string]: number };
-
-    showCalculatedValues: boolean = false;
 
     AlternativesGridMode = AlternativesGridMode;
 
@@ -107,17 +105,5 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
 
         this.alternativeService.addAlternative(newAlternative);
         this.formGroup.reset();
-    }
-
-    toggleNormalization() {
-        if (!this.showCalculatedValues) {
-            // this.alternativeService.generateCalculatedValues();
-            this.sumsOfValues = this.alternativeService.sumsOfValues;
-        }
-        this.showCalculatedValues = !this.showCalculatedValues;
-    }
-
-    ngOnDestroy() {
-        //   this.alternativeService.generateCalculatedValues();
     }
 }
