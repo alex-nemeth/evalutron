@@ -12,7 +12,13 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 @Component({
     selector: "eval-alternatives-grid",
     standalone: true,
-    imports: [CommonModule, MatTableModule, MatIconModule, TranslateModule, MatTooltipModule],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatIconModule,
+        TranslateModule,
+        MatTooltipModule,
+    ],
     templateUrl: "./alternatives-grid.component.html",
 })
 export class AlternativesGridComponent {
@@ -50,7 +56,7 @@ export class AlternativesGridComponent {
             return [];
         }
 
-        return Object.keys(sampleAlternative.values[this.gridMode]!);
+        return Object.keys(sampleAlternative.rawValues);
     }
 
     removeAlternative(id: string) {
@@ -61,7 +67,6 @@ export class AlternativesGridComponent {
 
     getTooltip(criterionTitle: string): string {
         return this.criteriaService.getCriterionDescription(criterionTitle);
-    
     }
 
     hasDescription(key: string): boolean {

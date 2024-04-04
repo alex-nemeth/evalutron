@@ -13,23 +13,20 @@ export class TopsisService {
         private criteriaService: CriteriaService
     ) {}
 
-    idealValue!: number;
-    basalValue!: number;
-
     normalizeValues() {
         const sumsOfValues = this.alternativeService.getRawSumsOfValues();
         this.alternativeService.alternatives.forEach(
             (alternative: IAlternative) => {
-                Object.keys(alternative.values.raw!).forEach((key: string) => {
+                Object.keys(alternative.rawValues!).forEach((key: string) => {
                     alternative.topsisValues!.normalized = {
                         ...alternative.topsisValues?.normalized,
                         [key]:
                             this.criteriaService.criteria.find(
                                 (c: ICriteria) => c.title === key
                             )?.minmax === "MIN"
-                                ? -alternative.values.raw![key] /
+                                ? -alternative.rawValues![key] /
                                   sumsOfValues[key]
-                                : alternative.values.raw![key] /
+                                : alternative.rawValues![key] /
                                   sumsOfValues[key],
                     };
                 });
@@ -112,14 +109,10 @@ export class TopsisService {
         this.alternativeService.alternatives.forEach(
             (alternative: IAlternative) => {
                 alternative.topsisValues!.finalValue =
-                    alternative.topsisValues!.vMinus! /
-                    (alternative.topsisValues!.vMinus! +
-                        alternative.topsisValues!.vPlus!);
-            }
-        );
-        this.alternativeService.alternatives.forEach(
-            (alternative: IAlternative) => {
-                console.log(alternative.topsisValues?.finalValue);
+                    (alternative.topsisValues!.vMinus! /
+                        (alternative.topsisValues!.vMinus! +
+                            alternative.topsisValues!.vPlus!)) *
+                    100;
             }
         );
     }

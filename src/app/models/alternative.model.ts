@@ -1,17 +1,17 @@
 export interface IAlternative {
     id?: string;
     title: string;
-    values: {
-        raw?: {
-            [key: string]: number;
-        };
-        calculated?: {
-            [key: string]: number;
-        };
+    rawValues: {
+        [key: string]: number;
+    };
+    weightedSumValues?: {
         normalized?: {
             [key: string]: number;
         };
-        weightedSum?: number;
+        maximized?: {
+            [key: string]: number;
+        };
+        finalValue?: number;
     };
     topsisValues?: {
         normalized?: {
@@ -20,8 +20,6 @@ export interface IAlternative {
         calculated?: {
             [key: string]: number;
         };
-        idealValue?: number;
-        basalValue?: number;
         vPlus?: number;
         vMinus?: number;
         finalValue?: number;

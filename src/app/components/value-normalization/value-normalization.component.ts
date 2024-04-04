@@ -11,6 +11,7 @@ import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
 import { TopsisService } from "../../services/topsis.service";
+import { WeightedSumService } from "../../services/weighted-sum.service";
 
 @Component({
     selector: "app-value-normalization",
@@ -35,7 +36,8 @@ export class ValueNormalizationComponent {
     constructor(
         private alternativeService: AlternativeService,
         private criteriaService: CriteriaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private weightedSumService: WeightedSumService
     ) {}
 
     ngOnInit(): void {
@@ -43,7 +45,7 @@ export class ValueNormalizationComponent {
         this.sumsOfValues = this.alternativeService.sumsOfValues;
         this.criteria = this.criteriaService.criteria;
         this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-        this.alternativeService.generateNormalizedValues();
+        this.weightedSumService.maximizeValues();
     }
 
     ngAfterViewInit(): void {
