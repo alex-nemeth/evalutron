@@ -24,4 +24,5 @@ export interface IAlternative {
         vMinus?: number;
         finalValue?: number;
     };
+    score?: number;
 }
