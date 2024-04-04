@@ -110,3 +110,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 -   TOPSIS evaluation method calculations and output on the summary page (#16).
+
+## [alpha_0.4.1] - 2024-04-04
+
+### Changed
+
+-   Weighted sum method calculations extracted to it's own service (#73).
+-   Scores from both methods multiplied by 100 in the frontend (#73).
+-   Updated demo data to reflect new alternative model (#73).
