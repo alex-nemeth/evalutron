@@ -34,7 +34,7 @@ export class SummaryComponent {
     ) {}
 
     ngOnInit() {
-        this.weightedSumService.calculateWeightedSums();
+        this.weightedSumService.runAllCalculations();
         this.sortedDataWeightedSum = this.sortByWeightedSum(
             this.alternativeService.alternatives
         ).slice();

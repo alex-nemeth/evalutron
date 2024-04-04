@@ -53,4 +53,9 @@ export class WeightedSumService {
             }
         );
     }
+
+    runAllCalculations() {
+        this.maximizeValues();
+        this.calculateWeightedSums();
+    }
 }

@@ -21,7 +21,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
-import { WeightedSumService } from "../../services/weighted-sum.service";
 
 @Component({
     standalone: true,
@@ -53,14 +52,12 @@ export class DefineAlternativesComponent implements OnInit {
         private criteriaService: CriteriaService,
         private alternativeService: AlternativeService,
         private formBuilder: FormBuilder,
-        private loadingService: LoadingService,
-        private weightedSumService: WeightedSumService
+        private loadingService: LoadingService
     ) {}
 
     ngOnInit() {
         this.criteria = this.criteriaService.criteria;
         this.initForm();
-        this.weightedSumService.maximizeValues();
     }
 
     ngAfterViewInit(): void {

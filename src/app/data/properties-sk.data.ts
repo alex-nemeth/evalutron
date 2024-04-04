@@ -233,6 +233,8 @@ export const sumsOfValues: { [key: string]: number } = {
     Cena: 4.81,
     "Vzdialenosť (km)": 4.04,
     "Počet izieb": 6.25,
+    weight: 1,
+    weightPercentage: 16.667,
 };
 
 // Criteria Data
@@ -241,30 +243,30 @@ export const criteria: ICriteria[] = [
         id: "c1",
         title: "Cena",
         minmax: "MIN",
-        weight: 2.466,
-        weightPercentage: 65.865,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c2",
         title: "Vzdialenosť (km)",
         description: "Vzdialenosť od centra mesta v kilometroch.",
         minmax: "MIN",
-        weight: 1.326,
-        weightPercentage: 35.416,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c3",
         title: "Počet izieb",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c4",
         title: "Rozloha (m2)",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c5",
@@ -272,15 +274,15 @@ export const criteria: ICriteria[] = [
         description:
             "1 – Pôvodný stav, nutnosť značnej dodatočnej investície, 2 – Čiastočná rekonštrukcia, potrebná dodatočná investícia je minimálna, 3 – Plne zrekonštruovaná, 4 – Novostavba",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
     {
         id: "c6",
         title: "Parkovanie",
         description: "1 - Žiadne, 2 - Verejné alebo spoplatnené, 3 - Súkromné",
         minmax: "MAX",
-        weight: 0.306,
-        weightPercentage: 8.173,
+        weight: 1,
+        weightPercentage: 16.667,
     },
 ];

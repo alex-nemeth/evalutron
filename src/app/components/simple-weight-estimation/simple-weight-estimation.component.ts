@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
 import { CriteriaService } from "../../services/criteria.service";
 import { ICriteria } from "../../models/criteria.model";
-import { WeightService } from "../../services/weight.service";
 import { LoadingService } from "../../services/loading.service";
 import {
     FormControl,
@@ -16,6 +15,7 @@ import { MatTableModule } from "@angular/material/table";
 import { TranslateModule } from "@ngx-translate/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { WeightService } from "../../services/weight.service";
 
 @Component({
     selector: "eval-simple-weight-estimation",
@@ -59,7 +59,7 @@ export class SimpleWeightEstimationComponent implements OnInit {
             "geomean",
             "weightPercentage",
         ];
-        this.weights = this.weightService.weights;
+        this.weights = this.criteria.map((c) => "1");
         this.initForm();
     }
 
@@ -81,6 +81,7 @@ export class SimpleWeightEstimationComponent implements OnInit {
 
     saveWeights() {
         const weights: string[] = Object.values(this.formGroup.getRawValue());
+        this.sumOfWeights = weights.reduce((a, b) => a + Number(b), 0);
         for (let i = 0; i < this.criteria.length; i++) {
             this.criteria[i].weight = Number(weights[i]);
             this.criteria[i].weightPercentage =
