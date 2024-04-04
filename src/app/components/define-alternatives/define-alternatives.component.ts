@@ -63,7 +63,6 @@ export class DefineAlternativesComponent implements OnInit, OnDestroy {
         this.criteria = this.criteriaService.criteria;
         this.initForm();
         this.weightedSumService.maximizeValues();
-        console.log(this.alternativeService.alternatives);
     }
 
     ngAfterViewInit(): void {

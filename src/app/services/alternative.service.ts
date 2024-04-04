@@ -70,19 +70,6 @@ export class AlternativeService {
         this.findMaxValues();
     }
 
-    //  getCalculatedSumsOfValues() {
-    //      let sumsOfValues = {};
-    //      this.criteriaService.criteria.forEach((c: ICriteria) => {
-    //          let sum = 0;
-    //          this.alternatives.forEach(
-    //              (alt: IAlternative) => (sum += alt.values.calculated![c.title])
-    //          );
-    //          sumsOfValues = { ...sumsOfValues, [c.title]: sum };
-    //      });
-    //      this.sumsOfValues = sumsOfValues;
-    //      return this.sumsOfValues;
-    //  }
-
     getRawSumsOfValues() {
         let sumsOfValues = {};
         this.criteriaService.criteria.forEach((c: ICriteria) => {

@@ -13,9 +13,6 @@ export class TopsisService {
         private criteriaService: CriteriaService
     ) {}
 
-    idealValue!: number;
-    basalValue!: number;
-
     normalizeValues() {
         const sumsOfValues = this.alternativeService.getRawSumsOfValues();
         this.alternativeService.alternatives.forEach(
@@ -116,11 +113,6 @@ export class TopsisService {
                         (alternative.topsisValues!.vMinus! +
                             alternative.topsisValues!.vPlus!)) *
                     100;
-            }
-        );
-        this.alternativeService.alternatives.forEach(
-            (alternative: IAlternative) => {
-                console.log(alternative.topsisValues?.finalValue);
             }
         );
     }
