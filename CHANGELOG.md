@@ -118,3 +118,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -   Weighted sum method calculations extracted to it's own service (#73).
 -   Scores from both methods multiplied by 100 in the frontend (#73).
 -   Updated demo data to reflect new alternative model (#73).
+
+## [alpha_0.4.2] - 2024-04-04
+
+### Removed
+
+-   Unnecessary grid views and options (#74).
+
+### Fixed
+
+-   Saaty's method calculations (#74).
