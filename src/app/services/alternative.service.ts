@@ -83,7 +83,7 @@ export class AlternativeService {
                 };
             });
         });
-        this.getSumsOfValues();
+        this.getCalculatedSumsOfValues();
     }
 
     generateNormalizedValues(): any {
@@ -101,21 +101,7 @@ export class AlternativeService {
         });
     }
 
-    calculateWeightedSums() {
-        this.alternatives.forEach((alternative: IAlternative) => {
-            let weightedSum = 0;
-            this.criteriaService.criteria.forEach((criterion: ICriteria) => {
-                const criterionValue =
-                    alternative.values.normalized![criterion.title];
-                const weightedValue =
-                    criterionValue * criterion.weightPercentage!;
-                weightedSum += weightedValue;
-            });
-            alternative.values.weightedSum = weightedSum;
-        });
-    }
-
-    getSumsOfValues() {
+    getCalculatedSumsOfValues() {
         let sumsOfValues = {};
         this.criteriaService.criteria.forEach((c: ICriteria) => {
             let sum = 0;
@@ -125,6 +111,20 @@ export class AlternativeService {
             sumsOfValues = { ...sumsOfValues, [c.title]: sum };
         });
         this.sumsOfValues = sumsOfValues;
+        return this.sumsOfValues;
+    }
+
+    getRawSumsOfValues() {
+        let sumsOfValues = {};
+        this.criteriaService.criteria.forEach((c: ICriteria) => {
+            let sum = 0;
+            this.alternatives.forEach(
+                (alt: IAlternative) => (sum += alt.values.raw![c.title])
+            );
+            sumsOfValues = { ...sumsOfValues, [c.title]: sum };
+        });
+        this.sumsOfValues = sumsOfValues;
+        return this.sumsOfValues;
     }
 
     loadDemoAlternatives() {

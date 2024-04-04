@@ -10,6 +10,7 @@ import { AlternativesGridMode } from "../../enums/alternatives-grid-mode.enum";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-group.component";
+import { TopsisService } from "../../services/topsis.service";
 
 @Component({
     selector: "app-value-normalization",

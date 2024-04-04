@@ -28,8 +28,4 @@ export class WeightsEstimationComponent {
     ngAfterViewInit(): void {
         this.loadingService.hide();
     }
-
-    logMethod() {
-        console.log(this.usingSaatysMethod);
-    }
 }

@@ -104,3 +104,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 -   Sorting for all columns on the summary page (#43).
+
+## [alpha_0.4.0] - 2024-04-04
+
+### Added
+
+-   TOPSIS evaluation method calculations and output on the summary page (#16).

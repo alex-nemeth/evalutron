@@ -16,6 +16,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a2",
@@ -30,6 +31,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 2,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a3",
@@ -44,6 +46,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 1,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a4",
@@ -58,6 +61,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 1,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a5",
@@ -72,6 +76,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a6",
@@ -86,6 +91,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a7",
@@ -100,6 +106,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a8",
@@ -114,6 +121,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a9",
@@ -128,6 +136,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 1,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a10",
@@ -142,6 +151,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 2,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a11",
@@ -156,6 +166,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 2,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a12",
@@ -170,6 +181,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 1,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a13",
@@ -184,6 +196,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 2,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a14",
@@ -198,6 +211,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 1,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a15",
@@ -212,6 +226,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
     {
         id: "a16",
@@ -226,6 +241,7 @@ export const alternatives: IAlternative[] = [
                 Parking: 3,
             },
         },
+        topsisValues: {},
     },
 ];
 

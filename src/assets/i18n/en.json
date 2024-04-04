@@ -54,7 +54,9 @@
     "summary": {
         "summary": "Summary",
         "weightedSumMethod": "Weighted Sum Method",
+        "topsisMethod": "TOPSIS Method",
         "alternative": "Alternative",
-        "weightedSum": "Weighted Sum"
+        "weightedSum": "Weighted Sum",
+        "topsis": "TOPSIS"
     }
 }
