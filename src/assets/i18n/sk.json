@@ -53,10 +53,9 @@
     },
     "summary": {
         "summary": "Zhrnutie",
-        "weightedSumMethod": "Metóda váženého súčtu",
-        "topsisMethod": "Metóda TOPSIS",
         "alternative": "Alternatíva",
         "weightedSum": "Vážený súčet",
-        "topsis": "TOPSIS"
+        "topsis": "TOPSIS",
+        "score": "Evalutron Skóre"
     }
 }

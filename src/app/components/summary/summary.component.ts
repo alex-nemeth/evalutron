@@ -23,8 +23,7 @@ import { TopsisService } from "../../services/topsis.service";
     templateUrl: "./summary.component.html",
 })
 export class SummaryComponent {
-    sortedDataWeightedSum!: IAlternative[];
-    sortedDataTopsis!: IAlternative[];
+    sortedData!: IAlternative[];
 
     constructor(
         private alternativeService: AlternativeService,
@@ -35,11 +34,9 @@ export class SummaryComponent {
 
     ngOnInit() {
         this.weightedSumService.runAllCalculations();
-        this.sortedDataWeightedSum = this.sortByWeightedSum(
-            this.alternativeService.alternatives
-        ).slice();
         this.topsisService.runAllCalculations();
-        this.sortedDataTopsis = this.sortByTopsis(
+        this.alternativeService.calculateScore();
+        this.sortedData = this.sortByScore(
             this.alternativeService.alternatives
         ).slice();
     }
@@ -48,12 +45,9 @@ export class SummaryComponent {
         this.loadingService.hide();
     }
 
-    sortByWeightedSum(alternatives: IAlternative[]) {
+    sortByScore(alternatives: IAlternative[]) {
         return alternatives.sort((a, b) => {
-            return (
-                b.weightedSumValues?.finalValue! -
-                a.weightedSumValues?.finalValue!
-            );
+            return b.score! - a.score!;
         });
     }
 
@@ -66,11 +60,11 @@ export class SummaryComponent {
     sortData(sort: Sort) {
         const data = this.alternativeService.alternatives.slice();
         if (!sort.active || sort.direction === "") {
-            this.sortedDataWeightedSum = data;
+            this.sortedData = data;
             return;
         }
 
-        this.sortedDataWeightedSum = data.sort((a, b) => {
+        this.sortedData = data.sort((a, b) => {
             const isAsc = sort.direction === "asc";
             switch (sort.active) {
                 case "id":
@@ -93,6 +87,8 @@ export class SummaryComponent {
                         b.topsisValues!.finalValue!,
                         isAsc
                     );
+                case "score":
+                    return this.compare(a.score!, b.score!, isAsc);
                 default:
                     return this.compare(
                         a.weightedSumValues?.finalValue!,

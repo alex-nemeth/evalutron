@@ -53,10 +53,9 @@
     },
     "summary": {
         "summary": "Summary",
-        "weightedSumMethod": "Weighted Sum Method",
-        "topsisMethod": "TOPSIS Method",
         "alternative": "Alternative",
         "weightedSum": "Weighted Sum",
-        "topsis": "TOPSIS"
+        "topsis": "TOPSIS",
+        "score": "Evalutron Score"
     }
 }

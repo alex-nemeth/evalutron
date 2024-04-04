@@ -128,3 +128,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 -   Saaty's method calculations (#74).
+
+## [alpha_0.4.3.] - 2024-04-04
+
+### Changed
+
+-   Summary view shows now one unified table along with Evalutron score, by which it sorts by default (#77).

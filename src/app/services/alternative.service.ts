@@ -93,4 +93,12 @@ export class AlternativeService {
         this.alternatives = [];
         this.sumsOfValues = {};
     }
+
+    calculateScore() {
+        this.alternatives.forEach((alternative: IAlternative) => {
+            alternative.score =
+                alternative.topsisValues!.finalValue! +
+                alternative.weightedSumValues!.finalValue!;
+        });
+    }
 }
