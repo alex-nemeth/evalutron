@@ -129,8 +129,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 -   Saaty's method calculations (#74).
 
-## [alpha_0.4.3.] - 2024-04-04
+## [alpha_0.4.3] - 2024-04-04
 
 ### Changed
 
 -   Summary view shows now one unified table along with Evalutron score, by which it sorts by default (#77).
+
+## [1.0.0] - 2024-05-12
+
+### Changed
+
+-   index.html pathing to make deployed
+
+### Fixed
+
+-   NaN values showing occasionally in the Summary
