@@ -229,14 +229,6 @@ export const alternatives: IAlternative[] = [
     },
 ];
 
-export const sumsOfValues: { [key: string]: number } = {
-    Cena: 4.81,
-    "Vzdialenosť (km)": 4.04,
-    "Počet izieb": 6.25,
-    weight: 1,
-    weightPercentage: 16.667,
-};
-
 // Criteria Data
 export const criteria: ICriteria[] = [
     {
