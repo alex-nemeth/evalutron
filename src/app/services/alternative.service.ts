@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { CriteriaService } from "./criteria.service";
 import { ICriteria } from "../models/criteria.model";
 import { IAlternative } from "../models/alternative.model";
@@ -18,10 +18,8 @@ export class AlternativeService {
 
     public alternativesChangedBS = new BehaviorSubject<any>(null);
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private translateService: TranslateService
-    ) {}
+    #cs = inject(CriteriaService);
+    #translate = inject(TranslateService);
 
     addAlternative(alternative: Partial<IAlternative>) {
         this.alternatives.push({
@@ -72,7 +70,7 @@ export class AlternativeService {
 
     getRawSumsOfValues() {
         let sumsOfValues = {};
-        this.criteriaService.criteria.forEach((c: ICriteria) => {
+        this.#cs.criteria.forEach((c: ICriteria) => {
             let sum = 0;
             this.alternatives.forEach(
                 (alt: IAlternative) => (sum += alt.rawValues![c.title])
@@ -84,7 +82,7 @@ export class AlternativeService {
     }
 
     loadDemoAlternatives() {
-        this.translateService.defaultLang === "en"
+        this.#translate.defaultLang === "en"
             ? (this.alternatives = demoAlternativesEN)
             : (this.alternatives = demoAlternativesSK);
     }

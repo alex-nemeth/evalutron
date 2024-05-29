@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CriteriaService } from "../../../services/criteria.service";
 import { AlternativeService } from "../../../services/alternative.service";
@@ -28,26 +28,24 @@ export class AlternativesGridComponent {
     sumsOfValues!: { [key: string]: number };
     criteriaTitles!: string[];
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private alternativeService: AlternativeService
-    ) {}
+    #cs = inject(CriteriaService);
+    #as = inject(AlternativeService);
 
     ngOnInit(): void {
-        this.columns = this.criteriaService.criteria.length + 1;
-        this.alternatives = this.alternativeService.alternatives;
-        this.sumsOfValues = this.alternativeService.sumsOfValues;
-        this.criteriaTitles = this.criteriaService.getCriteriaTitles();
-        this.alternativeService.alternativesChangedBS.subscribe((change) => {
+        this.columns = this.#cs.criteria.length + 1;
+        this.alternatives = this.#as.alternatives;
+        this.sumsOfValues = this.#as.sumsOfValues;
+        this.criteriaTitles = this.#cs.getCriteriaTitles();
+        this.#as.alternativesChangedBS.subscribe((change) => {
             if (change) {
-                this.alternatives = this.alternativeService.alternatives;
+                this.alternatives = this.#as.alternatives;
                 this.table.renderRows();
             }
         });
     }
 
     get displayedColumns(): string[] {
-        const sampleAlternative = this.alternativeService.alternatives[0];
+        const sampleAlternative = this.#as.alternatives[0];
         if (!sampleAlternative) {
             return [];
         }
@@ -56,16 +54,16 @@ export class AlternativesGridComponent {
     }
 
     removeAlternative(id: string) {
-        this.alternativeService.removeAlternative(id);
-        this.alternatives = this.alternativeService.alternatives;
+        this.#as.removeAlternative(id);
+        this.alternatives = this.#as.alternatives;
         this.table.renderRows();
     }
 
     getTooltip(criterionTitle: string): string {
-        return this.criteriaService.getCriterionDescription(criterionTitle);
+        return this.#cs.getCriterionDescription(criterionTitle);
     }
 
     hasDescription(key: string): boolean {
-        return this.criteriaService.hasDescription(key);
+        return this.#cs.hasDescription(key);
     }
 }

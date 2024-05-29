@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, inject } from "@angular/core";
 
 import { RouterModule } from "@angular/router";
 import { LoadingService } from "../../../services/loading.service";
@@ -30,9 +30,9 @@ export class NavButtonComponent {
     @Input() disabled: boolean = false;
     @Input() tooltip: string = "";
 
-    constructor(private loadingService: LoadingService) {}
+    #ls = inject(LoadingService);
 
     onClick() {
-        this.loadingService.show();
+        this.#ls.show();
     }
 }

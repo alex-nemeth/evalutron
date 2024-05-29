@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 
 import {
     FormBuilder,
@@ -27,16 +27,16 @@ import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-g
     selector: "app-define-alternatives",
     templateUrl: "./define-alternatives.component.html",
     imports: [
-    ReactiveFormsModule,
-    RouterModule,
-    NavButtonComponent,
-    NavButtonGroupComponent,
-    AlternativesGridComponent,
-    SubmitButtonComponent,
-    MatInputModule,
-    MatFormFieldModule,
-    TranslateModule
-],
+        ReactiveFormsModule,
+        RouterModule,
+        NavButtonComponent,
+        NavButtonGroupComponent,
+        AlternativesGridComponent,
+        SubmitButtonComponent,
+        MatInputModule,
+        MatFormFieldModule,
+        TranslateModule,
+    ],
 })
 export class DefineAlternativesComponent implements OnInit {
     criteria!: ICriteria[];
@@ -47,36 +47,31 @@ export class DefineAlternativesComponent implements OnInit {
 
     formGroup = new FormGroup({});
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private alternativeService: AlternativeService,
-        private formBuilder: FormBuilder,
-        private loadingService: LoadingService
-    ) {}
+    #cs = inject(CriteriaService);
+    #as = inject(AlternativeService);
+    #fb = inject(FormBuilder);
+    #ls = inject(LoadingService);
 
     ngOnInit() {
-        this.criteria = this.criteriaService.criteria;
+        this.criteria = this.#cs.criteria;
         this.initForm();
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     initForm() {
         const formControls: { [key: string]: AbstractControl } = {};
-        formControls["title"] = this.formBuilder.control(
-            "",
-            Validators.required
-        );
+        formControls["title"] = this.#fb.control("", Validators.required);
         this.criteria.forEach((criterion: ICriteria) => {
-            formControls[criterion.title] = this.formBuilder.control("", [
+            formControls[criterion.title] = this.#fb.control("", [
                 Validators.required,
                 Validators.min(0),
                 Validators.pattern(/^\d*(\.\d+)?$/), // Regex: Only positive numbers
             ]);
         });
-        this.formGroup = this.formBuilder.group(formControls);
+        this.formGroup = this.#fb.group(formControls);
     }
 
     addAlternative() {
@@ -99,7 +94,7 @@ export class DefineAlternativesComponent implements OnInit {
             rawValues: rawValues,
         };
 
-        this.alternativeService.addAlternative(newAlternative);
+        this.#as.addAlternative(newAlternative);
         this.formGroup.reset();
     }
 }

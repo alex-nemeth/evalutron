@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
@@ -12,10 +12,10 @@ import { RouterModule } from "@angular/router";
 export class NavbarComponent {
     currentLang: string = "en";
 
-    constructor(private translateService: TranslateService) {}
+    #translate = inject(TranslateService);
 
     setLanguage(lang: string) {
-        this.translateService.setDefaultLang(lang);
+        this.#translate.setDefaultLang(lang);
         this.currentLang = lang;
     }
 }

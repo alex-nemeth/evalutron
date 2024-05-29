@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
@@ -22,14 +22,14 @@ import { filter } from "rxjs";
     templateUrl: "./app.component.html",
 })
 export class AppComponent {
-    constructor(private router: Router) {}
+    #router = inject(Router);
 
-    value = ProgressBarValue[this.router.url as keyof typeof ProgressBarValue];
+    value = ProgressBarValue[this.#router.url as keyof typeof ProgressBarValue];
     ProgressBarValue = ProgressBarValue;
     title = "Evalutron";
 
     ngOnInit(): void {
-        this.router.events
+        this.#router.events
             .pipe(filter((event) => event instanceof NavigationEnd))
             .subscribe((event: any) => {
                 this.value =

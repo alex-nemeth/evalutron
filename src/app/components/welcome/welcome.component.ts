@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 
 import { RouterModule } from "@angular/router";
 import { NavButtonComponent } from "../common/nav-button/button.component";
@@ -14,40 +14,38 @@ import { FooterComponent } from "../common/footer/footer.component";
     selector: "app-welcome",
     templateUrl: "./welcome.component.html",
     imports: [
-    RouterModule,
-    NavButtonComponent,
-    MatButtonModule,
-    TranslateModule,
-    FooterComponent
-],
+        RouterModule,
+        NavButtonComponent,
+        MatButtonModule,
+        TranslateModule,
+        FooterComponent,
+    ],
 })
 export class WelcomeComponent {
     currentLang: string = "en";
 
-    constructor(
-        private alternativeService: AlternativeService,
-        private criteriaService: CriteriaService,
-        private loadingService: LoadingService,
-        private translateService: TranslateService
-    ) {}
+    #as = inject(AlternativeService);
+    #cs = inject(CriteriaService);
+    #ls = inject(LoadingService);
+    #translate = inject(TranslateService);
 
     ngOnInit() {
-        this.alternativeService.clearData();
-        this.criteriaService.clearData();
+        this.#as.clearData();
+        this.#cs.clearData();
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     loadDemoData() {
-        this.loadingService.show();
-        this.alternativeService.loadDemoAlternatives();
-        this.criteriaService.loadDemoCriteria();
+        this.#ls.show();
+        this.#as.loadDemoAlternatives();
+        this.#cs.loadDemoCriteria();
     }
 
     setLanguage(lang: string) {
-        this.translateService.setDefaultLang(lang);
+        this.#translate.setDefaultLang(lang);
         this.currentLang = lang;
     }
 }

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LoadingService } from "../../services/loading.service";
 import { TranslateModule } from "@ngx-translate/core";
@@ -23,9 +23,9 @@ import { SaatysWeightEstimation } from "../saatys-weight-estimation/saatys-weigh
 export class WeightsEstimationComponent {
     usingSaatysMethod: boolean = true;
 
-    constructor(private loadingService: LoadingService) {}
+    #ls = inject(LoadingService);
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 }

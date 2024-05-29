@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild } from "@angular/core";
+import { Component, NgZone, ViewChild, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormControl,
@@ -71,31 +71,29 @@ export class DefineCriteriaComponent {
         minmax: new FormControl("MIN", [Validators.required]),
     });
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private loadingService: LoadingService,
-        private alertService: AlertService,
-        private ngZone: NgZone
-    ) {}
+    #cs = inject(CriteriaService);
+    #ls = inject(LoadingService);
+    #alerts = inject(AlertService);
+    #zone = inject(NgZone);
 
     ngOnInit(): void {
-        this.criteria = this.criteriaService.criteria;
+        this.criteria = this.#cs.criteria;
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     addCriteria() {
         if (this.criteria.some((c) => c.title === this.formGroup.value.title)) {
             this.formGroup.controls.title.setErrors({ duplicate: true });
-            return this.alertService.showAlert(
+            return this.#alerts.showAlert(
                 `Criteria with title '${this.formGroup.value.title}' already exists.`,
                 AlertType.Error
             );
         }
         if (this.formGroup.valid) {
-            this.criteriaService.addCriteria(this.formGroup.value as ICriteria);
+            this.#cs.addCriteria(this.formGroup.value as ICriteria);
             this.table.renderRows();
             this.formGroup.reset();
             this.formGroup.controls.title.setErrors(null);
@@ -104,13 +102,13 @@ export class DefineCriteriaComponent {
     }
 
     removeCriteria(id: string) {
-        this.criteriaService.removeCriteria(id);
-        this.criteria = this.criteriaService.criteria;
+        this.#cs.removeCriteria(id);
+        this.criteria = this.#cs.criteria;
         this.table.renderRows();
     }
 
     triggerResize() {
-        this.ngZone.onStable
+        this.#zone.onStable
             .pipe(take(1))
             .subscribe(() => this.autosize.resizeToFitContent(true));
     }

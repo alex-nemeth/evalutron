@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 
 import { CriteriaService } from "../../services/criteria.service";
 import {
@@ -41,18 +41,18 @@ import { SimpleWeightEstimationComponent } from "../simple-weight-estimation/sim
     }
 `,
     imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NavButtonComponent,
-    NavButtonGroupComponent,
-    SimpleWeightEstimationComponent,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatTooltipModule,
-    TranslateModule
-],
+        FormsModule,
+        ReactiveFormsModule,
+        NavButtonComponent,
+        NavButtonGroupComponent,
+        SimpleWeightEstimationComponent,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatTooltipModule,
+        TranslateModule,
+    ],
 })
 export class SaatysWeightEstimation {
     criteria!: ICriteria[];
@@ -62,14 +62,12 @@ export class SaatysWeightEstimation {
 
     formGroup = new FormGroup({});
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private weightService: WeightService,
-        private loadingService: LoadingService
-    ) {}
+    #cs = inject(CriteriaService);
+    #ws = inject(WeightService);
+    #ls = inject(LoadingService);
 
     ngOnInit() {
-        this.criteria = this.criteriaService.criteria;
+        this.criteria = this.#cs.criteria;
         this.criteria.forEach(() => this.weights.push([]));
         this.displayedColumns = [
             "ghostCell",
@@ -77,12 +75,12 @@ export class SaatysWeightEstimation {
             "geomean",
             "weightPercentage",
         ];
-        this.weights = this.weightService.weights;
+        this.weights = this.#ws.weights;
         this.initForm();
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     isFieldDisabled(id1: string, id2: string) {
@@ -102,7 +100,7 @@ export class SaatysWeightEstimation {
         }
         const mirrorID = e.target.id.split("-").reverse().join("-");
         const mirrorControl = this.formGroup.get(mirrorID) as AbstractControl;
-        mirrorControl.setValue(`${this.weightService.mirrorWeight(weight)}`);
+        mirrorControl.setValue(`${this.#ws.mirrorWeight(weight)}`);
         const mirrorWeightCell: HTMLElement | null = document.querySelector(
             `#${mirrorID}`
         );
@@ -129,14 +127,12 @@ export class SaatysWeightEstimation {
                 arr.push(weights[i * this.criteria.length + j]);
             }
             sortedWeights.push(arr);
-            this.criteria[i].weight = this.weightService.saatysGeomean(arr);
+            this.criteria[i].weight = this.#ws.saatysGeomean(arr);
             this.criteria[i].weightPercentage =
-                (this.weightService.saatysGeomean(arr) /
-                    this.weightService.sumOfWeights) *
-                100;
+                (this.#ws.saatysGeomean(arr) / this.#ws.sumOfWeights) * 100;
         }
-        this.weightService.saveWeights(sortedWeights);
-        this.sumOfWeights = Number(this.weightService.sumOfWeights.toFixed(3));
+        this.#ws.saveWeights(sortedWeights);
+        this.sumOfWeights = Number(this.#ws.sumOfWeights.toFixed(3));
     }
 
     initForm() {
@@ -169,10 +165,10 @@ export class SaatysWeightEstimation {
     }
 
     getTooltip(criterionTitle: string): string {
-        return this.criteriaService.getCriterionDescription(criterionTitle);
+        return this.#cs.getCriterionDescription(criterionTitle);
     }
 
     hasDescription(key: string): boolean {
-        return this.criteriaService.hasDescription(key);
+        return this.#cs.hasDescription(key);
     }
 }
