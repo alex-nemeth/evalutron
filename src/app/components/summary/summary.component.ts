@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { IAlternative } from "../../models/alternative.model";
@@ -14,12 +14,11 @@ import { TopsisService } from "../../services/topsis.service";
     selector: "app-summary",
     standalone: true,
     imports: [
-        CommonModule,
-        NavButtonComponent,
-        MatTableModule,
-        MatSortModule,
-        TranslateModule,
-    ],
+    NavButtonComponent,
+    MatTableModule,
+    MatSortModule,
+    TranslateModule
+],
     templateUrl: "./summary.component.html",
 })
 export class SummaryComponent {

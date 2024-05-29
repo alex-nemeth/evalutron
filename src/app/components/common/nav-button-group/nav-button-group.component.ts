@@ -1,12 +1,12 @@
 import { Component, Input } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import { NavButtonComponent } from "../nav-button/button.component";
 import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     selector: "eval-nav-button-group",
     standalone: true,
-    imports: [CommonModule, NavButtonComponent, TranslateModule],
+    imports: [NavButtonComponent, TranslateModule],
     template: `
         <div class="flex flex-row justify-between my-4">
             <eval-nav-button

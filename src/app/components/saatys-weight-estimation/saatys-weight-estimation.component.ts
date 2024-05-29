@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import { CriteriaService } from "../../services/criteria.service";
 import {
     AbstractControl,
@@ -41,19 +41,18 @@ import { SimpleWeightEstimationComponent } from "../simple-weight-estimation/sim
     }
 `,
     imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NavButtonComponent,
-        NavButtonGroupComponent,
-        SimpleWeightEstimationComponent,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatTooltipModule,
-        TranslateModule,
-    ],
+    FormsModule,
+    ReactiveFormsModule,
+    NavButtonComponent,
+    NavButtonGroupComponent,
+    SimpleWeightEstimationComponent,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatTooltipModule,
+    TranslateModule
+],
 })
 export class SaatysWeightEstimation {
     criteria!: ICriteria[];

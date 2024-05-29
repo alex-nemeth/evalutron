@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import {
     FormBuilder,
     FormGroup,
@@ -27,17 +27,16 @@ import { NavButtonGroupComponent } from "../common/nav-button-group/nav-button-g
     selector: "app-define-alternatives",
     templateUrl: "./define-alternatives.component.html",
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule,
-        NavButtonComponent,
-        NavButtonGroupComponent,
-        AlternativesGridComponent,
-        SubmitButtonComponent,
-        MatInputModule,
-        MatFormFieldModule,
-        TranslateModule,
-    ],
+    ReactiveFormsModule,
+    RouterModule,
+    NavButtonComponent,
+    NavButtonGroupComponent,
+    AlternativesGridComponent,
+    SubmitButtonComponent,
+    MatInputModule,
+    MatFormFieldModule,
+    TranslateModule
+],
 })
 export class DefineAlternativesComponent implements OnInit {
     criteria!: ICriteria[];

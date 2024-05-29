@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import { MatInputModule } from "@angular/material/input";
 import { CriteriaService } from "../../services/criteria.service";
 import { ICriteria } from "../../models/criteria.model";
@@ -21,15 +21,14 @@ import { WeightService } from "../../services/weight.service";
     selector: "eval-simple-weight-estimation",
     standalone: true,
     imports: [
-        CommonModule,
-        MatInputModule,
-        MatTableModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TranslateModule,
-        MatIconModule,
-        MatTooltipModule,
-    ],
+    MatInputModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    MatIconModule,
+    MatTooltipModule
+],
     templateUrl: "./simple-weight-estimation.component.html",
     styles: `
     :host ::ng-deep .mat-mdc-cell.mdc-data-table__cell {

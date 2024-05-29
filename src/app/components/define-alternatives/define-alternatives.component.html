@@ -1,46 +1,48 @@
 <header class="p-10 text-3xl text-center">
-    {{ 'defineAlternatives.defineAlternatives' | translate }}
+  {{ 'defineAlternatives.defineAlternatives' | translate }}
 </header>
 
 <div>
-    <eval-alternatives-grid />
-    <form
-        class="flex flex-col gap-2 mt-4"
-        [formGroup]="formGroup"
-        (ngSubmit)="addAlternative()"
+  <eval-alternatives-grid />
+  <form
+    class="flex flex-col gap-2 mt-4"
+    [formGroup]="formGroup"
+    (ngSubmit)="addAlternative()"
     >
-        <!-- Alternative Title -->
+    <!-- Alternative Title -->
+    <mat-form-field color="accent">
+      <mat-label>{{
+        'defineAlternatives.alternativeTitle' | translate
+      }}</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <!-- Alternative Values -->
+    <div
+      class="grid gap-2"
+      [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'"
+      >
+      @for (criterion of criteria; track criterion) {
         <mat-form-field color="accent">
-            <mat-label>{{
-                'defineAlternatives.alternativeTitle' | translate
-            }}</mat-label>
-            <input matInput formControlName="title" />
+          <input
+            matInput
+            formControlName="{{ criterion.title }}"
+            placeholder="{{ criterion.title }}"
+            type="number"
+            />
         </mat-form-field>
+      }
+    </div>
 
-        <!-- Alternative Values -->
-        <div
-            class="grid gap-2"
-            [style.gridTemplateColumns]="'repeat(' + criteria.length + ', 1fr)'"
-        >
-            <mat-form-field color="accent" *ngFor="let criterion of criteria">
-                <input
-                    matInput
-                    formControlName="{{ criterion.title }}"
-                    placeholder="{{ criterion.title }}"
-                    type="number"
-                />
-            </mat-form-field>
-        </div>
-
-        <eval-submit-button
-            [disabled]="!formGroup.valid"
-            class="mb-4"
-            text="{{ 'defineAlternatives.addAlternative' | translate }}"
-        />
-    </form>
+    <eval-submit-button
+      [disabled]="!formGroup.valid"
+      class="mb-4"
+      text="{{ 'defineAlternatives.addAlternative' | translate }}"
+      />
+  </form>
 </div>
 
 <eval-nav-button-group
-    routeBack="/weights-estimation"
-    routeForward="/summary"
-/>
+  routeBack="/weights-estimation"
+  routeForward="/summary"
+  />

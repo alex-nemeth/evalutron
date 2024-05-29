@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 import { RouterModule } from "@angular/router";
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
@@ -14,13 +14,12 @@ import { FooterComponent } from "../common/footer/footer.component";
     selector: "app-welcome",
     templateUrl: "./welcome.component.html",
     imports: [
-        CommonModule,
-        RouterModule,
-        NavButtonComponent,
-        MatButtonModule,
-        TranslateModule,
-        FooterComponent,
-    ],
+    RouterModule,
+    NavButtonComponent,
+    MatButtonModule,
+    TranslateModule,
+    FooterComponent
+],
 })
 export class WelcomeComponent {
     currentLang: string = "en";

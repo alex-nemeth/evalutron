@@ -1,81 +1,83 @@
 <mat-table
-    [dataSource]="criteria"
-    class="mat-elevation-z8 max-w-full"
-    [formGroup]="formGroup"
->
-    <!-- Ghost Cell for Spacing -->
-    <ng-container matColumnDef="ghostCell">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            {{ element.title }}
-        </mat-cell>
-    </ng-container>
+  [dataSource]="criteria"
+  class="mat-elevation-z8 max-w-full"
+  [formGroup]="formGroup"
+  >
+  <!-- Ghost Cell for Spacing -->
+  <ng-container matColumnDef="ghostCell">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.title }}
+    </mat-cell>
+  </ng-container>
 
-    <!-- Columns for Criteria -->
+  <!-- Columns for Criteria -->
+  @for (criterion of criteria; track criterion) {
     <ng-container
-        *ngFor="let criterion of criteria"
-        matColumnDef="{{ criterion.id }}"
-    >
-        <mat-header-cell *matHeaderCellDef class="w-8">
-            <div class="flex flex-row gap-2 pt-3">
-                <p>{{ criterion.title }}</p>
-                <mat-icon
-                    *ngIf="hasDescription(criterion.title)"
-                    [matTooltip]="getTooltip(criterion.title)"
-                >
-                    info
-                </mat-icon>
-            </div>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <mat-form-field>
-                <input
-                    matInput
-                    [id]="element.id + '-' + criterion.id"
+      matColumnDef="{{ criterion.id }}"
+      >
+      <mat-header-cell *matHeaderCellDef class="w-8">
+        <div class="flex flex-row gap-2 pt-3">
+          <p>{{ criterion.title }}</p>
+          @if (hasDescription(criterion.title)) {
+            <mat-icon
+              [matTooltip]="getTooltip(criterion.title)"
+              >
+              info
+            </mat-icon>
+          }
+        </div>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field>
+          <input
+            matInput
+            [id]="element.id + '-' + criterion.id"
                     [formControlName]="
                         getFormControlName(element.id, criterion.id)
                     "
-                    class="bg-mcea-4 text-black w-20"
-                    type="text"
-                    placeholder="1-9"
-                    (change)="updateWeights($event)"
-                    [disabled]="isFieldDisabled(element.id, criterion.id)"
-                />
-            </mat-form-field>
-        </mat-cell>
+            class="bg-mcea-4 text-black w-20"
+            type="text"
+            placeholder="1-9"
+            (change)="updateWeights($event)"
+            [disabled]="isFieldDisabled(element.id, criterion.id)"
+            />
+        </mat-form-field>
+      </mat-cell>
     </ng-container>
+  }
 
-    <!-- Column for GEOMEAN -->
-    <ng-container matColumnDef="geomean">
-        <mat-header-cell *matHeaderCellDef class="w-8">{{
-            'estimationOfWeights.geomean' | translate
-        }}</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <p>
-                {{ hasValue(element.weight) ? element.weight : '1' }}
-            </p>
-        </mat-cell>
-    </ng-container>
+  <!-- Column for GEOMEAN -->
+  <ng-container matColumnDef="geomean">
+    <mat-header-cell *matHeaderCellDef class="w-8">{{
+      'estimationOfWeights.geomean' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <p>
+        {{ hasValue(element.weight) ? element.weight : '1' }}
+      </p>
+    </mat-cell>
+  </ng-container>
 
-    <!-- Column for Weight % -->
-    <ng-container matColumnDef="weightPercentage">
-        <mat-header-cell *matHeaderCellDef class="w-12">{{
-            'estimationOfWeights.weightPercentage' | translate
-        }}</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <p>
-                {{
-                    hasValue(element.weight)
-                        ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                        : (100 / criteria.length).toFixed(3) + '%'
-                }}
-            </p>
-        </mat-cell>
-    </ng-container>
+  <!-- Column for Weight % -->
+  <ng-container matColumnDef="weightPercentage">
+    <mat-header-cell *matHeaderCellDef class="w-12">{{
+      'estimationOfWeights.weightPercentage' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <p>
+        {{
+        hasValue(element.weight)
+        ? ((element.weight / sumOfWeights) * 100).toFixed(3)
+        : (100 / criteria.length).toFixed(3) + '%'
+        }}
+      </p>
+    </mat-cell>
+  </ng-container>
 
-    <!-- Header Row -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <!-- Header Row -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <!-- Data Rows -->
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <!-- Data Rows -->
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
