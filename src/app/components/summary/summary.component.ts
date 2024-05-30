@@ -1,5 +1,4 @@
 import { Component, inject } from "@angular/core";
-
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { IAlternative } from "../../models/alternative.model";
