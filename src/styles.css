@@ -27,14 +27,14 @@ body {
 
 .mat-mdc-snack-bar-container {
     &.primary {
-        --mdc-snackbar-container-color: #9c27b0;
+        --mdc-snackbar-container-color: #00dddd;
         --mat-mdc-snack-bar-button-color: #fff;
         --mdc-snackbar-supporting-text-color: #fff;
     }
     &.accent {
-        --mdc-snackbar-container-color: #ff4081;
+        --mdc-snackbar-container-color: #ffb787;
         --mat-mdc-snack-bar-button-color: #fff;
-        --mdc-snackbar-supporting-text-color: #69f0ae;
+        --mdc-snackbar-supporting-text-color: #fff;
     }
     &.error {
         --mdc-snackbar-container-color: #f44336;
