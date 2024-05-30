@@ -1,5 +1,4 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { Component, inject } from "@angular/core";
 import { NavButtonComponent } from "../common/nav-button/button.component";
 import { AlternativeService } from "../../services/alternative.service";
 import { IAlternative } from "../../models/alternative.model";
@@ -14,7 +13,6 @@ import { TopsisService } from "../../services/topsis.service";
     selector: "app-summary",
     standalone: true,
     imports: [
-        CommonModule,
         NavButtonComponent,
         MatTableModule,
         MatSortModule,
@@ -25,24 +23,20 @@ import { TopsisService } from "../../services/topsis.service";
 export class SummaryComponent {
     sortedData!: IAlternative[];
 
-    constructor(
-        private alternativeService: AlternativeService,
-        private loadingService: LoadingService,
-        private weightedSumService: WeightedSumService,
-        private topsisService: TopsisService
-    ) {}
+    #as = inject(AlternativeService);
+    #ls = inject(LoadingService);
+    #wss = inject(WeightedSumService);
+    #ts = inject(TopsisService);
 
     ngOnInit() {
-        this.weightedSumService.runAllCalculations();
-        this.topsisService.runAllCalculations();
-        this.alternativeService.calculateScore();
-        this.sortedData = this.sortByScore(
-            this.alternativeService.alternatives
-        ).slice();
+        this.#wss.runAllCalculations();
+        this.#ts.runAllCalculations();
+        this.#as.calculateScore();
+        this.sortedData = this.sortByScore(this.#as.alternatives).slice();
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     sortByScore(alternatives: IAlternative[]) {
@@ -58,7 +52,7 @@ export class SummaryComponent {
     }
 
     sortData(sort: Sort) {
-        const data = this.alternativeService.alternatives.slice();
+        const data = this.#as.alternatives.slice();
         if (!sort.active || sort.direction === "") {
             this.sortedData = data;
             return;

@@ -1,67 +1,68 @@
 <mat-table
-    [dataSource]="criteria"
-    class="mat-elevation-z8 max-w-full"
-    [formGroup]="formGroup"
->
-    <!-- Column for Criteria titles -->
-    <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef class="w-8"
-            >Criteria</mat-header-cell
+  [dataSource]="criteria"
+  class="mat-elevation-z8 max-w-full"
+  [formGroup]="formGroup"
+  >
+  <!-- Column for Criteria titles -->
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef class="w-8"
+      >Criteria</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">
+        <div class="flex flex-row gap-2 items-center">
+          {{ element.title }}
+          @if (hasDescription(element.title)) {
+            <mat-icon
+              [matTooltip]="getTooltip(element.title)"
+              >
+              info
+            </mat-icon>
+          }
+        </div></mat-cell
         >
-        <mat-cell *matCellDef="let element">
-            <div class="flex flex-row gap-2 items-center">
-                {{ element.title }}
-                <mat-icon
-                    *ngIf="hasDescription(element.title)"
-                    [matTooltip]="getTooltip(element.title)"
-                >
-                    info
-                </mat-icon>
-            </div></mat-cell
-        >
-    </ng-container>
+      </ng-container>
 
-    <!-- Columns for Input Fields -->
-    <ng-container matColumnDef="input">
+      <!-- Columns for Input Fields -->
+      <ng-container matColumnDef="input">
         <mat-header-cell *matHeaderCellDef class="w-8"> Value </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <mat-form-field>
-                <input
-                    matInput
-                    [id]="element.id"
-                    [formControlName]="element.id"
-                    class="bg-mcea-4 text-black w-20"
-                    type="text"
-                    placeholder="1-9"
-                    (change)="updateWeights($event)"
-                />
-            </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              [id]="element.id"
+              [formControlName]="element.id"
+              class="bg-mcea-4 text-black w-20"
+              type="text"
+              placeholder="1-9"
+              (change)="updateWeights($event)"
+              />
+          </mat-form-field>
         </mat-cell>
-    </ng-container>
+      </ng-container>
 
-    <!-- Column for Weight % -->
-    <ng-container matColumnDef="weightPercentage">
+      <!-- Column for Weight % -->
+      <ng-container matColumnDef="weightPercentage">
         <mat-header-cell *matHeaderCellDef class="w-12">
-            {{ 'estimationOfWeights.weightPercentage' | translate }}
+          {{ 'estimationOfWeights.weightPercentage' | translate }}
         </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <p>
-                {{
-                    hasValue(element.weight)
-                        ? ((element.weight / sumOfWeights) * 100).toFixed(3)
-                        : (100 / criteria.length).toFixed(3) + '%'
-                }}
-            </p>
+          <p>
+            {{
+            hasValue(element.weight)
+            ? ((element.weight / sumOfWeights) * 100).toFixed(3)
+            : (100 / criteria.length).toFixed(3) + '%'
+            }}
+          </p>
         </mat-cell>
-    </ng-container>
+      </ng-container>
 
-    <!-- Header Row -->
-    <mat-header-row
+      <!-- Header Row -->
+      <mat-header-row
         *matHeaderRowDef="['title', 'input', 'weightPercentage']"
-    ></mat-header-row>
+      ></mat-header-row>
 
-    <!-- Data Rows -->
-    <mat-row
+      <!-- Data Rows -->
+      <mat-row
         *matRowDef="let row; columns: ['title', 'input', 'weightPercentage']"
-    ></mat-row>
-</mat-table>
+      ></mat-row>
+    </mat-table>

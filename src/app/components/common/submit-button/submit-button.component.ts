@@ -1,10 +1,10 @@
 import { Component, Input } from "@angular/core";
-import { CommonModule } from "@angular/common";
+
 
 @Component({
     selector: "eval-submit-button",
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     template: `<button
         type="submit"
         class="bg-primary w-full h-8 rounded-md

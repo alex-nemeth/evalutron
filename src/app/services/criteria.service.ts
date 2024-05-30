@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { ICriteria } from "../models/criteria.model";
 import { criteria as demoCriteriaEN } from "../data/properties-en.data";
 import { criteria as demoCriteriaSK } from "../data/properties-sk.data";
@@ -10,7 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class CriteriaService {
     public criteria: ICriteria[] = [];
 
-    constructor(private translateService: TranslateService) {}
+    #translate = inject(TranslateService);
 
     addCriteria(criteria: ICriteria) {
         criteria.id = "c" + (this.criteria.length + 1);
@@ -42,7 +42,7 @@ export class CriteriaService {
     }
 
     loadDemoCriteria() {
-        this.translateService.defaultLang === "en"
+        this.#translate.defaultLang === "en"
             ? (this.criteria = demoCriteriaEN)
             : (this.criteria = demoCriteriaSK);
     }

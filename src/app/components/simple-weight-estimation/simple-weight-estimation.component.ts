@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { Component, OnInit, inject } from "@angular/core";
+
 import { MatInputModule } from "@angular/material/input";
 import { CriteriaService } from "../../services/criteria.service";
 import { ICriteria } from "../../models/criteria.model";
@@ -21,7 +21,6 @@ import { WeightService } from "../../services/weight.service";
     selector: "eval-simple-weight-estimation",
     standalone: true,
     imports: [
-        CommonModule,
         MatInputModule,
         MatTableModule,
         FormsModule,
@@ -44,14 +43,12 @@ export class SimpleWeightEstimationComponent implements OnInit {
     formGroup = new FormGroup({});
     sumOfWeights!: number;
 
-    constructor(
-        private criteriaService: CriteriaService,
-        private weightService: WeightService,
-        private loadingService: LoadingService
-    ) {}
+    #cs = inject(CriteriaService);
+    #ws = inject(WeightService);
+    #ls = inject(LoadingService);
 
     ngOnInit() {
-        this.criteria = this.criteriaService.criteria;
+        this.criteria = this.#cs.criteria;
         this.criteria.forEach(() => this.weights.push([]));
         this.displayedColumns = [
             "ghostCell",
@@ -64,7 +61,7 @@ export class SimpleWeightEstimationComponent implements OnInit {
     }
 
     ngAfterViewInit(): void {
-        this.loadingService.hide();
+        this.#ls.hide();
     }
 
     updateWeights(e: any) {
@@ -88,7 +85,7 @@ export class SimpleWeightEstimationComponent implements OnInit {
                 (Number(weights[i]) / this.sumOfWeights) * 100;
         }
         this.sumOfWeights = weights.reduce((a, b) => a + Number(b), 0);
-        this.weightService.sumOfWeights = this.sumOfWeights;
+        this.#ws.sumOfWeights = this.sumOfWeights;
     }
 
     initForm() {
@@ -107,10 +104,10 @@ export class SimpleWeightEstimationComponent implements OnInit {
     }
 
     getTooltip(criterionTitle: string): string {
-        return this.criteriaService.getCriterionDescription(criterionTitle);
+        return this.#cs.getCriterionDescription(criterionTitle);
     }
 
     hasDescription(key: string): boolean {
-        return this.criteriaService.hasDescription(key);
+        return this.#cs.hasDescription(key);
     }
 }

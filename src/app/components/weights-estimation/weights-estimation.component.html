@@ -1,35 +1,39 @@
 <header class="p-10 text-3xl text-center">
-    {{ 'estimationOfWeights.estimation' | translate }}
+  {{ 'estimationOfWeights.estimation' | translate }}
 </header>
 
 <div
-    class="flex flex-row h-16 w-full rounded-md justify-center items-center gap-1 mb-4"
->
-    <button
-        class="bg-primary w-32 h-16 p-4 rounded-l-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
+  class="flex flex-row h-16 w-full rounded-md justify-center items-center gap-1 mb-4"
+  >
+  <button
+    class="bg-primary w-32 h-16 p-4 rounded-l-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
         [ngClass]="{
             'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60':
                 usingSaatysMethod
         }"
-        (click)="usingSaatysMethod = false"
+    (click)="usingSaatysMethod = false"
     >
-        {{ 'estimationOfWeights.manualComparison' | translate }}
-    </button>
+    {{ 'estimationOfWeights.manualComparison' | translate }}
+  </button>
 
-    <button
-        class="bg-primary w-32 h-16 p-4 rounded-r-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
+  <button
+    class="bg-primary w-32 h-16 p-4 rounded-r-lg font-bold hover:bg-opacity-80 hover:scale-x-110 active:bg-opacity-40 transition-all"
         [ngClass]="{
             'bg-black text-opacity-75 bg-opacity-30 font-normal hover:bg-opacity-60':
                 !usingSaatysMethod
         }"
-        (click)="usingSaatysMethod = true"
+    (click)="usingSaatysMethod = true"
     >
-        {{ 'estimationOfWeights.saatysMethod' | translate }}
-    </button>
+    {{ 'estimationOfWeights.saatysMethod' | translate }}
+  </button>
 </div>
 
 <div class="flex flex-col justify-evenly items-center mx-8">
-    <eval-simple-weight-estimation *ngIf="!usingSaatysMethod" />
-    <eval-saatys-weight-estimation *ngIf="usingSaatysMethod" />
+  @if (!usingSaatysMethod) {
+    <eval-simple-weight-estimation />
+  }
+  @if (usingSaatysMethod) {
+    <eval-saatys-weight-estimation />
+  }
 </div>
 <eval-nav-button-group routeBack="/criteria" routeForward="/alternatives" />

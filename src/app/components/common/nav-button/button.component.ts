@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { Component, Input, inject } from "@angular/core";
+
 import { RouterModule } from "@angular/router";
 import { LoadingService } from "../../../services/loading.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -7,7 +7,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 @Component({
     selector: "eval-nav-button",
     standalone: true,
-    imports: [CommonModule, RouterModule, MatTooltipModule],
+    imports: [RouterModule, MatTooltipModule],
     template: `
         <button
             class="bg-primary px-4 h-10 rounded-md font-bold
@@ -30,9 +30,9 @@ export class NavButtonComponent {
     @Input() disabled: boolean = false;
     @Input() tooltip: string = "";
 
-    constructor(private loadingService: LoadingService) {}
+    #ls = inject(LoadingService);
 
     onClick() {
-        this.loadingService.show();
+        this.#ls.show();
     }
 }
